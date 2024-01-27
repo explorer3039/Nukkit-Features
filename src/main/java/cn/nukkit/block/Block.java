@@ -735,6 +735,12 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
     }
 
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
+        //return this.getLevel().setBlock(this, this, true, true);
+        Block down = this.down();
+        int id = down.getId();
+        if (id == Block.DENY && player != null && (!player.isCreative() || !player.isOp())) {
+            return false;
+        }
         return this.getLevel().setBlock(this, this, true, true);
     }
 
