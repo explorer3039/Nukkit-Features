@@ -8,7 +8,7 @@ public class BlockWallBlackstonePolished extends BlockWallBlackstone {
         this(0);
     }
 
-    public BlockWallBlackstone(int meta) {
+    public BlockWallBlackstonePolished(int meta) {
         super(meta);
     }
 

@@ -2,13 +2,13 @@ package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
 
-public class BlockWallBlackstonePolished extends BlockWallBlackstone {
+public class BlockWallBrickBlackstonePolished extends BlockWallBlackstone {
 
-    public BlockWallBlackstonePolished() {
+    public BlockWallBrickBlackstonePolished() {
         this(0);
     }
 
-    public BlockWallBlackstone(int meta) {
+    public BlockWallBrickBlackstonePolished(int meta) {
         super(meta);
     }
 
