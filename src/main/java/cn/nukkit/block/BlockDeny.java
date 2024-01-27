@@ -31,11 +31,6 @@ public class BlockDeny extends BlockSolid {
     }
 
     @Override
-    public boolean isBreakable(Item item) {
-        return false;
-    }
-
-    @Override
     public boolean canBePushed() {
         return false;
     }

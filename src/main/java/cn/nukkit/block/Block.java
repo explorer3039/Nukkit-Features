@@ -469,6 +469,8 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[POLISHED_BLACKSTONE_BRICKS] = BlockBricksBlackstonePolished.class; //529
             list[POLISHED_BLACKSTONE_BRICK_STAIRS] = BlockStairsBrickBlackstonePolished.class; //530
             list[BLACKSTONE_STAIRS] = BlockStairsBlackstone.class; //531
+            list[BLACKSTONE_WALL] = BlockWallBlackstone.class; //532
+            list[POLISHED_BLACKSTONE_BRICK_WALL] = BlockWallBrickBlackstonePolished.class; //533
             list[CHISELED_POLISHED_BLACKSTONE] = BlockBlackstonePolishedChiseled.class; //534
             list[CRACKED_POLISHED_BLACKSTONE_BRICKS] = BlockBricksBlackstonePolishedCracked.class; //535
             list[GILDED_BLACKSTONE] = BlockBlackstoneGilded.class; //536
@@ -486,6 +488,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[POLISHED_BLACKSTONE_DOUBLE_SLAB] = BlockDoubleSlabBlackstonePolished.class; //549
             list[POLISHED_BLACKSTONE_PRESSURE_PLATE] = BlockPressurePlateBlackstonePolished.class; //550
             list[POLISHED_BLACKSTONE_BUTTON] = BlockButtonBlackstonePolished.class; //551
+            list[POLISHED_BLACKSTONE_WALL] = BlockWallBlackstonePolished.class; //552
             list[WARPED_HYPHAE] = BlockHyphaeWarped.class; //553
             list[CRIMSON_HYPHAE] = BlockHyphaeCrimson.class; //554
             list[STRIPPED_CRIMSON_HYPHAE] = BlockHyphaeStrippedCrimson.class; //555
