@@ -21,17 +21,7 @@ public abstract class BlockElement extends BlockSolid {
     }
 
     @Override
-    public Item toItem(boolean addUserData) {
-        return Item.get(getItemId());
-    }
-
-    @Override
     public BlockColor getColor() {
         return BlockColor.BLACK_BLOCK_COLOR; //TODO: check ElementBlock::getMapColor -- 07/30/2022
-    }
-
-    @Override
-    public boolean isChemistryFeature() {
-        return true;
     }
 }
