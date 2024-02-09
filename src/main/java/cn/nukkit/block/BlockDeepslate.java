@@ -81,9 +81,8 @@ public class BlockDeepslate extends BlockSolid {
 
     @Override
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        this.setDamage(((this.getDamage() & 0x03) | faces[face.getIndex()]));
+        this.setDamage(faces[face.getIndex()]);
         this.getLevel().setBlock(block, this, true, true);
-
         return true;
     }
 }
