@@ -607,7 +607,9 @@ public interface BlockID {
     int QUARTZ_BRICKS = 559;
 
     int COPPER_ORE = 566;
-
+    
+    int MOSS_BLOCK = 575;
+    
     int DEEPSLATE = 633;
     int COBBLED_DEEPSLATE = 634;
 
