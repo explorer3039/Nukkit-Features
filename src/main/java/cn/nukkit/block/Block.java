@@ -511,6 +511,8 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[DEEPSLATE_EMERALD_ORE] = BlockOreEmeraldDeepslate.class; //662
             list[DEEPSLATE_COPPER_ORE] = BlockOreCopperDeepslate.class; //663
 
+            list[MOSS_BLOCK] = BlockMoss.class;
+
             list[RAW_IRON_BLOCK] = BlockRawIron.class; //706
             list[RAW_COPPER_BLOCK] = BlockRawCopper.class; //707
             list[RAW_GOLD_BLOCK] = BlockRawGold.class; //708
