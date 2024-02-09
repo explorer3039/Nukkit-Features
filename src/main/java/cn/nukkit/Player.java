@@ -2667,6 +2667,8 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
         startGamePacket.isMovementServerAuthoritative = this.isMovementServerAuthoritative();
         startGamePacket.isServerAuthoritativeBlockBreaking = this.isServerAuthoritativeBlockBreaking();
         startGamePacket.playerPropertyData = EntityProperty.getPlayerPropertyCache();
+        startGamePacket.eduMode = true;
+        startGamePacket.hasEduFeaturesEnabled = true;
         this.forceDataPacket(startGamePacket, null);
 
         this.loggedIn = true;
