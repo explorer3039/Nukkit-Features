@@ -1,8 +1,6 @@
 package cn.nukkit.block;
 
-import org.jetbrains.annotations.NotNull;
-
-public class BlockSmoothBasalt extends BlockSoild {
+public class BlockSmoothBasalt extends BlockSolid {
 
     @Override
     public String getName() {
