@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class BlockChain extends BlockRotatedPillar {
+public class BlockChain extends BlockSolid {
     
     public BlockChain() {
         // Does nothing
@@ -42,15 +42,23 @@ public class BlockChain extends BlockRotatedPillar {
     }
 
     @Override
-    protected AxisAlignedBB recalculateBoundingBox() {
-        switch (getDamage()) {
-            default:
-            case PILLAR_AXIS_Y:
-                return new SimpleAxisAlignedBB(this.x + 6.5 / 16, this.y, this.z + 6.5 / 16, this.x + 1 - 6.5 / 16, this.y + 1, this.z + 1 - 6.5 / 16);
-            case PILLAR_AXIS_X:
-                return new SimpleAxisAlignedBB(this.x, this.y + 6.5 / 16, this.z + 6.5 / 16, this.x + 1, this.y + 1 - 6.5 / 16, this.z + 1 - 6.5 / 16);
-            case PILLAR_AXIS_Z:
-                return new SimpleAxisAlignedBB(this.x + 6.5 / 16, this.y + 6.5 / 16, this.z, this.x + 1 - 6.5 / 16, this.y + 1 - 6.5 / 16, this.z + 1);}
+    public double getMinX() {
+        return x + 7/16.0;
+    }
+
+    @Override
+    public double getMaxX() {
+        return x + 9/16.0;
+    }
+
+    @Override
+    public double getMinZ() {
+        return z + 7/16.0;
+    }
+
+    @Override
+    public double getMaxZ() {
+        return z + 9/16.0;
     }
 
     //@Override
@@ -63,8 +71,4 @@ public class BlockChain extends BlockRotatedPillar {
         return false;
     }
     
-    @Override
-    public BlockColor getColor() {
-        return BlockColor.AIR_BLOCK_COLOR;
-    }
 }
