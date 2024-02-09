@@ -67,7 +67,7 @@ public class BlockDeepslate extends BlockSolid {
     public Item[] getDrops(Item item) {
         if (item.isPickaxe()) {
             return new Item[]{
-                    Item.get(Item.COBBLESTONE)
+                    Item.get(Item.COBBLED_DEEPSLATE)
             };
         } else {
             return new Item[0];
