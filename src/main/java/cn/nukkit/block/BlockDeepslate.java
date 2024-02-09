@@ -18,10 +18,10 @@ public class BlockDeepslate extends BlockSolid {
     private static final short[] faces = new short[]{
             0,
             0,
-            0b1000,
-            0b1000,
-            0b0100,
-            0b0100
+            2,
+            2,
+            1,
+            1
     };
 
     public BlockDeepslate() {
@@ -67,7 +67,7 @@ public class BlockDeepslate extends BlockSolid {
     public Item[] getDrops(Item item) {
         if (item.isPickaxe()) {
             return new Item[]{
-                    toItem()
+                    Item.get(Item.COBBLESTONE)
             };
         } else {
             return new Item[0];
