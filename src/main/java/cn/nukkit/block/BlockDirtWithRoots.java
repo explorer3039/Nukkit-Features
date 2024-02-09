@@ -44,7 +44,7 @@ public class BlockDirtWithRoots extends BlockSolid {
         if (!this.up().canBeReplaced()) {
             return false;
         }
-        if (item.isFertilizer() && this.level.getBlock(vector).getId() == BlockID.AIR) {
+        if (item.getId() == Item.DYE && item.getDamage() == 0x0f && this.level.getBlock(vector).getId() == BlockID.AIR) {
             if (player != null && (player.gamemode & 0x01) == 0) {
                 item.count--;
             }

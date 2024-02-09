@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class BlockChain extends BlockSolid {
+public class BlockChain extends BlockTransparent {
     
     public BlockChain() {
         // Does nothing
