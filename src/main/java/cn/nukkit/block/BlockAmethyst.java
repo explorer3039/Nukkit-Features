@@ -41,9 +41,4 @@ public class BlockAmethyst extends BlockSolid {
         return false;
     }
 
-    @Override
-    public boolean isLavaResistant() {
-        return true;
-    }
-
 }
