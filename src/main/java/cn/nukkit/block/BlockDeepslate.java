@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 08/06/2021
  */
 
-public class BlockDeepslate extends BlockSolid {
+public class BlockDeepslate extends BlockSolidMeta {
 
     private static final short[] faces = new short[]{
             0,
@@ -25,7 +25,11 @@ public class BlockDeepslate extends BlockSolid {
     };
 
     public BlockDeepslate() {
-        // Does nothing
+        this(0);
+    }
+
+    protected BlockDeepslate(int meta) {
+        super(meta);
     }
 
     @Override
