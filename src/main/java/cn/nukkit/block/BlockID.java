@@ -605,7 +605,9 @@ public interface BlockID {
     int CHISELED_NETHER_BRICKS = 557;
     int CRACKED_NETHER_BRICKS = 558;
     int QUARTZ_BRICKS = 559;
-
+    int UNKNOWN = 560;
+    int POWDER_SNOW = 561;
+    
     int COPPER_ORE = 566;
     
     int MOSS_BLOCK = 575;

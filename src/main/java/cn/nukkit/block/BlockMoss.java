@@ -52,13 +52,13 @@ public class BlockMoss extends BlockSolid {
     }
 
     @Override
-    public boolean onActivate(Item item, BlockFace face, Player player) {
+    public boolean onActivate(Item item, Player player) {
         if (item.getId() == Item.DYE && item.getDamage() == 0x0f) {
             if (player != null && !player.isCreative()) {
                 item.count--;
             }
 
-            level.addParticle(new BoneMealParticle(upVec()));
+            level.addParticle(new BoneMealParticle(this));
 
             //TODO
             return true;
