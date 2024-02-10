@@ -1,6 +1,6 @@
 package cn.nukkit.block;
 
-public class BlockSmoothBasalt extends BlockSolid {
+public class BlockSmoothBasalt extends BlockBasalt {
 
     @Override
     public String getName() {
