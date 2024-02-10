@@ -5,7 +5,7 @@ package cn.nukkit.block;
  * @since 11/06/2021
  */
 
-public class BlockCopperCut extends BlockSoild {
+public class BlockCopperCut extends BlockSolid {
     public BlockCopperCut() {
         // Does nothing
     }
