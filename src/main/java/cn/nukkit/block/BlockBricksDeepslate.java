@@ -3,46 +3,46 @@ package cn.nukkit.block;
 import cn.nukkit.item.ItemTool;
 
 /**
- * @author LoboMetalurgico
- * @since 08/06/2021
+ * @author GoodLucky777
  */
-
-public class BlockDeepslateCobbled extends BlockSolid {
-    public BlockDeepslateCobbled(){
+public class BlockBricksDeepslate extends BlockSolid {
+    public BlockBricksDeepslate() {
+        // Does Nothing
     }
-
-    @Override
-    public String getName() {
-        return "Cobbled Deepslate";
-    }
-
+    
     @Override
     public int getId() {
-        return COBBLED_DEEPSLATE;
+        return DEEPSLATE_BRICKS;
     }
-
+    
+    @Override
+    public String getName() {
+        return "Deepslate Bricks";
+    }
+    
     @Override
     public double getHardness() {
         return 3.5;
     }
-
+    
     @Override
     public double getResistance() {
-        return 6.0;
+        return 6;
     }
-
+    
+    @Override
+    public boolean canHarvestWithHand() {
+        return false;
+    }
+    
     @Override
     public int getToolType() {
         return ItemTool.TYPE_PICKAXE;
     }
-
+    
     @Override
     public int getToolTier() {
         return ItemTool.TIER_WOODEN;
     }
 
-    @Override
-    public boolean canHarvestWithHand() {
-        return false;
-    }
 }
