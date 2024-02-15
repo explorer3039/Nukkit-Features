@@ -24,29 +24,6 @@ note: if you need higher version features, please use [PowerNukkitX](https://git
 - __🔌 [Nukkit Plugins](https://cloudburstmc.org/resources/categories/nukkit-plugins.1/)__
 - __🐞 [Report a Bug](https://github.com/MemoriesOfTime/Nukkit-MOT/issues/new/choose)__
 
-## Maven
-#### Repository:
-```xml
-<repositories>
-    <repository>
-        <id>repo-lanink-cn</id>
-        <url>https://repo.lanink.cn/repository/maven-public/</url>
-    </repository>
-</repositories>
-```
-
-#### Dependencies:
-```xml
-<dependencies>
-    <dependency>
-        <groupId>cn.nukkit</groupId>
-        <artifactId>Nukkit</artifactId>
-        <version>MOT-SNAPSHOT</version>
-        <scope>provided</scope>
-    </dependency>
-</dependencies>
-```
-
 ## Credits
 [Nukkit](https://github.com/CloudburstMC/Nukkit)  
 [NukkitPetteriM1Edition](https://github.com/PetteriM1/NukkitPetteriM1Edition)  
