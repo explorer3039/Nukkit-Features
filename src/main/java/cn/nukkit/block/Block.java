@@ -508,7 +508,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             
             list[DRIPSTONE_BLOCK] = BlockDripstone.class; //572
             list[DIRT_WITH_ROOTS] = BlockDirtWithRoots.class; //573
-            //list[HANGING_ROOTS] = BlockRootsHanging.class; //574
+            list[HANGING_ROOTS] = BlockRootsHanging.class; //574
             list[MOSS_BLOCK] = BlockMoss.class; //575
             list[SPORE_BLOSSOM] = BlockSporeBlossom.class; //576
             //list[CAVE_VINES] = BlockCaveVines.class; //577
@@ -600,7 +600,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[DEEPSLATE_COPPER_ORE] = BlockOreCopperDeepslate.class; //663
             list[CRACKED_DEEPSLATE_TILES] = BlockTilesDeepslateCracked.class; //664
             list[CRACKED_DEEPSLATE_BRICKS] = BlockBricksDeepslateCracked.class; //665
-            //list[GLOW_LICHEN] = BlockGlowLichen.class; //666
+            list[GLOW_LICHEN] = BlockGlowLichen.class; //666
             //list[CANDLE] = BlockCandle.class; //667
             //list[WHITE_CANDLE] = BlockCandleWhite.class; //668
             //list[ORANGE_CANDLE] = BlockCandleOrange.class; //669
