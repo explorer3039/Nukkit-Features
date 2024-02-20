@@ -48,5 +48,16 @@ public class BlockSlabBrickDeepslate extends BlockSlab {
     public int getToolType() {
         return ItemTool.TYPE_PICKAXE;
     }
+    
+    @Override
+    public Item[] getDrops(Item item) {
+        if (item.isPickaxe() && item.getTier() >= ItemTool.TIER_WOODEN) {
+            return new Item[]{
+                    toItem()
+            };
+        } else {
+            return Item.EMPTY_ARRAY;
+        }
+    }
 
 }

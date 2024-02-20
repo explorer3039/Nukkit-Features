@@ -22,5 +22,16 @@ public class BlockSlabDeepslateCobbled extends BlockSlab {
     public String getName() {
         return "Cobbled Deepslate Slab";
     }
+    
+    @Override
+    public Item[] getDrops(Item item) {
+        if (item.isPickaxe() && item.getTier() >= ItemTool.TIER_WOODEN) {
+            return new Item[]{
+                    toItem()
+            };
+        } else {
+            return Item.EMPTY_ARRAY;
+        }
+    }
 
 }
