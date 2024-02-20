@@ -1,10 +1,5 @@
 package cn.nukkit.block;
 
-import cn.nukkit.Player;
-import cn.nukkit.item.Item;
-import cn.nukkit.math.BlockFace;
-import cn.nukkit.math.Vector3;
-
 public class BlockDeny extends BlockSolid {
     public BlockDeny() {
         

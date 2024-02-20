@@ -1,5 +1,7 @@
 package cn.nukkit.block;
 
+import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemTool;
 /**
  * @author joserobjr
  * @since 2021-06-15
