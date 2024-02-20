@@ -71,10 +71,10 @@ public class BlockDeepslate extends BlockSolidMeta {
     public Item[] getDrops(Item item) {
         if (item.isPickaxe()) {
             return new Item[]{
-                    Item.get(Item.COBBLED_DEEPSLATE)
+                    Item.get(Item.COBBLED_DEEPSLATE, 0, 1)
             };
         } else {
-            return new Item[0];
+            return Item.EMPTY_ARRAY;
         }
     }
 
