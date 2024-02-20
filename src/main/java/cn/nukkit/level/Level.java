@@ -1372,7 +1372,7 @@ public class Level implements ChunkManager, Metadatable {
                                     int z = lcg >>> 16 & 0x0f;
 
                                     int blockId = section.getBlockId(x, y, z);
-                                    if (blockId <= Block.MAX_BLOCK_ID && randomTickBlocks[blockId]) {
+                                    if (blockId >= 0 && blockId <= Block.MAX_BLOCK_ID && randomTickBlocks[blockId]) {
                                         Block block = Block.get(blockId, section.getBlockData(x, y, z), this, chunkX * 16 + x, (Y << 4) + y, chunkZ * 16 + z);
                                         block.onUpdate(BLOCK_UPDATE_RANDOM);
                                     }
@@ -4440,7 +4440,7 @@ public class Level implements ChunkManager, Metadatable {
     }
 
     public final boolean isYInRange(int y) {
-        return y >= getMinBlockY() && y < getMaxBlockY();
+        return y >= getMinBlockY() && y <= getMaxBlockY();
     }
 
     public int getMinBlockY() {
