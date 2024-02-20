@@ -18,6 +18,7 @@ import cn.nukkit.event.entity.EntityExplodeEvent;
 import cn.nukkit.inventory.InventoryHolder;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemBlock;
+import cn.nukkit.item.ItemPickaxeNetherite;
 import cn.nukkit.level.particle.HugeExplodeSeedParticle;
 import cn.nukkit.math.*;
 import cn.nukkit.network.protocol.LevelSoundEventPacket;
@@ -199,7 +200,7 @@ public class Explosion {
                     }
                 }
             } else if (Math.random() * 100 < yield) {
-                for (Item drop : block.getDrops(air)) {
+                for (Item drop : block.getDrops(new ItemPickaxeNetherite())) {
                     this.level.dropItem(block.add(0.5, 0.5, 0.5), drop);
                 }
             }
