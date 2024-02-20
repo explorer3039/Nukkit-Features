@@ -797,24 +797,24 @@ public class Server {
         }
 
         // Check for updates
-        //CompletableFuture.runAsync(() -> {
-        //    try {
-        //        URLConnection request = new URL(Nukkit.BRANCH).openConnection();
-        //        request.connect();
-        //        InputStreamReader content = new InputStreamReader((InputStream) request.getContent());
-        //        String latest = "git-" + JsonParser.parseReader(content).getAsJsonObject().get("sha").getAsString().substring(0, 7);
-        //        content.close();
+        CompletableFuture.runAsync(() -> {
+           try {
+               URLConnection request = new URL(Nukkit.BRANCH).openConnection();
+               request.connect();
+               InputStreamReader content = new InputStreamReader((InputStream) request.getContent());
+               String latest = "git-" + JsonParser.parseReader(content).getAsJsonObject().get("sha").getAsString().substring(0, 7);
+               content.close();
 
-        //        boolean isMaster = Nukkit.getBranch().equals("master");
-        //        if (!this.getNukkitVersion().equals(latest) && !this.getNukkitVersion().equals("git-null") && isMaster) {
-        //            this.getLogger().info("§c[Nukkit-MOT][Update] §eThere is a new build of §cNukkit§3-§dMOT §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
-        //            this.getLogger().info("§c[Nukkit-MOT][Update] §eYou can download the latest build from https://github.com/MemoriesOfTime/Nukkit-MOT/");
-        //        } else if (!isMaster) {
-        //            this.getLogger().warning("§c[Nukkit-MOT] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
-        //        }
-        //    } catch (Exception ignore) {
-        //    }
-        //});
+               boolean isMaster = Nukkit.getBranch().equals("master");
+               if (!this.getNukkitVersion().equals(latest) && !this.getNukkitVersion().equals("git-null") && isMaster) {
+                   this.getLogger().info("§c[Nukkit-Littlepick][Update] §eThere is a new build of §cNukkit§3-§dMOT §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
+                   this.getLogger().info("§c[Nukkit-Littlepick][Update] §eYou can download the latest build from https://github.com/explorer3039/Nukkit-Littlepick/");
+               } else if (!isMaster) {
+                   this.getLogger().warning("§c[Nukkit-Littlepick] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
+               }
+           } catch (Exception ignore) {
+           }
+        });
 
         this.start();
     }

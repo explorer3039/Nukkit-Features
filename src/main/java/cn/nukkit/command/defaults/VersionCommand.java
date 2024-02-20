@@ -41,11 +41,11 @@ public class VersionCommand extends VanillaCommand {
         if (args.length == 0 || !sender.hasPermission("nukkit.command.version.plugins")) {
             final String branch = Nukkit.getBranch();
 
-            sender.sendMessage("§e#########################################\n§cNukkit§3-§dMOT\n§6Build: §b" + branch + '/' + Nukkit.VERSION.substring(4) + "\n§6Multiversion: §bUp to version " + ProtocolInfo.MINECRAFT_VERSION_NETWORK + "\n§e#########################################");
+            sender.sendMessage("§e#########################################\n§cNukkit§3-§dLittlepick\n§6Build: §b" + branch + '/' + Nukkit.VERSION.substring(4) + "\n§6Multiversion: §bUp to version " + ProtocolInfo.MINECRAFT_VERSION_NETWORK + "\n§e#########################################");
 
             if (sender.isOp()) {
                 if (!branch.equals("master") || Nukkit.VERSION.equals("git-null")) {
-                    sender.sendMessage("§c[Nukkit-MOT] §aYou are using a development build, consider updating");
+                    sender.sendMessage("§c[Nukkit-Littlepick] §aYou are using a development build, consider updating");
                     return true;
                 }
 
@@ -58,9 +58,9 @@ public class VersionCommand extends VanillaCommand {
                         content.close();
 
                         if (Nukkit.VERSION.equals(latest)) {
-                            sender.sendMessage("§c[Nukkit-MOT] §aYou are running the latest version.");
+                            sender.sendMessage("§c[Nukkit-Littlepick] §aYou are running the latest version.");
                         } else {
-                            sender.sendMessage("§c[Nukkit-MOT][Update] §eThere is a new build of §cNukkit§3-§dMOT §eavailable! Current: " + Nukkit.VERSION + ", latest: " + latest);
+                            sender.sendMessage("§c[Nukkit-Littlepick][Update] §eThere is a new build of §cNukkit§3-§dLittlepick §eavailable! Current: " + Nukkit.VERSION + ", latest: " + latest);
                         }
                     } catch (Exception ignore) {
                     }
