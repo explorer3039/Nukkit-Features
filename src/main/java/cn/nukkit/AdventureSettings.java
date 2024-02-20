@@ -137,7 +137,7 @@ public class AdventureSettings implements Cloneable {
                 pk.setFlag(t.getId(), get(t));
             }
 
-            pk.commandPermission = (player.isOp() && player.showAdmin() ? AdventureSettingsPacket.PERMISSION_OPERATOR : AdventureSettingsPacket.PERMISSION_NORMAL);
+            pk.commandPermission = (player.isOp() && player.showAdmin() ? AdventureSettingsPacket.PERMISSION_ADMIN : AdventureSettingsPacket.PERMISSION_NORMAL);
             pk.playerPermission = (player.isOp() && player.showAdmin() && !player.isSpectator() ? Player.PERMISSION_OPERATOR : Player.PERMISSION_MEMBER);
             pk.entityUniqueId = player.getId();
 
