@@ -634,8 +634,7 @@ public class Server {
             }
         }
 
-        log.info("\u00A7b-- \u00A7cNukkit \u00A7dMOT \u00A7b--");
-        log.info("\u00A7aLittlepick custom version");
+        log.info("\u00A7b-- \u00A7bNukkit \u00A7dLittlepick \u00A7b--");
 
         this.consoleSender = new ConsoleCommandSender();
         this.commandMap = new SimpleCommandMap(this);
@@ -3097,7 +3096,7 @@ public class Server {
     private static class ServerProperties extends ConfigSection {
         {
             put("motd", "Minecraft Server");
-            put("sub-motd", "Powered by Nukkit-MOT");
+            put("sub-motd", "Powered by Nukkit-Littlepick");
             put("server-port", 19132);
             put("server-ip", "0.0.0.0");
             put("view-distance", 8);
