@@ -45529,7 +45529,7 @@
       "type": 1,
       "input": {
         "A": {
-          "id": "minecraft:echo_shard",
+          "id": 779,
           "damage": -1
         },
         "B": {
@@ -45539,7 +45539,7 @@
       },
       "output": [
         {
-          "id": "minecraft:recovery_compass"
+          "id": 778
         }
       ],
       "shape": [
@@ -45554,7 +45554,7 @@
       "type": 1,
       "input": {
         "A": {
-          "id": "minecraft:disc_fragment_5",
+          "id": 637,
           "damage": -1
         }
       },

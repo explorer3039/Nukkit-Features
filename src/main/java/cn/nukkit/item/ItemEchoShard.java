@@ -1,18 +1,19 @@
 package cn.nukkit.item;
 
-import cn.nukkit.network.protocol.ProtocolInfo;
-
 /**
  * @author explorer_3039
  */
-public class ItemEchoShard extends StringItemBase {
+public class ItemEchoShard extends Item {
 
     public ItemEchoShard() {
-        super("minecraft:echo_shard", "Echo Shard");
+        this(0, 1);
     }
-    
-    @Override
-    public boolean isSupportedOn(int protocolId) {
-        return protocolId >= ProtocolInfo.v1_19_0;
+
+    public ItemEchoShard(Integer meta) {
+        this(meta, 1);
+    }
+
+    public ItemEchoShard(Integer meta, int count) {
+        super(ECHO_SHARD, 0, count, "Echo Shard");
     }
 }

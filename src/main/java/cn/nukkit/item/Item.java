@@ -380,6 +380,11 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             list[RECORD_OTHERSIDE] = ItemRecordOtherside.class; //773
 
             list[SOUL_CAMPFIRE] = ItemCampfireSoul.class; //801
+            
+            list[ECHO_SHARD] = ItemEchoShard.class; //779
+            list[DISC_FRAGMENT_5] = ItemDiscFragment5.class; //637
+            list[RECOVERY_COMPASS] = ItemRecoveryCompass.class; //778
+            
 
             for (int i = 0; i < 256; ++i) {
                 if (Block.list[i] != null) {
@@ -392,10 +397,6 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             registerNamespacedIdItem(ItemRawGold.class);
             registerNamespacedIdItem(ItemRawCopper.class);
             registerNamespacedIdItem(ItemCopperIngot.class);
-            
-            registerNamespacedIdItem(ItemEchoShard.class);
-            registerNamespacedIdItem(ItemDiscFragment5.class);
-            registerNamespacedIdItem(ItemRecoveryCompass.class);
             registerNamespacedIdItem(ItemNetheriteUpgradeSmithingTemplate.class);
             registerNamespacedIdItem(ItemSentryArmorTrimSmithingTemplate.class);
             registerNamespacedIdItem(ItemDuneArmorTrimSmithingTemplate.class);

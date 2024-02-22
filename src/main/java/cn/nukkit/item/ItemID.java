@@ -293,6 +293,7 @@ public interface ItemID {
     int SHIELD = 513;
 
     int RECORD_5 = 636;
+    int DISC_FRAGMENT_5 = 637;
 
     int OAK_CHEST_BOAT = 638;
     int BIRCH_CHEST_BOAT = 639;
@@ -342,6 +343,9 @@ public interface ItemID {
     int AMETHYST_SHARD = 771;
     int SPYGLASS = 772;
     int RECORD_OTHERSIDE = 773;
+    
+    int RECOVERY_COMPASS = 778;
+    int ECHO_SHARD = 779;
 
     int SOUL_CAMPFIRE = 801;
 }

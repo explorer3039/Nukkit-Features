@@ -1,18 +1,19 @@
 package cn.nukkit.item;
 
-import cn.nukkit.network.protocol.ProtocolInfo;
-
 /**
  * @author explorer_3039
  */
-public class ItemRecoveryCompass extends StringItemBase {
+public class ItemRecoveryCompass extends Item {
 
     public ItemRecoveryCompass() {
-        super("minecraft:recovery_compass", "Recovery Compass");
+        this(0, 1);
     }
-    
-    @Override
-    public boolean isSupportedOn(int protocolId) {
-        return protocolId >= ProtocolInfo.v1_19_0;
+
+    public ItemRecoveryCompass(Integer meta) {
+        this(meta, 1);
+    }
+
+    public ItemRecoveryCompass(Integer meta, int count) {
+        super(RECOVERY_COMPASS, 0, count, "Recovery Compass");
     }
 }
