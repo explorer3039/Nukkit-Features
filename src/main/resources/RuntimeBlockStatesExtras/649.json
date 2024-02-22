@@ -1,0 +1,52 @@
+{
+  "extras": [
+    {
+      "id": 649,
+      "data": 0,
+      "runtimeId": 1185,
+      "states": {
+        "wall_post_bit": 0,
+        "wall_connection_type_north": "none",
+        "wall_connection_type_south": "none",
+        "wall_connection_type_east": "none",
+        "wall_connection_type_west": "none"
+      }
+    },
+    {
+      "id": 641,
+      "data": 0,
+      "runtimeId": 13608,
+      "states": {
+        "wall_post_bit": 0,
+        "wall_connection_type_north": "none",
+        "wall_connection_type_south": "none",
+        "wall_connection_type_east": "none",
+        "wall_connection_type_west": "none"
+      }
+    },
+    {
+      "id": 645,
+      "data": 0,
+      "runtimeId": 8843,
+      "states": {
+        "wall_post_bit": 0,
+        "wall_connection_type_north": "none",
+        "wall_connection_type_south": "none",
+        "wall_connection_type_east": "none",
+        "wall_connection_type_west": "none"
+      }
+    },
+    {
+      "id": 637,
+      "data": 0,
+      "runtimeId": 13872,
+      "states": {
+        "wall_post_bit": 0,
+        "wall_connection_type_north": "none",
+        "wall_connection_type_south": "none",
+        "wall_connection_type_east": "none",
+        "wall_connection_type_west": "none"
+      }
+    }
+  ]
+}
