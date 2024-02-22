@@ -73,8 +73,8 @@ public class ItemBucket extends Item {
             case 13:
                 return 8;
             case 10:
-            case 11:
                 return 10;
+            case 11:
             default:
                 return 0;
         }

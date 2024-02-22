@@ -392,6 +392,10 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             registerNamespacedIdItem(ItemRawGold.class);
             registerNamespacedIdItem(ItemRawCopper.class);
             registerNamespacedIdItem(ItemCopperIngot.class);
+            
+            registerNamespacedIdItem(ItemEchoShard.class);
+            registerNamespacedIdItem(ItemDiscFragment5.class);
+            registerNamespacedIdItem(ItemRecoveryCompass.class);
             registerNamespacedIdItem(ItemNetheriteUpgradeSmithingTemplate.class);
             registerNamespacedIdItem(ItemSentryArmorTrimSmithingTemplate.class);
             registerNamespacedIdItem(ItemDuneArmorTrimSmithingTemplate.class);
