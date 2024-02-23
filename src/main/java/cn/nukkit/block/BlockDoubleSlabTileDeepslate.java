@@ -1,6 +1,7 @@
 package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemBlock;
 import cn.nukkit.item.ItemTool;
 
 /**
@@ -54,7 +55,7 @@ public class BlockDoubleSlabTileDeepslate extends BlockDoubleSlab {
     public Item[] getDrops(Item item) {
         if (item.isPickaxe()) {
             return new Item[]{
-                    Item.get(Item.DEEPSLATE_TILE_SLAB, 0, 2)
+                    Item.get(ItemBlock.DEEPSLATE_TILE_SLAB, 0, 2)
             };
         } else {
             return new Item[0];
