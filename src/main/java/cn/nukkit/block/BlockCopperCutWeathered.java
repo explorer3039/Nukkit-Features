@@ -25,8 +25,8 @@ public class BlockCopperCutWeathered extends BlockCopperCut {
     @Override
     public int onUpdate(int type) {
         if (type == Level.BLOCK_UPDATE_RANDOM) {
-			level.setBlock(this, Block.get(BlockID.OXIDIZED_CUT_COPPER), true);
-			return Level.BLOCK_UPDATE_RANDOM;
+			this.getLevel().setBlock(this, Block.get(BlockID.OXIDIZED_CUT_COPPER));
+			return 0;
         }
         return 0;
     }
