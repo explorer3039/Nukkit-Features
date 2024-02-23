@@ -52,6 +52,8 @@ public class ItemBucket extends Item {
                 return "Water Bucket";
             case 10:
                 return "Lava Bucket";
+            case 11:
+                return "Powder Snow Bucket";
             case 12:
                 return "Bucket of Axolotl";
             case 13:
@@ -75,6 +77,7 @@ public class ItemBucket extends Item {
             case 10:
                 return 10;
             case 11:
+                return 561;
             default:
                 return 0;
         }
