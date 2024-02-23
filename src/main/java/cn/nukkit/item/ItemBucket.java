@@ -102,17 +102,19 @@ public class ItemBucket extends Item {
         Block targetBlock = Block.get(getDamageByTarget(this.meta));
 
         if (targetBlock instanceof BlockAir) {
-            if (!(target instanceof BlockLiquid) || target.getDamage() != 0) {
-                target = target.getLevelBlockAtLayer(1);
+            if (!(target instanceof BlockPowderSnow)) {
+				if (!(target instanceof BlockLiquid) || target.getDamage() != 0) {
+					target = target.getLevelBlockAtLayer(1);
+				}
+				if (!(target instanceof BlockLiquid) || target.getDamage() != 0) {
+					target = block;
+				}
+				if (!(target instanceof BlockLiquid) || target.getDamage() != 0) {
+					target = block.getLevelBlockAtLayer(1);
+				}
             }
-            if (!(target instanceof BlockLiquid) || target.getDamage() != 0) {
-                target = block;
-            }
-            if (!(target instanceof BlockLiquid) || target.getDamage() != 0) {
-                target = block.getLevelBlockAtLayer(1);
-            }
-            if (target instanceof BlockLiquid && target.getDamage() == 0) {
-                Item result = Item.get(BUCKET, getDamageByTarget(target.getId()), 1);
+            if ((target instanceof BlockLiquid || target instanceof BlockPowderSnow) && target.getDamage() == 0) {
+                Item result = target instanceof BlockPowderSnow ? Item.get(BUCKET, 11, 1) : Item.get(BUCKET, getDamageByTarget(target.getId()), 1);
                 PlayerBucketFillEvent ev;
                 player.getServer().getPluginManager().callEvent(ev = new PlayerBucketFillEvent(player, block, face, this, result));
                 if (!ev.isCancelled()) {
@@ -144,8 +146,10 @@ public class ItemBucket extends Item {
 
                     if (target instanceof BlockLava) {
                         level.addLevelSoundEvent(block, LevelSoundEventPacket.SOUND_BUCKET_FILL_LAVA);
-                    } else {
+                    } else if (target instanceof BlockWater) {
                         level.addLevelSoundEvent(block, LevelSoundEventPacket.SOUND_BUCKET_FILL_WATER);
+                    } else if (target instanceof BlockPowderSnow) {
+                        level.addLevelSoundEvent(block, LevelSoundEventPacket.SOUND_BUCKET_FILL_POWDER_SNOW);
                     }
 
                     return true;
@@ -254,6 +258,35 @@ public class ItemBucket extends Item {
             } else {
                 player.getLevel().sendBlocks(new Player[] {player}, new Block[] {block.getLevelBlockAtLayer(1)}, UpdateBlockPacket.FLAG_ALL_PRIORITY, 1); //TODO: maybe not here
                 player.getInventory().sendContents(player);
+            }
+        }
+        else if (targetBlock instanceof BlockPowderSnow) {
+            Item result = Item.get(BUCKET, 0, 1);
+            if (!target.canBeReplaced()) {
+                final Block side = target.getSide(face);
+                if (side.canBeReplaced()) {
+                    target = side;
+                }
+            }
+            PlayerBucketEmptyEvent ev = new PlayerBucketEmptyEvent(player, block, face, this, result, true);
+            if (!ev.isCancelled()) {
+                target.getLevel().setBlock(target, targetBlock, true, true);
+                level.addLevelSoundEvent(block, LevelSoundEventPacket.SOUND_BUCKET_FILL_POWDER_SNOW);
+
+                if (player.isSurvival()) {
+                    if (this.getCount() - 1 <= 0) {
+                        player.getInventory().setItemInHand(ev.getItem());
+                    } else {
+                        Item clone = this.clone();
+                        clone.setCount(this.getCount() - 1);
+                        player.getInventory().setItemInHand(clone);
+                        if (player.getInventory().canAddItem(ev.getItem())) {
+                            player.getInventory().addItem(ev.getItem());
+                        } else {
+                            player.dropItem(ev.getItem());
+                        }
+                    }
+                }
             }
         }
 
