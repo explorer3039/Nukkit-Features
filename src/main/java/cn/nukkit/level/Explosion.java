@@ -16,12 +16,7 @@ import cn.nukkit.event.entity.EntityDamageEvent.DamageCause;
 import cn.nukkit.event.entity.EntityExplodeEvent;
 import cn.nukkit.inventory.InventoryHolder;
 import cn.nukkit.item.Item;
-<<<<<<< HEAD
-import cn.nukkit.item.ItemBlock;
-import cn.nukkit.item.ItemPickaxeNetherite;
-=======
 import cn.nukkit.item.ItemTool;
->>>>>>> upstream/master
 import cn.nukkit.level.particle.HugeExplodeSeedParticle;
 import cn.nukkit.math.*;
 import cn.nukkit.network.protocol.LevelSoundEventPacket;
@@ -203,11 +198,7 @@ public class Explosion {
                     }
                 }
             } else if (Math.random() * 100 < yield) {
-<<<<<<< HEAD
-                for (Item drop : block.getDrops(new ItemPickaxeNetherite())) {
-=======
                 for (Item drop : block.getDrops(netheritePickaxe)) {
->>>>>>> upstream/master
                     this.level.dropItem(block.add(0.5, 0.5, 0.5), drop);
                 }
             }
