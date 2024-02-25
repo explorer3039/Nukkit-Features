@@ -70,9 +70,7 @@ public class BlockDeepslate extends BlockSolidMeta {
     @Override
     public Item[] getDrops(Item item) {
         if (item.isPickaxe()) {
-            return new Item[]{
-                    Item.get(ItemBlock.COBBLED_DEEPSLATE, 0, 1)
-            };
+            return new Item[]{new ItemBlock(Block.get(BlockID.COBBLED_DEEPSLATE))};
         } else {
             return Item.EMPTY_ARRAY;
         }
