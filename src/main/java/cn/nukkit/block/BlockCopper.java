@@ -24,10 +24,10 @@ public class BlockCopper extends BlockSolid {
     
     @Override
     public int onUpdate(int type) {
-        //if (type == Level.BLOCK_UPDATE_RANDOM) {
+        if (type == Level.BLOCK_UPDATE_RANDOM) {
 			this.getLevel().setBlock(this, Block.get(BlockID.EXPOSED_COPPER), true, true);
-		//	return 0;
-        //}
+			return 0;
+        }
         return 0;
     }
 }

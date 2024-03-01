@@ -14,8 +14,6 @@ import cn.nukkit.utils.Faceable;
  */
 public class BlockLightningRod extends BlockTransparentMeta implements Faceable {
 
-    private static final int[] faces = {0, 1, 3, 2, 5, 4};
-
     public BlockLightningRod() {
         this(0);
     }
@@ -65,7 +63,7 @@ public class BlockLightningRod extends BlockTransparentMeta implements Faceable 
 
     @Override
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        this.setDamage(faces[player != null ? face.getIndex() : 0]);
+        this.setDamage(player != null ? face.getIndex() : 0);
         this.getLevel().setBlock(block, this, true, true);
 
         return true;
@@ -78,6 +76,6 @@ public class BlockLightningRod extends BlockTransparentMeta implements Faceable 
 
     @Override
     public BlockFace getBlockFace() {
-        return BlockFace.fromHorizontalIndex(this.getDamage() & 0x7);
+        return BlockFace.fromIndex(this.getDamage() & 0b111);
     }
 }
