@@ -3,7 +3,7 @@ package cn.nukkit.block;
 
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
-//import cn.nukkit.item.ItemChain;
+import cn.nukkit.item.ItemChain;
 import cn.nukkit.item.ItemTool;
 import cn.nukkit.math.BlockFace;
 import org.jetbrains.annotations.NotNull;
@@ -61,10 +61,10 @@ public class BlockChain extends BlockTransparent {
         return z + 9/16.0;
     }
 
-    //@Override
-    //public Item toItem() {
-    //    return new ItemChain();
-    //}
+    @Override
+    public Item toItem() {
+        return new ItemChain();
+    }
 
     @Override
     public boolean canHarvestWithHand() {

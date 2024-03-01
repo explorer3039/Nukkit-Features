@@ -508,7 +508,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             //list[POINTED_DRIPSTONE] = BlockPointedDripstone.class; //563
             
             list[COPPER_ORE] = BlockOreCopper.class; // 566
-            //list[LIGHTNING_ROD] = BlockLightningRod.class; //567
+            list[LIGHTNING_ROD] = BlockLightningRod.class; //567
             
             list[DRIPSTONE_BLOCK] = BlockDripstone.class; //572
             list[DIRT_WITH_ROOTS] = BlockDirtWithRoots.class; //573

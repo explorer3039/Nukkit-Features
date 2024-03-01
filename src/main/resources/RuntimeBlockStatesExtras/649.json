@@ -53,6 +53,54 @@
       "data": 0,
       "runtimeId": 101,
       "states": {}
+    },
+    {
+      "id": 567,
+      "data": 0,
+      "runtimeId": 2622,
+      "states": {
+        "facing_direction": 0
+      }
+    },
+    {
+      "id": 567,
+      "data": 0,
+      "runtimeId": 2623,
+      "states": {
+        "facing_direction": 1
+      }
+    },
+    {
+      "id": 567,
+      "data": 0,
+      "runtimeId": 2624,
+      "states": {
+        "facing_direction": 2
+      }
+    },
+    {
+      "id": 567,
+      "data": 0,
+      "runtimeId": 2625,
+      "states": {
+        "facing_direction": 3
+      }
+    },
+    {
+      "id": 567,
+      "data": 0,
+      "runtimeId": 2626,
+      "states": {
+        "facing_direction": 4
+      }
+    },
+    {
+      "id": 567,
+      "data": 0,
+      "runtimeId": 2627,
+      "states": {
+        "facing_direction": 5
+      }
     }
   ]
 }
