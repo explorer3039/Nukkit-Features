@@ -1,5 +1,7 @@
 package cn.nukkit.block;
 
+import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemID;
 import cn.nukkit.level.Level;
 
 /**
@@ -29,5 +31,12 @@ public class BlockCopperCutWeathered extends BlockCopperCut {
 			return 0;
         }
         return 0;
+    }
+    
+    @Override
+    public boolean onActivate(Item item, Player player) {
+        if (item.getId() == Item.HONEYCOMB) {
+            this.getLevel().setBlock(this, Block.get(BlockID.WAXED_WEATHERED_CUT_COPPER), true, true);
+        }
     }
 }
