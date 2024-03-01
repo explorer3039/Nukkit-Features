@@ -23,11 +23,28 @@ public class BlockCopper extends BlockSolid {
     }
     
     @Override
+    public double getHardness() {
+        return 3;
+    }
+
+    @Override
+    public double getResistance() {
+        return 6;
+    }
+    
+    @Override
     public int onUpdate(int type) {
         if (type == Level.BLOCK_UPDATE_RANDOM) {
 			this.getLevel().setBlock(this, Block.get(BlockID.EXPOSED_COPPER), true, true);
 			return 0;
         }
         return 0;
+    }
+    
+    @Override
+    public boolean onActivate(Item item, Player player) {
+        if (item.getId() == Item.HONEYCOMB) {
+            this.getLevel().setBlock(this, Block.get(BlockID.WAXED_COPPER), true, true);
+        }
     }
 }
