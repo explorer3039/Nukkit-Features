@@ -30,7 +30,7 @@ public class BlockDoubleSlabDeepslateCobbled extends BlockDoubleSlab {
     public Item[] getDrops(Item item) {
         if (item.isPickaxe()) {
             return new Item[]{
-                    Item.get(ItemBlock.COBBLED_DEEPSLATE_SLAB, 0, 2)
+                    new ItemBlock(Block.get(COBBLED_DEEPSLATE_SLAB), 0, 2)
             };
         } else {
             return new Item[0];
