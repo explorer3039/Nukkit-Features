@@ -1,5 +1,6 @@
 package cn.nukkit.block;
 
+import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
 import cn.nukkit.level.Level;
@@ -37,6 +38,8 @@ public class BlockCopperExposed extends BlockCopper {
     public boolean onActivate(Item item, Player player) {
         if (item.getId() == Item.HONEYCOMB) {
             this.getLevel().setBlock(this, Block.get(BlockID.WAXED_EXPOSED_COPPER), true, true);
+            return true;
         }
+        return false;
     }
 }

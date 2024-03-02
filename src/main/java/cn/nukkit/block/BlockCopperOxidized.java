@@ -1,5 +1,6 @@
 package cn.nukkit.block;
 
+import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
 
@@ -27,6 +28,8 @@ public class BlockCopperOxidized extends BlockCopper {
     public boolean onActivate(Item item, Player player) {
         if (item.getId() == Item.HONEYCOMB) {
             this.getLevel().setBlock(this, Block.get(BlockID.WAXED_OXIDIZED_COPPER), true, true);
+            return true;
         }
+        return false;
     }
 }
