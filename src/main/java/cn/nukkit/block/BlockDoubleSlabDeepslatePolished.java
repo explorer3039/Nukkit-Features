@@ -59,9 +59,9 @@ public class BlockDoubleSlabDeepslatePolished extends BlockDoubleSlab {
     @Override
     public Item[] getDrops(Item item) {
         if (item.isPickaxe()) {
-            return new Item[]{
-                    Item.get(Item.POLISHED_DEEPSLATE_SLAB, this.getDamage() & 0x07, 2)
-            };
+            Item slab = toItem();
+            slab.setCount(2);
+            return new Item[]{ slab };
         } else {
             return new Item[0];
         }
