@@ -1,6 +1,7 @@
 package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemBlock;
 import cn.nukkit.item.ItemTool;
 
 /**
@@ -51,14 +52,8 @@ public class BlockSlabBrickDeepslate extends BlockSlab {
     }
     
     @Override
-    public Item[] getDrops(Item item) {
-        if (item.isPickaxe() && item.getTier() >= ItemTool.TIER_WOODEN) {
-            return new Item[]{
-                    toItem()
-            };
-        } else {
-            return Item.EMPTY_ARRAY;
-        }
+    public Item toItem() {
+        return new ItemBlock(this, this.getDamage() & 0x07);
     }
 
 }

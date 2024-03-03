@@ -27,10 +27,15 @@ public class BlockDoubleSlabDeepslateCobbled extends BlockDoubleSlab {
     }
     
     @Override
+    public Item toItem() {
+        return new ItemBlock(Block.get(COBBLED_DEEPSLATE_SLAB), this.getDamage() & 0x07);
+    }
+    
+    @Override
     public Item[] getDrops(Item item) {
         if (item.isPickaxe()) {
             return new Item[]{
-                    new ItemBlock(Block.get(COBBLED_DEEPSLATE_SLAB), 0, 2)
+                    Item.get(Item.COBBLED_DEEPSLATE_SLAB, this.getDamage() & 0x07, 2)
             };
         } else {
             return new Item[0];

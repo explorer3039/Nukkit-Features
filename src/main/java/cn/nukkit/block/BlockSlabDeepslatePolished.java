@@ -2,6 +2,7 @@ package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemTool;
+import cn.nukkit.item.ItemBlock;
 
 /**
  * @author GoodLucky777
@@ -49,6 +50,11 @@ public class BlockSlabDeepslatePolished extends BlockSlab {
     @Override
     public int getToolType() {
         return ItemTool.TYPE_PICKAXE;
+    }
+    
+    @Override
+    public Item toItem() {
+        return new ItemBlock(this, this.getDamage() & 0x07);
     }
 
 }

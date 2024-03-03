@@ -54,7 +54,7 @@ public class StartGamePacket extends DataPacket {
     public boolean worldEditor;
     public int dayCycleStopTime = -1;
     public boolean eduMode = true;
-    public int eduEditionOffer = 0;
+    public int eduEditionOffer = 1;
     public boolean hasEduFeaturesEnabled = true;
     public float rainLevel;
     public float lightningLevel;
