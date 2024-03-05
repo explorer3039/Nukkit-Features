@@ -598,6 +598,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
 
     public static ArrayList<Item> getCreativeItems(int protocol) {
         switch (protocol) {
+            case v1_1_0: //TODO check
             case v1_2_0:
             case v1_2_5_11:
             case v1_2_5:
@@ -1693,6 +1694,10 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
      * @return item changed
      */
     public boolean onClickAir(Player player, Vector3 directionVector) {
+        return false;
+    }
+
+    public boolean canRelease() {
         return false;
     }
 
