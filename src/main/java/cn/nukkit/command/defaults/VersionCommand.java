@@ -44,11 +44,6 @@ public class VersionCommand extends VanillaCommand {
             sender.sendMessage("§e#########################################\n§cNukkit§3-§dLittlepick\n§6Build: §b" + branch + '/' + Nukkit.VERSION.substring(4) + "\n§6Multiversion: §bUp to version " + ProtocolInfo.MINECRAFT_VERSION_NETWORK + "\n§e#########################################");
 
             if (sender.isOp()) {
-                if (!branch.equals("master") || Nukkit.VERSION.equals("git-null")) {
-                    sender.sendMessage("§c[Nukkit-Littlepick] §aYou are using a development build, consider updating");
-                    return true;
-                }
-
                 CompletableFuture.runAsync(() -> {
                     try {
                         URLConnection request = new URL(Nukkit.BRANCH).openConnection();

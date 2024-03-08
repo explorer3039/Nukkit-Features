@@ -5,7 +5,7 @@ import cn.nukkit.event.Event;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.utils.EventException;
-import co.aikar.timings.Timing;
+import co.aikar.timings.Timing;;
 
 /**
  * @author MagicDroidX
