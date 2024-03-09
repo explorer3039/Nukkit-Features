@@ -29,8 +29,8 @@ public class BlockSculk extends BlockSolid {
     
     @Override
     public Item[] getDrops(Item item) {
-        if (item.getEnchantment(Enchantment.ID_SILK_TOUCH) != null) {
-            return super.getDrops(item);
+        if (item.hasEnchantment(Enchantment.ID_SILK_TOUCH)) {
+             return new Item[]{this.toItem()};
         } else {
             return Item.EMPTY_ARRAY;
         }
