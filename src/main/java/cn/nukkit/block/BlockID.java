@@ -753,10 +753,13 @@ public interface BlockID {
     int RAW_GOLD_BLOCK = 708;
     int INFESTED_DEEPSLATE = 709;
     
+    int SCULK = 713;
+    
+    int REINFORCED_DEEPSLATE = 721;
+    
+    int FROG_SPAWN = 723;
     int PEARLESCENT_FROGLIGHT = 724;
-
     int VERDANT_FROGLIGHT = 725;
-
     int OCHRE_FROGLIGHT = 726;
 
     int MANGROVE_PLANKS = 741;

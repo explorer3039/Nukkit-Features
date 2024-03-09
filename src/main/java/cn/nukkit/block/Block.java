@@ -648,7 +648,12 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[RAW_COPPER_BLOCK] = BlockRawCopper.class; //707
             list[RAW_GOLD_BLOCK] = BlockRawGold.class; //708
             list[INFESTED_DEEPSLATE] = BlockInfestedDeepslate.class; //709
+            
+            list[SCULK] = BlockSculk.class; //713
 
+            list[REINFORCED_DEEPSLATE] = BlockReinforcedDeepslate.class; //721
+
+            list[FROG_SPAWN] = BlockFrogSpawn.class; //723
             list[PEARLESCENT_FROGLIGHT] = BlockFrogLightPearlescent.class; //724
             list[VERDANT_FROGLIGHT] = BlockFrogLightVerdant.class; //725
             list[OCHRE_FROGLIGHT] = BlockFrogLightOchre.class; //726
