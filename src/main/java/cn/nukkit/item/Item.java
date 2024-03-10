@@ -600,7 +600,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
         switch (protocol) {
             case v1_1_0: //TODO check
             case v1_2_0:
-            case v1_2_5_11:
+            case v1_2_5_12:
             case v1_2_5:
             case v1_2_6:
             case v1_2_7:
@@ -630,7 +630,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
                 return new ArrayList<>(Item.creative389);
             case v1_16_0:
             case v1_16_20:
-            case v1_16_100_0:
+            case v1_16_100_50:
             case v1_16_100_51:
             case v1_16_100_52:
             case v1_16_100:
@@ -641,7 +641,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             case v1_16_210:
             case v1_16_220:
             case v1_16_230_50:
-            case v1_16_230:
+            case v1_16_230_52:
             case v1_16_230_54:
                 return new ArrayList<>(Item.creative407);
             case v1_17_0:
