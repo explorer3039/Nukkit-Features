@@ -421,12 +421,14 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[SWEET_BERRY_BUSH] = BlockSweetBerryBush.class; //462
             list[LANTERN] = BlockLantern.class; //463
             list[CAMPFIRE_BLOCK] = BlockCampfire.class; //464
+            
+            list[JIGSAW] = BlockJigsaw.class; //466
             list[WOOD_BARK] = BlockWoodBark.class; //467
             list[COMPOSTER] = BlockComposter.class; //468
             list[LIT_BLAST_FURNACE] = BlockBlastFurnaceLit.class; //469
-
+            list[LIGHT_BLOCK] = BlockLight.class; //470
+            list[WITHER_ROSE] = BlockWitherRose.class; //471
             list[PISTON_HEAD_STICKY] = BlockPistonHeadSticky.class; //472
-
             list[BEE_NEST] = BlockBeeNest.class; //473
             list[BEEHIVE] = BlockBeehive.class; //474
 
@@ -442,8 +444,10 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[CRIMSON_NYLIUM] = BlockNyliumCrimson.class; //487
             list[WARPED_NYLIUM] = BlockNyliumWarped.class; //488
             list[BASALT] = BlockBasalt.class; //489
-
+            list[POLISHED_BASALT] = BlockPolishedBasalt.class; //490
             list[SOUL_SOIL] = BlockSoulSoil.class; //491
+            list[SOUL_FIRE] = BlockFireSoul.class; //492
+            list[NETHER_SPROUTS_BLOCK] = BlockNetherSprout.class; //493
 
             list[STRIPPED_CRIMSON_STEM] = BlockStemStrippedCrimson.class; //495
             list[STRIPPED_WARPED_STEM] = BlockStemStrippedWarped.class; //496

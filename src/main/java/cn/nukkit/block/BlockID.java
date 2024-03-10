@@ -538,14 +538,18 @@ public interface BlockID {
     int SWEET_BERRY_BUSH = 462;
     int LANTERN = 463;
     int CAMPFIRE_BLOCK = 464;
+    int LAVA_CAULDRON = 465;
+    int JIGSAW = 466;
     int WOOD_BARK = 467;
     int COMPOSTER = 468;
     int LIT_BLAST_FURNACE = 469;
-
+    int LIGHT_BLOCK = 470;
+    int WITHER_ROSE = 471;
     int PISTON_HEAD_STICKY = 472;
     int BEE_NEST = 473;
     int BEEHIVE = 474;
-
+    int HONEY_BLOCK = 475;
+    int HONETCOMB_BLOCK = 476;
     int LODESTONE = 477;
     int CRIMSON_ROOTS = 478;
     int WARPED_ROOTS = 479;
