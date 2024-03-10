@@ -7,7 +7,7 @@ import cn.nukkit.item.ItemTool;
 /**
  * @author GoodLucky777
  */
-public class BlockDoubleSlabDeepslatePolished extends BlockDoubleSlab {
+public class BlockDoubleSlabDeepslatePolished extends BlockSolid {
     public BlockDoubleSlabDeepslatePolished() {
         this(0);
     }

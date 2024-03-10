@@ -19,4 +19,9 @@ public class BlockDoubleSlabBrickBlackstonePolished extends BlockDoubleSlabBlack
     public double getHardness() {
         return 2;
     }
+    
+    @Override
+    public Item toItem() {
+        return new ItemBlock(Block.get(POLISHED_BLACKSTONE_BRICK_SLAB), this.getDamage() & 0x07);
+    }
 }

@@ -7,7 +7,7 @@ import cn.nukkit.item.ItemTool;
  * @author joserobjr
  * @since 2021-06-15
  */
-public class BlockDoubleSlabDeepslateCobbled extends BlockDoubleSlab {
+public class BlockDoubleSlabDeepslateCobbled extends BlockSolid {
     public BlockDoubleSlabDeepslateCobbled() {
         this(0);
     }
