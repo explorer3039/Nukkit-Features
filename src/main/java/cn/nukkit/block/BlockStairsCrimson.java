@@ -15,11 +15,21 @@ public class BlockStairsCrimson extends BlockStairsWood {
 
     @Override
     public int getId() {
-        return CRIMSON_WOOD_STAIRS;
+        return CRIMSON_STAIRS;
     }
 
     @Override
     public String getName() {
-        return "Crimson Wood Stairs";
+        return "Crimson Stairs";
+    }
+    
+    @Override
+    public int getBurnChance() {
+        return 0;
+    }
+
+    @Override
+    public int getBurnAbility() {
+        return 0;
     }
 }

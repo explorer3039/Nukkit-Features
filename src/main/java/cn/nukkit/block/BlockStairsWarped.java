@@ -15,11 +15,21 @@ public class BlockStairsWarped extends BlockStairsWood {
 
     @Override
     public int getId() {
-        return WARPED_WOOD_STAIRS;
+        return WARPED_STAIRS;
     }
 
     @Override
     public String getName() {
-        return "Warped Wood Stairs";
+        return "Warped Stairs";
+    }
+    
+    @Override
+    public int getBurnChance() {
+        return 0;
+    }
+
+    @Override
+    public int getBurnAbility() {
+        return 0;
     }
 }
