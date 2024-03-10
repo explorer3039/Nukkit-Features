@@ -7,10 +7,11 @@ It is developed based on [Nukkit-MOT](https://github.com/MemoriesOfTime/Nukkit-M
 note: if you need higher version features, please use [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
 
 ### What's new in Nukkit-Littlepick?
-1. Support for 1.1 – 1.20.60 version (you can set the minimum protocol in the config)
+1. Support for 1.2 – 1.20.60 version (you can set the minimum protocol in the config)
 2. Supports most entities with AI
 3. Support for the 1.16 nether world and The Еnd
-4. Support for 1.17 world generation and features(TODO: CONFIGURABLE)
+4. Support for 1.17 world generation (CONFIGURABLE)
+5. Support for 1.17 blocks
 
 ## How to install?
 1. Install java 17 or higher
@@ -18,12 +19,7 @@ note: if you need higher version features, please use [PowerNukkitX](https://git
 4. Write a command to run: `java -jar file.jar` (change `file` to the name of the file you downloaded)
 
 ## Links
-<<<<<<< HEAD
 - __🌐 Download: [GitHub Actions](https://github.com/explorer3039/Nukkit-Littlepick/actions/workflows/maven.yml?query=branch%3Amaster)__
-=======
-- __🌐 Download: [Jenkins](https://motci.cn/job/Nukkit-MOT/) / [GitHub Actions](https://github.com/MemoriesOfTime/Nukkit-MOT/actions/workflows/maven.yml?query=branch%3Amaster)__
-- __💬 [Discord](https://discord.gg/pJjQDQC)__
->>>>>>> upstream/master
 - __🔌 [Nukkit Plugins](https://cloudburstmc.org/resources/categories/nukkit-plugins.1/)__
 - __🐞 [Report a Bug](https://github.com/explorer3039/Nukkit-Littlepick/issues/new/choose)__
 

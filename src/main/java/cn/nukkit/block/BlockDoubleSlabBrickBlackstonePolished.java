@@ -1,5 +1,8 @@
 package cn.nukkit.block;
 
+import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemBlock;
+
 public class BlockDoubleSlabBrickBlackstonePolished extends BlockDoubleSlabBlackstonePolished {
     public BlockDoubleSlabBrickBlackstonePolished() {
     

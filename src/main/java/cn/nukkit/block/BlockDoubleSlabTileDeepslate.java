@@ -9,11 +9,7 @@ import cn.nukkit.item.ItemTool;
  */
 public class BlockDoubleSlabTileDeepslate extends BlockSolid {
     public BlockDoubleSlabTileDeepslate() {
-        this(0);
-    }
-
-    protected BlockDoubleSlabTileDeepslate(int meta) {
-        super(meta);
+        
     }
     
     @Override
