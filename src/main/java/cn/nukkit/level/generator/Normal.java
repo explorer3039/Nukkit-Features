@@ -80,7 +80,7 @@ public class Normal extends Generator {
                         new OreType(Block.get(BlockID.TUFF), 10, 20, 0, 16)
         }),
         new PopulatorCaves(),
-        new PopulatorBedrock(),
+        new PopulatorBedrock()
     );
     private List<Populator> structurePopulators = ImmutableList.of(
         new PopulatorFossil(),
