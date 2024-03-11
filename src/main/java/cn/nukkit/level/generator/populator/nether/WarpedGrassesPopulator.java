@@ -30,7 +30,7 @@ public class WarpedGrassesPopulator extends Populator {
                 if (randomType == 0) {
                     blockID = BlockID.WARPED_FUNGUS;
                 } else if (randomType == 1) {
-                    blockId = BlockID.NETHER_SPROUTS_BLOCK;
+                    blockID = BlockID.NETHER_SPROUTS_BLOCK;
                 } else {
                     blockID = BlockID.WARPED_ROOTS;
                 }
