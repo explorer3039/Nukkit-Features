@@ -50,7 +50,7 @@ public class Normal extends Generator {
     }
 
     private List<Populator> generationPopulators = ImmutableList.of(
-        //new PopulatorDeepslate(),
+        new PopulatorDeepslate(),
         new PopulatorGroundCover()
     );
     private List<Populator> populators = ImmutableList.of(
@@ -67,7 +67,7 @@ public class Normal extends Generator {
             new OreType(Block.get(BlockID.STONE, BlockStone.GRANITE), 10, 33, 0, 80),
             new OreType(Block.get(BlockID.STONE, BlockStone.DIORITE), 10, 33, 0, 80),
             new OreType(Block.get(BlockID.STONE, BlockStone.ANDESITE), 10, 33, 0, 80),
-            new OreType(Block.get(BlockID.DEEPSLATE), 30, 33, 0, 16)
+            new OreType(Block.get(BlockID.DEEPSLATE), 20, 33, 0, 16)
         }),
         new PopulatorOre(BlockID.DEEPSLATE, new OreType[]{
                         new OreType(Block.get(BlockID.DEEPSLATE_COAL_ORE), 20, 17, 0, 16),
