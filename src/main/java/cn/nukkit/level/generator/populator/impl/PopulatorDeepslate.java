@@ -6,9 +6,9 @@ import cn.nukkit.level.generator.populator.type.Populator;
 import cn.nukkit.math.NukkitRandom;
 
 /**
- * @author DaPorkchop_
- * <p>
- * Places bedrock on the bottom of the world
+ * @author explorer_3039
+ * Places deepslate on the bottom of the world
+ * Currently unused
  */
 public class PopulatorDeepslate extends Populator {
 
