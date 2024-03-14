@@ -35,7 +35,6 @@ import cn.nukkit.level.format.ChunkSection;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.level.format.LevelProvider;
 import cn.nukkit.level.format.generic.BaseFullChunk;
-import cn.nukkit.level.format.generic.BaseLevelProvider;
 import cn.nukkit.level.format.generic.EmptyChunkSection;
 import cn.nukkit.level.format.generic.serializer.NetworkChunkSerializer;
 import cn.nukkit.level.generator.Generator;
@@ -1433,9 +1432,7 @@ public class Level implements ChunkManager, Metadatable {
         levelProvider.setCurrentTick(this.levelCurrentTick);
         levelProvider.setGameRules(this.gameRules);
         this.saveChunks();
-        if (levelProvider instanceof BaseLevelProvider) {
-            levelProvider.saveLevelData();
-        }
+        levelProvider.saveLevelData();
 
         return true;
     }
@@ -4430,7 +4427,7 @@ public class Level implements ChunkManager, Metadatable {
         if (players == null) {
             players = this.getPlayers().values();
         }
-        this.sendWeather(players.toArray(new Player[0]));
+        this.sendWeather(players.toArray(Player.EMPTY_ARRAY));
     }
 
     public DimensionData getDimensionData() {
@@ -4445,20 +4442,16 @@ public class Level implements ChunkManager, Metadatable {
         return y >= getMinBlockY() && y <= getMaxBlockY();
     }
 
+    public final boolean isYInRange(double y) {
+        return y >= getMinBlockY() && y <= getMaxBlockY();
+    }
+
     public int getMinBlockY() {
-        int minHeight = this.dimensionData.getMinHeight();
-        if (minHeight < 0) {
-            return 0; //TODO 支持-64高度时移除
-        }
-        return minHeight;
+        return this.requireProvider().getMinBlockY();
     }
 
     public int getMaxBlockY() {
-        int maxHeight = this.dimensionData.getMaxHeight();
-        if (maxHeight > 255) {
-            return 255; //TODO 支持319世界高度时移除
-        }
-        return maxHeight;
+        return this.requireProvider().getMaxBlockY();
     }
 
     public boolean canBlockSeeSky(Vector3 pos) {
@@ -4936,7 +4929,9 @@ public class Level implements ChunkManager, Metadatable {
     }
 
     private int getChunkProtocol(int protocol) {
-        if (protocol >= ProtocolInfo.v1_20_60) {
+        if (protocol >= ProtocolInfo.v1_20_70) {
+            return ProtocolInfo.v1_20_70;
+        } else if (protocol >= ProtocolInfo.v1_20_60) {
             return ProtocolInfo.v1_20_60;
         } else if (protocol >= ProtocolInfo.v1_20_50) {
             return ProtocolInfo.v1_20_50;
@@ -5036,7 +5031,8 @@ public class Level implements ChunkManager, Metadatable {
             if (player >= ProtocolInfo.v1_20_30_24) if (player < ProtocolInfo.v1_20_40) return true;
         if (chunk == ProtocolInfo.v1_20_40) if (player == ProtocolInfo.v1_20_40) return true;
         if (chunk == ProtocolInfo.v1_20_50) if (player == ProtocolInfo.v1_20_50) return true;
-        if (chunk == ProtocolInfo.v1_20_60) if (player >= ProtocolInfo.v1_20_60) return true;
+        if (chunk == ProtocolInfo.v1_20_60) if (player == ProtocolInfo.v1_20_60) return true;
+        if (chunk == ProtocolInfo.v1_20_70) if (player >= ProtocolInfo.v1_20_70) return true;
         return false; //TODO Multiversion  Remember to update when block palette changes
     }
 

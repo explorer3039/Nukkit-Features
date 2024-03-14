@@ -1265,7 +1265,9 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     }
 
     public void sendRecipeList(Player player) {
-        if (player.protocol >= ProtocolInfo.v1_20_60) {
+        if (player.protocol >= ProtocolInfo.v1_20_70) {
+            player.dataPacket(CraftingManager.packet662);
+        } else if (player.protocol >= ProtocolInfo.v1_20_60) {
             player.dataPacket(CraftingManager.packet649);
         } else if (player.protocol >= ProtocolInfo.v1_20_50) {
             player.dataPacket(CraftingManager.packet630);
