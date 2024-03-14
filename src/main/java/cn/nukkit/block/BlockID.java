@@ -632,7 +632,7 @@ public interface BlockID {
     int CHISELED_NETHER_BRICKS = 557;
     int CRACKED_NETHER_BRICKS = 558;
     int QUARTZ_BRICKS = 559;
-    
+    int UNKNOWN = 560;
     int POWDER_SNOW = 561;
     int SCULK_SENSOR = 562;
     int POINTED_DRIPSTONE = 563;

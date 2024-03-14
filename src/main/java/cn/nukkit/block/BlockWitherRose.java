@@ -26,7 +26,7 @@ public class BlockWitherRose extends BlockFlower {
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
         Block down = this.down();
         int id = down.getId();
-        if (id == BlockID.NETHERRACK || id == BlockID.SOUL_SAND) {
+        if (id == Block.GRASS || id == Block.DIRT || id == Block.FARMLAND || id == Block.PODZOL || id == MYCELIUM || id == DIRT_WITH_ROOTS || id == BlockID.NETHERRACK || id == BlockID.SOUL_SAND) {
             this.getLevel().setBlock(block, this, true);
             return true;
         }
