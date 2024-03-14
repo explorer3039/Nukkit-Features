@@ -7,7 +7,7 @@ It is developed based on [Nukkit-MOT](https://github.com/MemoriesOfTime/Nukkit-M
 note: if you need higher version features, please use [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
 
 ### What's new in Nukkit-Littlepick?
-1. Support for 1.2 – 1.20.60 version (you can set the minimum protocol in the config)
+1. Support for 1.2 – 1.20.70 version (you can set the minimum protocol in the config)
 2. Supports most entities with AI
 3. Support for the 1.16 nether world and The Еnd
 4. Support for 1.17 world generation (CONFIGURABLE)
