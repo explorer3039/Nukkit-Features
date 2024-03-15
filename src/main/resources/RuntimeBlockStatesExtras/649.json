@@ -173,6 +173,366 @@
         "lit": 1,
         "candles": 3
       }
+    },
+    {
+      "id": 668,
+      "data": 0,
+      "runtimeId": 9092,
+      "states": {
+        "lit": 0,
+        "candles": 0
+      }
+    },
+    {
+      "id": 668,
+      "data": 1,
+      "runtimeId": 9093,
+      "states": {
+        "lit": 0,
+        "candles": 1
+      }
+    },
+    {
+      "id": 668,
+      "data": 2,
+      "runtimeId": 9094,
+      "states": {
+        "lit": 0,
+        "candles": 2
+      }
+    },
+    {
+      "id": 668,
+      "data": 3,
+      "runtimeId": 9095,
+      "states": {
+        "lit": 0,
+        "candles": 3
+      }
+    },
+    {
+      "id": 668,
+      "data": 4,
+      "runtimeId": 9096,
+      "states": {
+        "lit": 1,
+        "candles": 0
+      }
+    },
+    {
+      "id": 668,
+      "data": 5,
+      "runtimeId": 9097,
+      "states": {
+        "lit": 1,
+        "candles": 1
+      }
+    },
+    {
+      "id": 668,
+      "data": 6,
+      "runtimeId": 9098,
+      "states": {
+        "lit": 1,
+        "candles": 2
+      }
+    },
+    {
+      "id": 668,
+      "data": 7,
+      "runtimeId": 9099,
+      "states": {
+        "lit": 1,
+        "candles": 3
+      }
+    },
+    {
+      "id": 669,
+      "data": 0,
+      "runtimeId": 1112,
+      "states": {
+        "lit": 0,
+        "candles": 0
+      }
+    },
+    {
+      "id": 669,
+      "data": 1,
+      "runtimeId": 1113,
+      "states": {
+        "lit": 0,
+        "candles": 1
+      }
+    },
+    {
+      "id": 669,
+      "data": 2,
+      "runtimeId": 1114,
+      "states": {
+        "lit": 0,
+        "candles": 2
+      }
+    },
+    {
+      "id": 669,
+      "data": 3,
+      "runtimeId": 1115,
+      "states": {
+        "lit": 0,
+        "candles": 3
+      }
+    },
+    {
+      "id": 669,
+      "data": 4,
+      "runtimeId": 1116,
+      "states": {
+        "lit": 1,
+        "candles": 0
+      }
+    },
+    {
+      "id": 669,
+      "data": 5,
+      "runtimeId": 1117,
+      "states": {
+        "lit": 1,
+        "candles": 1
+      }
+    },
+    {
+      "id": 669,
+      "data": 6,
+      "runtimeId": 1118,
+      "states": {
+        "lit": 1,
+        "candles": 2
+      }
+    },
+    {
+      "id": 669,
+      "data": 7,
+      "runtimeId": 1119,
+      "states": {
+        "lit": 1,
+        "candles": 3
+      }
+    },
+    {
+      "id": 670,
+      "data": 0,
+      "runtimeId": 1172,
+      "states": {
+        "lit": 0,
+        "candles": 0
+      }
+    },
+    {
+      "id": 670,
+      "data": 1,
+      "runtimeId": 1173,
+      "states": {
+        "lit": 0,
+        "candles": 1
+      }
+    },
+    {
+      "id": 670,
+      "data": 2,
+      "runtimeId": 1174,
+      "states": {
+        "lit": 0,
+        "candles": 2
+      }
+    },
+    {
+      "id": 670,
+      "data": 3,
+      "runtimeId": 1175,
+      "states": {
+        "lit": 0,
+        "candles": 3
+      }
+    },
+    {
+      "id": 670,
+      "data": 4,
+      "runtimeId": 1176,
+      "states": {
+        "lit": 1,
+        "candles": 0
+      }
+    },
+    {
+      "id": 670,
+      "data": 5,
+      "runtimeId": 1178,
+      "states": {
+        "lit": 1,
+        "candles": 1
+      }
+    },
+    {
+      "id": 670,
+      "data": 6,
+      "runtimeId": 1179,
+      "states": {
+        "lit": 1,
+        "candles": 2
+      }
+    },
+    {
+      "id": 670,
+      "data": 7,
+      "runtimeId": 1180,
+      "states": {
+        "lit": 1,
+        "candles": 3
+      }
+    },
+    {
+      "id": 671,
+      "data": 0,
+      "runtimeId": 7428,
+      "states": {
+        "lit": 0,
+        "candles": 0
+      }
+    },
+    {
+      "id": 671,
+      "data": 1,
+      "runtimeId": 7429,
+      "states": {
+        "lit": 0,
+        "candles": 1
+      }
+    },
+    {
+      "id": 671,
+      "data": 2,
+      "runtimeId": 7430,
+      "states": {
+        "lit": 0,
+        "candles": 2
+      }
+    },
+    {
+      "id": 671,
+      "data": 3,
+      "runtimeId": 7431,
+      "states": {
+        "lit": 0,
+        "candles": 3
+      }
+    },
+    {
+      "id": 671,
+      "data": 4,
+      "runtimeId": 7432,
+      "states": {
+        "lit": 1,
+        "candles": 0
+      }
+    },
+    {
+      "id": 671,
+      "data": 5,
+      "runtimeId": 7433,
+      "states": {
+        "lit": 1,
+        "candles": 1
+      }
+    },
+    {
+      "id": 671,
+      "data": 6,
+      "runtimeId": 7434,
+      "states": {
+        "lit": 1,
+        "candles": 2
+      }
+    },
+    {
+      "id": 671,
+      "data": 7,
+      "runtimeId": 7435,
+      "states": {
+        "lit": 1,
+        "candles": 3
+      }
+    },
+    {
+      "id": 672,
+      "data": 0,
+      "runtimeId": 11340,
+      "states": {
+        "lit": 0,
+        "candles": 0
+      }
+    },
+    {
+      "id": 672,
+      "data": 1,
+      "runtimeId": 11341,
+      "states": {
+        "lit": 0,
+        "candles": 1
+      }
+    },
+    {
+      "id": 672,
+      "data": 2,
+      "runtimeId": 11342,
+      "states": {
+        "lit": 0,
+        "candles": 2
+      }
+    },
+    {
+      "id": 672,
+      "data": 3,
+      "runtimeId": 11343,
+      "states": {
+        "lit": 0,
+        "candles": 3
+      }
+    },
+    {
+      "id": 672,
+      "data": 4,
+      "runtimeId": 11344,
+      "states": {
+        "lit": 1,
+        "candles": 0
+      }
+    },
+    {
+      "id": 672,
+      "data": 5,
+      "runtimeId": 11345,
+      "states": {
+        "lit": 1,
+        "candles": 1
+      }
+    },
+    {
+      "id": 672,
+      "data": 6,
+      "runtimeId": 11346,
+      "states": {
+        "lit": 1,
+        "candles": 2
+      }
+    },
+    {
+      "id": 672,
+      "data": 7,
+      "runtimeId": 11347,
+      "states": {
+        "lit": 1,
+        "candles": 3
+      }
     }
   ]
 }
