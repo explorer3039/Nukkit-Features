@@ -101,6 +101,78 @@
       "states": {
         "facing_direction": 5
       }
+    },
+    {
+      "id": 667,
+      "data": 0,
+      "runtimeId": 13100,
+      "states": {
+        "lit": 0,
+        "candles": 0
+      }
+    },
+    {
+      "id": 667,
+      "data": 1,
+      "runtimeId": 13101,
+      "states": {
+        "lit": 0,
+        "candles": 1
+      }
+    },
+    {
+      "id": 667,
+      "data": 2,
+      "runtimeId": 13102,
+      "states": {
+        "lit": 0,
+        "candles": 2
+      }
+    },
+    {
+      "id": 667,
+      "data": 3,
+      "runtimeId": 13103,
+      "states": {
+        "lit": 0,
+        "candles": 3
+      }
+    },
+    {
+      "id": 667,
+      "data": 4,
+      "runtimeId": 13104,
+      "states": {
+        "lit": 1,
+        "candles": 0
+      }
+    },
+    {
+      "id": 667,
+      "data": 5,
+      "runtimeId": 13105,
+      "states": {
+        "lit": 1,
+        "candles": 1
+      }
+    },
+    {
+      "id": 667,
+      "data": 6,
+      "runtimeId": 13106,
+      "states": {
+        "lit": 1,
+        "candles": 2
+      }
+    },
+    {
+      "id": 667,
+      "data": 7,
+      "runtimeId": 13107,
+      "states": {
+        "lit": 1,
+        "candles": 3
+      }
     }
   ]
 }

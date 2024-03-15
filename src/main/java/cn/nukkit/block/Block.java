@@ -630,7 +630,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[CRACKED_DEEPSLATE_TILES] = BlockTilesDeepslateCracked.class; //664
             list[CRACKED_DEEPSLATE_BRICKS] = BlockBricksDeepslateCracked.class; //665
             list[GLOW_LICHEN] = BlockGlowLichen.class; //666
-            //list[CANDLE] = BlockCandle.class; //667
+            list[CANDLE] = BlockCandle.class; //667
             //list[WHITE_CANDLE] = BlockCandleWhite.class; //668
             //list[ORANGE_CANDLE] = BlockCandleOrange.class; //669
             //list[MAGENTA_CANDLE] = BlockCandleMagenta.class; //670
