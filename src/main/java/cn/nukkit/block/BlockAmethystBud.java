@@ -5,7 +5,6 @@ import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemID;
 import cn.nukkit.item.ItemTool;
 import cn.nukkit.math.BlockFace;
-import cn.nukkit.utils.Faceable;
 
 
 public abstract class BlockAmethystBud extends BlockTransparentMeta {
@@ -17,10 +16,10 @@ public abstract class BlockAmethystBud extends BlockTransparentMeta {
     private static final short[] faces = new short[]{
             0,
             0,
-            0b1000,
-            0b1000,
-            0b0100,
-            0b0100
+            2,
+            2,
+            1,
+            1
     };
 
     protected abstract String getNamePrefix();
@@ -65,12 +64,17 @@ public abstract class BlockAmethystBud extends BlockTransparentMeta {
     public boolean isSolid() {
         return false;
     }
+    
+    @Override
+    public Item toItem() {
+        return new ItemBlock(this, 0);
+    }
 
     @Override
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
         if (!target.isSolid())
             return false;
-        this.setDamage(((this.getDamage() & 0x03) | faces[face.getIndex()]));
+        this.setDamage(faces[face.getIndex()]);
         this.level.setBlock(block, this, true, true);
         return true;
     }
