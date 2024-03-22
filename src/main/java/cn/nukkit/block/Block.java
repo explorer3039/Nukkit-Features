@@ -547,10 +547,10 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[CALCITE] = BlockCalcite.class; //581
             list[AMETHYST_BLOCK] = BlockAmethyst.class; //582
             list[BUDDING_AMETHYST] = BlockBuddingAmethyst.class; //583
-            //list[AMETHYST_CLUSTER] = BlockAmethystCluster.class; //584
-            //list[LARGE_AMETHYST_BUD] = BlockLargeAmethystBud.class; //585
-            //list[MEDIUM_AMETHYST_BUD] = BlockMediumAmethystBud.class; //586
-            //list[SMALL_AMETHYST_BUD] = BlockSmallAmethystBud.class; //587
+            list[AMETHYST_CLUSTER] = BlockAmethystCluster.class; //584
+            list[LARGE_AMETHYST_BUD] = BlockLargeAmethystBud.class; //585
+            list[MEDIUM_AMETHYST_BUD] = BlockMediumAmethystBud.class; //586
+            list[SMALL_AMETHYST_BUD] = BlockSmallAmethystBud.class; //587
             list[TUFF] = BlockTuff.class; //588
             list[TINTED_GLASS] = BlockGlassTinted.class; //589
             list[MOSS_CARPET] = BlockMossCarpet.class; //590
@@ -1024,25 +1024,6 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
     }
 
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        //return this.getLevel().setBlock(this, this, true, true);
-        Block b;
-        int id;
-        for (int i = 1; i <= 255; i++) {
-            b = this.down(i);
-            id = b.getId();
-            if (b.y < 0) break;
-            if (id == Block.DENY && player != null && (!player.isCreative() || !player.isOp())) {
-                return false;
-            }
-        }
-        for (int i = 1; i <= 255; i++) {
-            b = this.up(i);
-            id = b.getId();
-            if (b.y > 256) break;
-            if (id == Block.DENY && player != null && (!player.isCreative() || !player.isOp())) {
-                return false;
-            }
-        }
         return this.getLevel().setBlock(this, this, true, true);
     }
 
