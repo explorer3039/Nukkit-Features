@@ -2446,7 +2446,7 @@ public class Level implements ChunkManager, Metadatable {
             Item[] eventDrops;
             if (!player.isSurvival()) {
                 eventDrops = Item.EMPTY_ARRAY;
-            } else if (isSilkTouch && target.canSilkTouch()) {
+            } else if (isSilkTouch && target.canSilkTouch() || target.isDropOriginal(player)) {
                 eventDrops = new Item[]{target.toItem()};
             } else {
                 eventDrops = target.getDrops(item);
@@ -3357,7 +3357,7 @@ public class Level implements ChunkManager, Metadatable {
 
     protected Block getMapColoredBlockAt(int x, int z) {
         int y = getHighestBlockAt(x, z);
-        while (y > 0) {
+        while (y > this.getMinBlockY()) {
             Block block = getBlock(new Vector3(x, y, z));
             if (block.getColor() == null) return null;
             if (block.getColor().getAlpha() == 0x00 || block instanceof BlockWater) {

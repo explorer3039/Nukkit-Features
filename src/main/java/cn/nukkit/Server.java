@@ -152,7 +152,7 @@ public class Server {
     private final CraftingManager craftingManager;
     private final ResourcePackManager resourcePackManager;
     private final ConsoleCommandSender consoleSender;
-    private IScoreboardManager scoreboardManager;
+    private final IScoreboardManager scoreboardManager;
 
     private int maxPlayers;
     private boolean autoSave = true;
@@ -524,6 +524,11 @@ public class Server {
     public final ForkJoinPool computeThreadPool;
 
     public boolean useNativeLevelDB;
+
+    /**
+     * Enable Raw Drop of Iron and Gold
+     */
+    public boolean enableRawOres;
 
     Server(final String filePath, String dataPath, String pluginPath, boolean loadPlugins, boolean debug) {
         Preconditions.checkState(instance == null, "Already initialized!");
@@ -1240,7 +1245,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     }
 
     public void removePlayerListData(UUID uuid, Collection<Player> players) {
-        this.removePlayerListData(uuid, players.toArray(new Player[0]));
+        this.removePlayerListData(uuid, players.toArray(Player.EMPTY_ARRAY));
     }
 
     public void removePlayerListData(UUID uuid, Player player) {
@@ -1251,9 +1256,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     }
 
     public void sendFullPlayerListData(Player player) {
-        PlayerListPacket pk = new PlayerListPacket();
-        pk.type = PlayerListPacket.TYPE_ADD;
-        pk.entries = this.playerList.values().stream()
+        PlayerListPacket.Entry[] array = this.playerList.values().stream()
                 .map(p -> new PlayerListPacket.Entry(
                         p.getUniqueId(),
                         p.getId(),
@@ -1261,7 +1264,15 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
                         p.getSkin(),
                         p.getLoginChainData().getXUID()))
                 .toArray(PlayerListPacket.Entry[]::new);
-        player.dataPacket(pk);
+        Object[][] splitArray = Utils.splitArray(array, 50);
+        if (splitArray != null) {
+            for (Object[] a : splitArray) {
+                PlayerListPacket pk = new PlayerListPacket();
+                pk.type = PlayerListPacket.TYPE_ADD;
+                pk.entries = (PlayerListPacket.Entry[]) a;
+                player.dataPacket(pk);
+            }
+        }
     }
 
     public void sendRecipeList(Player player) {
@@ -3088,6 +3099,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
         }
 
         this.useNativeLevelDB = this.getPropertyBoolean("use-native-leveldb", false);
+        this.enableRawOres = this.getPropertyBoolean("enable-raw-ores", true);
     }
 
     /**
@@ -3231,6 +3243,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
             put("hastebin-token", "");
 
             put("use-native-leveldb", false);
+            put("enable-raw-ores", true);
         }
     }
 
