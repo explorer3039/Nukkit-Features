@@ -488,6 +488,7 @@ public interface BlockID {
     int SPRUCE_PRESSURE_PLATE = 409;
     int CARVED_PUMPKIN = 410;
     int SEA_PICKLE = 411;
+    int CONDUIT = 412;
     int BUBBLE_COLUMN = 415;
     int BARRIER = 416;
     int STONE_SLAB3 = 417;
