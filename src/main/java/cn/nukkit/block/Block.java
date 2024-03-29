@@ -373,7 +373,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[CARVED_PUMPKIN] = BlockCarvedPumpkin.class; //410
             list[SEA_PICKLE] = BlockSeaPickle.class; //411
             list[CONDUIT] = BlockConduit.class; //412
-            
+            list[TURTLE_EGG] = BlockTurtleEgg.class; //414
             list[BUBBLE_COLUMN] = BlockBubbleColumn.class; //415
             list[BARRIER] = BlockBarrier.class; //416
             list[STONE_SLAB3] = BlockSlabStone3.class; //417
@@ -432,7 +432,8 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[PISTON_HEAD_STICKY] = BlockPistonHeadSticky.class; //472
             list[BEE_NEST] = BlockBeeNest.class; //473
             list[BEEHIVE] = BlockBeehive.class; //474
-
+            
+            list[LODESTONE] = BlockLodestone.class; //477
             list[CRIMSON_ROOTS] = BlockRootsCrimson.class; //478
             list[WARPED_ROOTS] = BlockRootsWarped.class; //479
             list[CRIMSON_STEM] = BlockStemCrimson.class; //480
@@ -549,9 +550,9 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[AMETHYST_BLOCK] = BlockAmethyst.class; //582
             list[BUDDING_AMETHYST] = BlockBuddingAmethyst.class; //583
             list[AMETHYST_CLUSTER] = BlockAmethystCluster.class; //584
-            list[LARGE_AMETHYST_BUD] = BlockLargeAmethystBud.class; //585
-            list[MEDIUM_AMETHYST_BUD] = BlockMediumAmethystBud.class; //586
-            list[SMALL_AMETHYST_BUD] = BlockSmallAmethystBud.class; //587
+            list[LARGE_AMETHYST_BUD] = BlockAmethystBudLarge.class; //585
+            list[MEDIUM_AMETHYST_BUD] = BlockAmethystBudMedium.class; //586
+            list[SMALL_AMETHYST_BUD] = BlockAmethystBudSmall.class; //587
             list[TUFF] = BlockTuff.class; //588
             list[TINTED_GLASS] = BlockGlassTinted.class; //589
             list[MOSS_CARPET] = BlockMossCarpet.class; //590

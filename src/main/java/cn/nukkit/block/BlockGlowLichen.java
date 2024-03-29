@@ -84,60 +84,6 @@ public class BlockGlowLichen extends BlockTransparentMeta {
     }
 
     @Override
-    protected AxisAlignedBB recalculateBoundingBox() {
-        double f1 = 1;
-        double f2 = 1;
-        double f3 = 1;
-        double f4 = 0;
-        double f5 = 0;
-        double f6 = 0;
-        boolean flag = this.getDamage() > 0;
-        if ((this.getDamage() & 0x02) > 0) {
-            f4 = Math.max(f4, 0.0625);
-            f1 = 0;
-            f2 = 0;
-            f5 = 1;
-            f3 = 0;
-            f6 = 1;
-            flag = true;
-        }
-        if ((this.getDamage() & 0x08) > 0) {
-            f1 = Math.min(f1, 0.9375);
-            f4 = 1;
-            f2 = 0;
-            f5 = 1;
-            f3 = 0;
-            f6 = 1;
-            flag = true;
-        }
-        if ((this.getDamage() & 0x01) > 0) {
-            f3 = Math.min(f3, 0.9375);
-            f6 = 1;
-            f1 = 0;
-            f4 = 1;
-            f2 = 0;
-            f5 = 1;
-            flag = true;
-        }
-        if (!flag && this.up().isSolid()) {
-            f2 = Math.min(f2, 0.9375);
-            f5 = 1;
-            f1 = 0;
-            f4 = 1;
-            f3 = 0;
-            f6 = 1;
-        }
-        return new SimpleAxisAlignedBB(
-                this.x + f1,
-                this.y + f2,
-                this.z + f3,
-                this.x + f4,
-                this.y + f5,
-                this.z + f6
-        );
-    }
-
-    @Override
     public int getWaterloggingLevel() {
         return 1;
     }
@@ -149,7 +95,7 @@ public class BlockGlowLichen extends BlockTransparentMeta {
 
     @Override
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        if (block.getId() != GLOW_LICHEN && target.isSolid() && face.getHorizontalIndex() != -1) {
+        if (block.getId() != GLOW_LICHEN && target.isSolid()) {
             this.setDamage(getMetaFromFace(face.getOpposite()));
             this.getLevel().setBlock(block, this, true, true);
             return true;
@@ -177,14 +123,18 @@ public class BlockGlowLichen extends BlockTransparentMeta {
     private static int getMetaFromFace(BlockFace face) {
         switch (face) {
             case SOUTH:
-            default:
-                return 0x01;
+                return 0x08;
             case WEST:
-                return 0x02;
+                return 0x10;
             case NORTH:
                 return 0x04;
             case EAST:
-                return 0x08;
+                return 0x20;
+            case UP:
+                return 0x02;
+            default:
+            case DOWN:
+                return 0x01;
         }
     }
 
