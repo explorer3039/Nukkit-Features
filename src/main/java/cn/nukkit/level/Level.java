@@ -54,6 +54,7 @@ import cn.nukkit.metadata.Metadatable;
 import cn.nukkit.nbt.NBTIO;
 import cn.nukkit.nbt.tag.*;
 import cn.nukkit.network.protocol.*;
+import cn.nukkit.plugin.InternalPlugin;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.potion.Effect;
 import cn.nukkit.scheduler.BlockUpdateScheduler;
@@ -160,15 +161,15 @@ public class Level implements ChunkManager, Metadatable {
         randomTickBlocks[Block.WEATHERED_COPPER] = true;
         randomTickBlocks[Block.WEATHERED_CUT_COPPER] = true;
 
-        Level.xrayableBlocks[Block.GOLD_ORE] = true;
-        Level.xrayableBlocks[Block.IRON_ORE] = true;
-        Level.xrayableBlocks[Block.COAL_ORE] = true;
-        Level.xrayableBlocks[Block.LAPIS_ORE] = true;
-        Level.xrayableBlocks[Block.DIAMOND_ORE] = true;
-        Level.xrayableBlocks[Block.REDSTONE_ORE] = true;
-        Level.xrayableBlocks[Block.EMERALD_ORE] = true;
-        Level.xrayableBlocks[Block.ANCIENT_DEBRIS] = true;
-        Level.xrayableBlocks[Block.COPPER_ORE] = true;
+        xrayableBlocks[Block.GOLD_ORE] = true;
+        xrayableBlocks[Block.IRON_ORE] = true;
+        xrayableBlocks[Block.COAL_ORE] = true;
+        xrayableBlocks[Block.LAPIS_ORE] = true;
+        xrayableBlocks[Block.DIAMOND_ORE] = true;
+        xrayableBlocks[Block.REDSTONE_ORE] = true;
+        xrayableBlocks[Block.EMERALD_ORE] = true;
+        xrayableBlocks[Block.ANCIENT_DEBRIS] = true;
+        xrayableBlocks[Block.COPPER_ORE] = true;
     }
 
     @NonComputationAtomic
@@ -563,7 +564,7 @@ public class Level implements ChunkManager, Metadatable {
     }
 
     public void addSound(Vector3 pos, cn.nukkit.level.Sound sound, float volume, float pitch, Collection<Player> players) {
-        this.addSound(pos, sound, volume, pitch, players.toArray(new Player[0]));
+        this.addSound(pos, sound, volume, pitch, players.toArray(Player.EMPTY_ARRAY));
     }
 
     public void addSound(Vector3 pos, cn.nukkit.level.Sound sound, float volume, float pitch, Player... players) {
@@ -605,7 +606,7 @@ public class Level implements ChunkManager, Metadatable {
     }
 
     public void addSound(Sound sound, Collection<Player> players) {
-        this.addSound(sound, players.toArray(new Player[0]));
+        this.addSound(sound, players.toArray(Player.EMPTY_ARRAY));
     }
 
     public void addLevelSoundEvent(@NotNull Vector3 pos, int type, int data, int entityType) {
@@ -926,7 +927,7 @@ public class Level implements ChunkManager, Metadatable {
     }
 
     public void sendTime() {
-        sendTime(this.players.values().toArray(new Player[0]));
+        sendTime(this.players.values().toArray(Player.EMPTY_ARRAY));
     }
 
     public GameRules getGameRules() {
@@ -1076,7 +1077,7 @@ public class Level implements ChunkManager, Metadatable {
             int chunkZ = Level.getHashZ(index);
             Map<Integer, Player> map = this.getChunkPlayers(chunkX, chunkZ);
             if (!map.isEmpty()) {
-                Player[] chunkPlayers = map.values().toArray(new Player[0]);
+                Player[] chunkPlayers = map.values().toArray(Player.EMPTY_ARRAY);
                 for (DataPacket pk : entry.getValue()) {
                     Server.broadcastPacket(chunkPlayers, pk);
                 }
@@ -1087,7 +1088,7 @@ public class Level implements ChunkManager, Metadatable {
         if (gameRules.isStale()) {
             GameRulesChangedPacket packet = new GameRulesChangedPacket();
             packet.gameRulesMap = gameRules.getGameRules();
-            Server.broadcastPacket(players.values().toArray(new Player[0]), packet);
+            Server.broadcastPacket(players.values().toArray(Player.EMPTY_ARRAY), packet);
             gameRules.refresh();
         }
     }
@@ -1186,7 +1187,7 @@ public class Level implements ChunkManager, Metadatable {
     }
 
     public void sendBlockExtraData(int x, int y, int z, int id, int data, Collection<Player> players) {
-        this.sendBlockExtraData(x, y, z, id, data, players.toArray(new Player[0]));
+        this.sendBlockExtraData(x, y, z, id, data, players.toArray(Player.EMPTY_ARRAY));
     }
 
     public void sendBlockExtraData(int x, int y, int z, int id, int data, Player[] players) {
@@ -1732,7 +1733,7 @@ public class Level implements ChunkManager, Metadatable {
             }
         }
 
-        return collides.toArray(new AxisAlignedBB[0]);
+        return collides.toArray(AxisAlignedBB.EMPTY_ARRAY);
     }
 
     public boolean hasCollision(Entity entity, AxisAlignedBB bb, boolean entities) {
@@ -2843,7 +2844,7 @@ public class Level implements ChunkManager, Metadatable {
                 ObjectList<Player> targets = players.get(protocolId);
                 int soundData = GlobalBlockPalette.getOrCreateRuntimeId(protocolId > ProtocolInfo.v1_2_10 ? protocolId : ProtocolInfo.CURRENT_PROTOCOL, // no block palette in <= 1.2.10
                         hand.getId(), hand.getDamage());
-                this.addLevelSoundEvent(hand, LevelSoundEventPacket.SOUND_PLACE, soundData, targets.toArray(new Player[0]));
+                this.addLevelSoundEvent(hand, LevelSoundEventPacket.SOUND_PLACE, soundData, targets.toArray(Player.EMPTY_ARRAY));
             }
         }
 
@@ -3796,7 +3797,7 @@ public class Level implements ChunkManager, Metadatable {
         chunk.initChunk();
 
         if (!chunk.isLightPopulated() && chunk.isPopulated() && this.server.lightUpdates) {
-            this.server.getScheduler().scheduleAsyncTask(new LightPopulationTask(this, chunk));
+            this.server.getScheduler().scheduleAsyncTask(InternalPlugin.INSTANCE, new LightPopulationTask(this, chunk));
         }
 
         if (this.isChunkInUse(index)) {
@@ -4025,7 +4026,7 @@ public class Level implements ChunkManager, Metadatable {
                         }
                     }
 
-                    this.server.getScheduler().scheduleAsyncTask(new PopulationTask(this, chunk));
+                    this.server.getScheduler().scheduleAsyncTask(InternalPlugin.INSTANCE, new PopulationTask(this, chunk));
                 }
             }
             return false;
@@ -4047,7 +4048,7 @@ public class Level implements ChunkManager, Metadatable {
         if (!this.chunkGenerationQueue.containsKey(index)) {
             this.chunkGenerationQueue.put(index, Boolean.TRUE);
             GenerationTask task = new GenerationTask(this, this.getChunk(x, z, true));
-            this.server.getScheduler().scheduleAsyncTask(task);
+            this.server.getScheduler().scheduleAsyncTask(InternalPlugin.INSTANCE, task);
         }
     }
 
@@ -4393,7 +4394,7 @@ public class Level implements ChunkManager, Metadatable {
 
     public void sendWeather(Player[] players) {
         if (players == null) {
-            players = this.getPlayers().values().toArray(new Player[0]);
+            players = this.getPlayers().values().toArray(Player.EMPTY_ARRAY);
         }
 
         LevelEventPacket pk = new LevelEventPacket();

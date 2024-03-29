@@ -294,7 +294,6 @@ public interface ItemID {
 
     int RECORD_5 = 636;
     int DISC_FRAGMENT_5 = 637;
-
     int OAK_CHEST_BOAT = 638;
     int BIRCH_CHEST_BOAT = 639;
     int JUNGLE_CHEST_BOAT = 640;
@@ -340,7 +339,6 @@ public interface ItemID {
     int CHAIN = 758;
     int RECORD_PIGSTEP = 759;
     int NETHER_SPROUTS = 760;
-    
     int AMETHYST_SHARD = 771;
     int SPYGLASS = 772;
     int RECORD_OTHERSIDE = 773;

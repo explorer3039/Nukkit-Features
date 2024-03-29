@@ -1,8 +1,7 @@
 package cn.nukkit.block;
 
-/**
- * @author explorer_3039
- */
+import cn.nukkit.utils.BlockColor;
+
 public class BlockStairsCrimson extends BlockStairsWood {
 
     public BlockStairsCrimson() {
@@ -22,7 +21,7 @@ public class BlockStairsCrimson extends BlockStairsWood {
     public String getName() {
         return "Crimson Stairs";
     }
-    
+
     @Override
     public int getBurnChance() {
         return 0;
@@ -31,5 +30,10 @@ public class BlockStairsCrimson extends BlockStairsWood {
     @Override
     public int getBurnAbility() {
         return 0;
+    }
+
+    @Override
+    public BlockColor getColor() {
+        return BlockColor.CRIMSON_STEM_BLOCK_COLOR;
     }
 }

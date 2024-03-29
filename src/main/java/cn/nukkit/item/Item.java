@@ -340,6 +340,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             list[RECORD_WAIT] = ItemRecordWait.class; //511
             list[SHIELD] = ItemShield.class; //513
             list[RECORD_5] = ItemRecord5.class; //636
+            list[DISC_FRAGMENT_5] = ItemDiscFragment5.class; //637
             list[OAK_CHEST_BOAT] = ItemChestBoatOak.class; //638
             list[BIRCH_CHEST_BOAT] = ItemChestBoatBirch.class; //639
             list[JUNGLE_CHEST_BOAT] = ItemChestBoatJungle.class; //640
@@ -492,7 +493,6 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
     private static final List<Item> creative649 = new ObjectArrayList<>();
     private static final List<Item> creative662 = new ObjectArrayList<>();
 
-    @SuppressWarnings("unchecked")
     private static void initCreativeItems() {
         Server.getInstance().getLogger().debug("Loading creative items...");
         clearCreativeItems();
@@ -1308,7 +1308,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
 
     public Enchantment[] getEnchantments() {
         if (!this.hasEnchantments()) {
-            return new Enchantment[0];
+            return Enchantment.EMPTY_ARRAY;
         }
 
         List<Enchantment> enchantments = new ArrayList<>();
@@ -1322,7 +1322,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             }
         }
 
-        return enchantments.toArray(new Enchantment[0]);
+        return enchantments.toArray(Enchantment.EMPTY_ARRAY);
     }
 
     public boolean hasEnchantment(int id) {
@@ -1861,6 +1861,14 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
         return runtimeMapping.getNamespacedIdByNetworkId(this.getNetworkId(protocolId));
     }
 
+    /**
+     * 返回物品是否支持指定版本
+     * <p>
+     * Returns whether the item supports the specified version
+     *
+     * @param protocolId 协议版本 protocol version
+     * @return 是否支持 whether supported
+     */
     public boolean isSupportedOn(int protocolId) {
         return true;
     }
