@@ -1,8 +1,11 @@
 package cn.nukkit.block;
 
+import cn.nukkit.utils.BlockColor;
+
 public class BlockPressurePlateSpruce extends BlockPressurePlateWood {
+
     public BlockPressurePlateSpruce() {
-        // Does nothing
+        this(0);
     }
 
     public BlockPressurePlateSpruce(int meta) {
@@ -10,13 +13,16 @@ public class BlockPressurePlateSpruce extends BlockPressurePlateWood {
     }
 
     @Override
-    public int getId() {
-        return SPRUCE_PRESSURE_PLATE;
-    }
-
-    @Override
     public String getName() {
         return "Spruce Pressure Plate";
     }
 
+    @Override
+    public int getId() {
+        return SPRUCE_PRESSURE_PLATE;
+    }
+
+    public BlockColor getColor() {
+        return BlockColor.SPRUCE_BLOCK_COLOR;
+    }
 }

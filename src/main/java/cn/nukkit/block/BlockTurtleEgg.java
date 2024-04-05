@@ -47,7 +47,7 @@ public class BlockTurtleEgg extends BlockTransparentMeta {
 
     @Override
     public Item[] getDrops(Item item) {
-        return new Item[0];
+        return Item.EMPTY_ARRAY;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class BlockTurtleEgg extends BlockTransparentMeta {
     @Override
     public int onUpdate(int type) {
         if (type == Level.BLOCK_UPDATE_NORMAL) {
-            if (this.down().canBeReplaced()) {
+            if (!canStayOnFullSolid(this.down())) {
                 this.getLevel().useBreakOn(this);
                 return Level.BLOCK_UPDATE_NORMAL;
             }
@@ -92,7 +92,7 @@ public class BlockTurtleEgg extends BlockTransparentMeta {
             this.setDamage(this.getDamage() + 1);
             return this.getLevel().setBlock(target, this, true, true);
         }
-        if (this.down().canBeReplaced()) {
+        if (!canStayOnFullSolid(this.down())) {
             return false;
         }
         this.getLevel().setBlock(this, this, true, true);
@@ -102,5 +102,9 @@ public class BlockTurtleEgg extends BlockTransparentMeta {
     @Override
     public boolean breaksWhenMoved() {
         return true;
+    }
+    
+    public int getWaterloggingLevel() {
+        return 1;
     }
 }

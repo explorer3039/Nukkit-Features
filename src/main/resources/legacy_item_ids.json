@@ -991,9 +991,6 @@
   "minecraft:totem_of_undying": 450,
   "minecraft:scute": 468,
   "minecraft:turtle_scute": 468,
-  "minecraft:raw_iron": 520,
-  "minecraft:raw_gold": 521,
-  "minecraft:raw_copper": 522,
   "minecraft:goat_horn": 761,
   "minecraft:amethyst_shard": 771,
   "minecraft:spyglass": 772,
@@ -1033,5 +1030,11 @@
   "minecraft:music_disc_relic": 701,
   "minecraft:decorated_pot": -551,
   "minecraft:bamboo_planks": -510,
-  "minecraft:cherry_planks": -537
+  "minecraft:stripped_cherry_log": -535,
+  "minecraft:cherry_log": -536,
+  "minecraft:cherry_planks": -537,
+  "minecraft:stripped_cherry_wood": -545,
+  "minecraft:cherry_wood": -546,
+  "minecraft:cherry_sapling": -547,
+  "minecraft:cherry_leaves": -548
 }

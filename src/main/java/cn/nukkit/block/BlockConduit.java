@@ -1,18 +1,15 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package cn.nukkit.block;
 
 import cn.nukkit.block.BlockSolidMeta;
 
-public class BlockConduit
-extends BlockSolidMeta {
+public class BlockConduit extends BlockSolidMeta {
+
     public BlockConduit() {
         this(0);
     }
 
-    public BlockConduit(int n) {
-        super(n);
+    public BlockConduit(int meta) {
+        super(meta);
     }
 
     @Override
@@ -22,17 +19,17 @@ extends BlockSolidMeta {
 
     @Override
     public int getId() {
-        return 412;
+        return CONDUIT;
     }
 
     @Override
     public double getResistance() {
-        return 3.0;
+        return 3;
     }
 
     @Override
     public double getHardness() {
-        return 3.0;
+        return 3;
     }
 
     @Override
@@ -42,12 +39,21 @@ extends BlockSolidMeta {
 
     @Override
     public int getToolType() {
-        return 3;
+        return ItemTool.TYPE_PICKAXE;
     }
 
     @Override
     public boolean canBePushed() {
         return false;
     }
-}
 
+    @Override
+    public int getWaterloggingLevel() {
+        return 1;
+    }
+
+    @Override
+    public boolean alwaysDropsOnExplosion() {
+        return true;
+    }
+}

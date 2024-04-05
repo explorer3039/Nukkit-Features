@@ -1,8 +1,11 @@
 package cn.nukkit.block;
 
+import cn.nukkit.utils.BlockColor;
+
 public class BlockPressurePlateBirch extends BlockPressurePlateWood {
+
     public BlockPressurePlateBirch() {
-        // Does nothing
+        this(0);
     }
 
     public BlockPressurePlateBirch(int meta) {
@@ -10,13 +13,16 @@ public class BlockPressurePlateBirch extends BlockPressurePlateWood {
     }
 
     @Override
-    public int getId() {
-        return BIRCH_PRESSURE_PLATE;
-    }
-
-    @Override
     public String getName() {
         return "Birch Pressure Plate";
     }
 
+    @Override
+    public int getId() {
+        return BIRCH_PRESSURE_PLATE;
+    }
+
+    public BlockColor getColor() {
+        return BlockColor.SAND_BLOCK_COLOR;
+    }
 }

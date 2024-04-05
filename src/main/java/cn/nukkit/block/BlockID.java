@@ -410,7 +410,7 @@ public interface BlockID {
     int BLAST_FURNACE = 451;
     int STONECUTTER_BLOCK = 452;
     int SMOKER = 453;
-
+    int LIT_SMOKER = 454;
     int CARTOGRAPHY_TABLE = 455;
     int FLETCHING_TABLE = 456;
 
@@ -675,7 +675,14 @@ public interface BlockID {
 
     int BAMBOO_PLANKS = 765;
 
+    int STRIPPED_CHERRY_LOG = 790;
+    int CHERRY_LOG = 791;
     int CHERRY_PLANKS = 792;
+
+    int STRIPPED_CHERRY_WOOD = 800;
+    int CHERRY_WOOD = 801;
+    int CHERRY_SAPLING = 802;
+    int CHERRY_LEAVES = 803;
 
     int DECORATED_POT = 806;
 
