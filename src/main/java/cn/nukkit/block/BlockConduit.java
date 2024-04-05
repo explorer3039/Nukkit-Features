@@ -1,6 +1,6 @@
 package cn.nukkit.block;
 
-import cn.nukkit.block.BlockSolidMeta;
+import cn.nukkit.item.ItemTool;
 
 public class BlockConduit extends BlockSolidMeta {
 
