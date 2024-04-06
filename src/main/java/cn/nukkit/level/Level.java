@@ -160,6 +160,12 @@ public class Level implements ChunkManager, Metadatable {
         randomTickBlocks[Block.EXPOSED_CUT_COPPER] = true;
         randomTickBlocks[Block.WEATHERED_COPPER] = true;
         randomTickBlocks[Block.WEATHERED_CUT_COPPER] = true;
+        randomTickBlocks[BlockID.BUDDING_AMETHYST] = true;
+        randomTickBlocks[BlockID.CAVE_VINES] = true;
+        randomTickBlocks[BlockID.CAVE_VINES_BODY_WITH_BERRIES] = true;
+        randomTickBlocks[BlockID.CAVE_VINES_HEAD_WITH_BERRIES] = true;
+        randomTickBlocks[BlockID.AZALEA_LEAVES] = true;
+        randomTickBlocks[BlockID.AZALEA_LEAVES_FLOWERED] = true;
 
         xrayableBlocks[Block.GOLD_ORE] = true;
         xrayableBlocks[Block.IRON_ORE] = true;

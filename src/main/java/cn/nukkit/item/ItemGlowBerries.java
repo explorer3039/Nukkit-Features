@@ -14,6 +14,7 @@ public class ItemGlowBerries extends ItemEdible {
 
     public ItemGlowBerries(Integer meta, int count) {
         super(GLOW_BERRIES, 0, count, "Glow Berries");
+        this.block = Block.get(CAVE_VINES);
     }
 
     @Override

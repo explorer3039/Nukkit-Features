@@ -1,12 +1,16 @@
 package cn.nukkit.block;
 
+import cn.nukkit.Player;
+import cn.nukkit.event.block.BlockSpreadEvent;
 import cn.nukkit.item.Item;
-//import cn.nukkit.level.Level;
-//import cn.nukkit.math.BlockFace;
-//import cn.nukkit.math.NukkitRandom;
+import cn.nukkit.level.Level;
+import cn.nukkit.level.particle.DestroyBlockParticle;
+import cn.nukkit.math.BlockFace;
+import cn.nukkit.utils.BlockColor;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class BlockBuddingAmethyst extends BlockSolid {
-    //private static final NukkitRandom RANDOM = new NukkitRandom();
 
     @Override
     public String getName() {
@@ -33,43 +37,47 @@ public class BlockBuddingAmethyst extends BlockSolid {
         return Item.EMPTY_ARRAY;
     }
 
-    //@Override
-    //public int onUpdate(int type) {
-    //    if (type == Level.BLOCK_UPDATE_RANDOM) {
-    //        if (RANDOM.nextBoundedInt(5) == 1) {
-    //            final Block side = this.getSide(BlockFace.fromIndex(RANDOM.nextRange(6)));
-    //            tryGrow(0);
-    //        }
-    //        return type;
-    //    }
-    //    return 0;
-    //}
+    @Override
+    public int onUpdate(int type) {
+        if (type != Level.BLOCK_UPDATE_RANDOM || ThreadLocalRandom.current().nextInt(4) != 0) {
+            return type;
+        }
 
-    //public void tryGrow(int time) {
-    //    if (time > 6) {
-    //        return;
-    //    }
-    //    final BlockFace face = BlockFace.fromIndex(RANDOM.nextRange(6));
-    //    final Block side = this.getSide(face);
-    //    BlockAmethystBud tmp;
-    //    if (side.canBeReplaced()) {
-    //        tmp = new BlockSmallAmethystBud();
-    //        tmp.setBlockFace(face);
-    //        this.getLevel().setBlock(side, tmp, true, true);
-    //    } else if (side instanceof BlockSmallAmethystBud) {
-    //        tmp = new BlockMediumAmethystBud();
-    //        tmp.setBlockFace(face);
-    //        this.getLevel().setBlock(side, tmp, true, true);
-    //    } else if (side instanceof BlockMediumAmethystBud) {
-    //        tmp = new BlockLargeAmethystBud();
-    //        tmp.setBlockFace(face);
-    //        this.getLevel().setBlock(side, tmp, true, true);
-    //    } else if (side instanceof BlockLargeAmethystBud) {
-    //        tmp = new BlockAmethystCluster();
-    //        tmp.setBlockFace(face);
-    //        this.getLevel().setBlock(side, tmp, true, true);
-    //    } else {
-    //        tryGrow(time + 1);
-    //    }
-    //}
+        BlockFace face = BlockFace.values()[ThreadLocalRandom.current().nextInt(BlockFace.values().length)];
+        Block block = this.getSide(face);
+
+        BlockAmethystBud targetBlock = null;
+        if (block.getId() == AIR || ((block.getId() == WATER || block.getId() == STILL_WATER) && block.getDamage() == 8)) {
+            targetBlock = (BlockAmethystBud) Block.get(SMALL_AMETHYST_BUD);
+        } else if (block.getId() == SMALL_AMETHYST_BUD && ((BlockAmethystBud) block).getBlockFace() == face) {
+            targetBlock = (BlockAmethystBud) Block.get(MEDIUM_AMETHYST_BUD);
+        } else if (block.getId() == MEDIUM_AMETHYST_BUD && ((BlockAmethystBud) block).getBlockFace() == face) {
+            targetBlock = (BlockAmethystBud) Block.get(LARGE_AMETHYST_BUD);
+        } else if (block.getId() == LARGE_AMETHYST_BUD && ((BlockAmethystBud) block).getBlockFace() == face) {
+            targetBlock = (BlockAmethystBud) Block.get(AMETHYST_CLUSTER);
+        }
+
+        if (targetBlock != null) {
+            targetBlock.setBlockFace(face);
+
+            BlockSpreadEvent event = new BlockSpreadEvent(block, this, targetBlock);
+            this.getLevel().getServer().getPluginManager().callEvent(event);
+            if (!event.isCancelled()) {
+                this.getLevel().setBlock(block, event.getNewState(), false, true);
+            }
+        }
+        return type;
+    }
+
+    @Override
+    public boolean onBreak(Item item, Player player) {
+        for (BlockFace face : BlockFace.values()) {
+            Block side = this.getSide(face);
+            if (side instanceof BlockAmethystBud && ((BlockAmethystBud) side).getBlockFace() == face) {
+                this.getLevel().setBlock(side, Block.get(BlockID.AIR), true, true);
+                this.getLevel().addParticle(new DestroyBlockParticle(side.add(0.5), side));
+            }
+        }
+        return super.onBreak(item, player);
+    }
 }

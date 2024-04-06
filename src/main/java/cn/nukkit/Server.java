@@ -815,8 +815,8 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
 
                boolean isMaster = Nukkit.getBranch().equals("master");
                if (!this.getNukkitVersion().equals(latest) && !this.getNukkitVersion().equals("git-null") && isMaster) {
-                   this.getLogger().info("§c[Nukkit-Littlepick][Update] §eThere is a new build of §cNukkit§3-§dMOT §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
-                   this.getLogger().info("§c[Nukkit-Littlepick][Update] §eYou can download the latest build from https://github.com/explorer3039/Nukkit-Littlepick/");
+                   this.getLogger().info("§c[Nukkit-Littlepick][Update] §eThere is a new build of §cNukkit§3-§dLittlepick §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
+                   this.getLogger().info("§c[Nukkit-Littlepick][Update] §eYou can download the latest build from https://github.com/Littlepick/Nukkit-Littlepick/");
                } else if (!isMaster) {
                    this.getLogger().warning("§c[Nukkit-Littlepick] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
                }
