@@ -1,5 +1,6 @@
 package cn.nukkit.item;
 
+import cn.nukkit.block.Block;
 import cn.nukkit.network.protocol.ProtocolInfo;
 
 public class ItemGlowBerries extends ItemEdible {
