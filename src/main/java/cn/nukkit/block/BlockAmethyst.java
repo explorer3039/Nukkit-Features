@@ -2,18 +2,15 @@ package cn.nukkit.block;
 
 import cn.nukkit.item.ItemTool;
 
-/**
- * @author LoboMetalurgico
- * @since 08/06/2021
- */
-
 public class BlockAmethyst extends BlockSolid {
+
     public BlockAmethyst() {
+        super();
     }
 
     @Override
     public String getName() {
-        return "Amethyst Block";
+        return "Block of Amethyst";
     }
 
     @Override
@@ -36,9 +33,12 @@ public class BlockAmethyst extends BlockSolid {
         return ItemTool.TYPE_PICKAXE;
     }
 
+    public int getToolTier() {
+        return ItemTool.TIER_IRON;
+    }
+
     @Override
     public boolean canHarvestWithHand() {
         return false;
     }
-
 }

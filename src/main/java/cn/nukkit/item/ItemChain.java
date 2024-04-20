@@ -1,6 +1,7 @@
 package cn.nukkit.item;
 
 import cn.nukkit.block.Block;
+import cn.nukkit.block.BlockID;
 
 public class ItemChain extends Item {
 
@@ -16,5 +17,4 @@ public class ItemChain extends Item {
         super(CHAIN, meta, count, "Chain");
         this.block = Block.get(CHAIN_BLOCK);
     }
-    
 }

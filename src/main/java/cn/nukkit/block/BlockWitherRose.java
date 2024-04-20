@@ -3,12 +3,12 @@ package cn.nukkit.block;
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.EntityLiving;
-import cn.nukkit.item.Item;
 import cn.nukkit.math.AxisAlignedBB;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.potion.Effect;
 
 public class BlockWitherRose extends BlockFlower {
+
     public BlockWitherRose() {
         this(0);
     }
@@ -21,20 +21,8 @@ public class BlockWitherRose extends BlockFlower {
     public int getId() {
         return WITHER_ROSE;
     }
-    
     @Override
-    public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        Block down = this.down();
-        int id = down.getId();
-        if (id == Block.GRASS || id == Block.DIRT || id == Block.FARMLAND || id == Block.PODZOL || id == MYCELIUM || id == DIRT_WITH_ROOTS || id == BlockID.NETHERRACK || id == BlockID.SOUL_SAND) {
-            this.getLevel().setBlock(block, this, true);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onActivate(Item item, Player player) {
+    public boolean canBeActivated() {
         return false;
     }
 
@@ -46,19 +34,42 @@ public class BlockWitherRose extends BlockFlower {
                     && (!(living instanceof Player) || !((Player) living).isCreative() && !((Player) living).isSpectator())) {
                 Effect effect = Effect.getEffect(Effect.WITHER);
                 effect.setDuration(40);
-                effect.setAmplifier(1);
                 living.addEffect(effect);
             }
         }
     }
 
     @Override
-    protected AxisAlignedBB recalculateCollisionBoundingBox() {
-        return this;
+    public boolean hasEntityCollision() {
+        return true;
     }
 
     @Override
-    public boolean hasEntityCollision() {
-        return true;
+    protected AxisAlignedBB recalculateBoundingBox() {
+        return this;
+    }
+
+    public double getMinX() {
+        return this.x + 0.2;
+    }
+
+    @Override
+    public double getMinZ() {
+        return this.z + 0.2;
+    }
+
+    @Override
+    public double getMaxX() {
+        return this.x + 0.8;
+    }
+
+    @Override
+    public double getMaxY() {
+        return this.y + 0.8;
+    }
+
+    @Override
+    public double getMaxZ() {
+        return this.z + 0.8;
     }
 }

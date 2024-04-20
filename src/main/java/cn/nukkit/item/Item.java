@@ -437,6 +437,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             registerNamespacedIdItem(ItemShelterPotterySherd.class);
             registerNamespacedIdItem(ItemSkullPotterySherd.class);
             registerNamespacedIdItem(ItemSnortPotterySherd.class);
+            registerNamespacedIdItem(ItemBrush.class);
 
             // 添加原版物品到NAMESPACED_ID_ITEM
             // Add vanilla items to NAMESPACED_ID_ITEM
@@ -712,7 +713,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
 
     public static void addCreativeItem(Item item) {
         Server.mvw("Item#addCreativeItem(Item)");
-        addCreativeItem(v1_20_60, item);
+        addCreativeItem(v1_20_70, item);
     }
 
     public static void addCreativeItem(int protocol, Item item) {

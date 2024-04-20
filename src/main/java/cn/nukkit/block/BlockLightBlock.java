@@ -3,12 +3,13 @@ package cn.nukkit.block;
 import cn.nukkit.item.Item;
 import cn.nukkit.math.AxisAlignedBB;
 
-public class BlockLight extends BlockTransparentMeta {
-    public BlockLight() {
+public class BlockLightBlock extends BlockTransparentMeta {
+
+    public BlockLightBlock() {
         this(0);
     }
 
-    public BlockLight(int meta) {
+    public BlockLightBlock(int meta) {
         super(meta);
     }
 
@@ -33,11 +34,6 @@ public class BlockLight extends BlockTransparentMeta {
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 2;
-    }
-
-    @Override
     public boolean canBeFlowedInto() {
         return true;
     }
@@ -59,7 +55,7 @@ public class BlockLight extends BlockTransparentMeta {
 
     @Override
     public double getResistance() {
-        return 0;
+        return 3600000.8;
     }
 
     @Override
@@ -70,5 +66,10 @@ public class BlockLight extends BlockTransparentMeta {
     @Override
     public Item toItem() {
         return Item.get(Item.AIR);
+    }
+
+    @Override
+    public boolean canBePushed() {
+        return false;
     }
 }

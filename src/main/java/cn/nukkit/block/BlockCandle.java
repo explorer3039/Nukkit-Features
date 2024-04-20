@@ -1,61 +1,91 @@
 package cn.nukkit.block;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemBlock;
-import cn.nukkit.level.Level;
+import cn.nukkit.item.ItemID;
 import cn.nukkit.math.BlockFace;
-import cn.nukkit.math.SimpleAxisAlignedBB;
+import cn.nukkit.network.protocol.LevelSoundEventPacket;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.ThreadLocalRandom;
+import javax.annotation.Nullable;
 
+/**
+ * @author Gabriel8579
+ * @since 2021-07-14
+ */
 public class BlockCandle extends BlockFlowable {
 
+    public static final int CANDLES_BIT = 0x03;
+    public static final int LIT_BIT = 0x04;
+
     public BlockCandle() {
-        this(0);
+        super(0);
     }
 
-    protected BlockCandle(int meta) {
+    public BlockCandle(int meta) {
         super(meta);
     }
 
-    @Override
-    public int getId() {
-        return CANDLE;
+    protected Block toCakeForm() {
+        return new BlockCandleCake();
     }
 
     @Override
-    public String getName() {
-        return "Candle";
-    }
-
-    @Override
-    public int onUpdate(int type) {
-        if (type == Level.BLOCK_UPDATE_NORMAL){
-            Block down = this.down();
-            if (!down.isSolid()) {
-                this.getLevel().useBreakOn(this);
-                return type;
+    public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face, double fx, double fy, double fz, @Nullable Player player) {
+        if (target.getId() == BlockID.CAKE_BLOCK && target.getDamage() == 0) {//必须是完整的蛋糕才能插蜡烛
+            target.getLevel().addLevelSoundEvent(target, LevelSoundEventPacket.SOUND_CAKE_ADD_CANDLE);
+            target.getLevel().setBlock(target, toCakeForm(), true, true);
+            return true;
+        }
+        if (target.up().getId() == this.getId()) {
+            target = target.up();
+        }
+        if (target.getId() == getId()) {
+            if (target instanceof BlockMeta candle) {
+                if (candle.getDamage(CANDLES_BIT) < 3) {
+                    candle.setDamage(CANDLES_BIT, candle.getDamage(CANDLES_BIT) + 1);
+                    this.getLevel().setBlock(target, target, true, true);
+                    return true;
+                }
             }
-            return type;
+            return false;
+        } else if (target instanceof BlockCandle) {
+            return false;
         }
-        return 0;
+
+        this.setCandles(0);
+        this.getLevel().setBlock(this, this, true, true);
+
+        return true;
     }
 
     @Override
-    public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        if ((target.getId() == getId() || target.up().getId() == getId()) && (target.getDamage() & 0b11) < 3) {
-            target.setDamage(target.getDamage() + 1);
-            this.getLevel().setBlock(target, target, true, true);
+    public boolean onActivate(@NotNull Item item, Player player) {
+        if (item.getId() != ItemID.FLINT_AND_STEEL && !item.isNull()) {
+            return false;
+        }
+        if (this.isLit() && item.getId() != ItemID.FLINT_AND_STEEL) {
+            this.setLit(false);
+            this.getLevel().addLevelSoundEvent(this, LevelSoundEventPacket.SOUND_EXTINGUISH_CANDLE);
+            this.getLevel().setBlock(this, this, true, true);
+            return true;
+        } else if (!this.isLit() && item.getId() == ItemID.FLINT_AND_STEEL) {
+            this.setLit(true);
+            this.getLevel().addLevelSoundEvent(this, LevelSoundEventPacket.SOUND_IGNITE);
+            this.getLevel().setBlock(this, this, true, true);
             return true;
         }
 
-        if (target.isSolid()){
-            this.getLevel().setBlock(block, 0, this, true, true);
-            return true;
-        }
+
         return false;
+    }
+
+    @Override
+    public Item[] getDrops(Item item) {
+        return new Item[]{
+                new ItemBlock(this, 0, this.getCandles() + 1)
+        };
     }
 
     @Override
@@ -64,35 +94,44 @@ public class BlockCandle extends BlockFlowable {
     }
 
     @Override
-    public boolean onActivate(Item item, Player player) {
-        if (item.getId() == Item.FLINT_AND_STEEL){ //lit
-            BlockCandle block = (BlockCandle) this.clone();
-            block.setDamage(block.getDamage() | 0b100);
-        }
-        else if (item.getId() == Item.AIR){ //unlit
-            BlockCandle block = (BlockCandle) this.clone();
-            block.setDamage(block.getDamage() & ~0b100);
-        }
-        return false;
+    public String getName() {
+        return "Candle";
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
+    public int getId() {
+        return BlockID.CANDLE;
+    }
+
+    public boolean isLit() {
+        return this.getDamage(LIT_BIT) != 0;
+    }
+
+    public void setLit(boolean lit) {
+        this.setDamage(LIT_BIT, lit ? 1 : 0);
+    }
+
+    public int getCandles() {
+        return this.getDamage(CANDLES_BIT);
+    }
+
+    public void setCandles(int candles) {
+        this.setDamage(CANDLES_BIT, candles);
     }
 
     @Override
     public int getLightLevel() {
-        return (this.getDamage() + 1) * 3;
+        return this.isLit() ? this.getCandles() * 3 : 0;
     }
 
     @Override
-    public Item toItem() {
-        return new ItemBlock(new BlockCandle());
+    public double getHardness() {
+        return 0.1;
     }
 
     @Override
-    public Item[] getDrops(Item item) {
-        return new Item[]{ new ItemBlock(new BlockCandle(), 0, (this.getDamage() & 0x3) + 1) };
+    public double getResistance() {
+        return 0.1;
     }
+
 }
