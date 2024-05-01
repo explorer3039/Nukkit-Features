@@ -4,8 +4,15 @@
 Nukkit-Littlepick is a special version of [Nukkit](https://github.com/CloudburstMC/Nukkit) Minecraft Bedrock Edition server software.  
 It is developed based on [Nukkit-MOT](https://github.com/MemoriesOfTime/Nukkit-MOT)
 
+<<<<<<< HEAD
 ### What's new in Nukkit-Littlepick?
 1. Support for 1.2 – 1.20.70 version (you can set the minimum protocol in the config)
+=======
+note: if you need higher version features, please use [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
+
+### What's new in Nukkit-MOT?
+1. Support for 1.2 – 1.20.80 version (you can set the minimum protocol in the config)
+>>>>>>> upstream/master
 2. Supports most entities with AI
 3. Support for the 1.16 nether world and The Еnd
 4. Support for 1.17 features

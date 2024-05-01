@@ -519,9 +519,14 @@ public class Server {
      * This is needed for structure generation
      */
     public final ForkJoinPool computeThreadPool;
-
+    /**
+     * Set LevelDB cache size.
+     */
+    public int levelDbCache;
+    /**
+     * Use native LevelDB implementation for better performance.
+     */
     public boolean useNativeLevelDB;
-
     /**
      * Enable Raw Drop of Iron and Gold
      */
@@ -1273,7 +1278,9 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     }
 
     public void sendRecipeList(Player player) {
-        if (player.protocol >= ProtocolInfo.v1_20_70) {
+        if (player.protocol >= ProtocolInfo.v1_20_80) {
+            player.dataPacket(CraftingManager.packet671);
+        } else if (player.protocol >= ProtocolInfo.v1_20_70) {
             player.dataPacket(CraftingManager.packet662);
         } else if (player.protocol >= ProtocolInfo.v1_20_60) {
             player.dataPacket(CraftingManager.packet649);
@@ -1338,6 +1345,10 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
             for (Player p : new ArrayList<>(this.players.values())) {
                 p.onUpdate(currentTick);
             }
+        }
+
+        for (Player p : this.getOnlinePlayers().values()) {
+            p.resetPacketCounters();
         }
 
         // Do level ticks
@@ -3098,6 +3109,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
             }
         }
 
+        this.levelDbCache = this.getPropertyInt("leveldb-cache-mb", 80);
         this.useNativeLevelDB = this.getPropertyBoolean("use-native-leveldb", false);
         this.enableRawOres = this.getPropertyBoolean("enable-raw-ores", true);
     }
@@ -3242,6 +3254,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
             put("enable-spark", false);
             put("hastebin-token", "");
 
+            put("leveldb-cache-mb", 80);
             put("use-native-leveldb", false);
             put("enable-raw-ores", true);
         }

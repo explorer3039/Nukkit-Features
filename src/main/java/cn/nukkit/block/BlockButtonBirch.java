@@ -1,11 +1,6 @@
 package cn.nukkit.block;
 
-import cn.nukkit.item.ItemTool;
-
-/**
- * @author explorer_3039
- */
-public class BlockButtonBirch extends BlockButton {
+public class BlockButtonBirch extends BlockButtonWooden {
 
     public BlockButtonBirch() {
         this(0);
@@ -16,17 +11,12 @@ public class BlockButtonBirch extends BlockButton {
     }
 
     @Override
-    public int getId() {
-        return BIRCH_BUTTON;
-    }
-
-    @Override
     public String getName() {
         return "Birch Button";
     }
 
     @Override
-    public int getToolType() {
-        return ItemTool.TYPE_AXE;
+    public int getId() {
+        return BIRCH_BUTTON;
     }
 }
