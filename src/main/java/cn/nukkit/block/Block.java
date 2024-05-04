@@ -841,42 +841,30 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
                 if (c != null) {
                     Block block;
                     try {
-                        if (c.isAssignableFrom(BlockNotImplemented.class)) {
-                            Constructor<?> constructor = c.getDeclaredConstructor(int.class, int.class);
-                            constructor.setAccessible(true);
-                            block = (Block) constructor.newInstance(id, 0);
-                            for (int data = 0; data < (1 << DATA_BITS); ++data) {
-                                int fullId = (id << DATA_BITS) | data;
-                                fullList[fullId] = (Block) constructor.newInstance(id, data);
-                            }
-                            hasMeta[id] = true;
-                        } 
-                        else {
-							block = (Block) c.newInstance();
-							try {
-								@SuppressWarnings("rawtypes")
-								Constructor constructor = c.getDeclaredConstructor(int.class);
-								constructor.setAccessible(true);
-								for (int data = 0; data < (1 << DATA_BITS); ++data) {
-									int fullId = (id << DATA_BITS) | data;
-									Block b;
-									try {
-										b = (Block) constructor.newInstance(data);
-										if (b.getDamage() != data) {
-											b = new BlockUnknown(id, data);
-										}
-									} catch (Exception e) {
-										Server.getInstance().getLogger().error("Error while registering " + c.getName(), e);
+						block = (Block) c.newInstance();
+						try {
+							@SuppressWarnings("rawtypes")
+							Constructor constructor = c.getDeclaredConstructor(int.class);
+							constructor.setAccessible(true);
+							for (int data = 0; data < (1 << DATA_BITS); ++data) {
+								int fullId = (id << DATA_BITS) | data;
+								Block b;
+								try {
+									b = (Block) constructor.newInstance(data);
+									if (b.getDamage() != data) {
 										b = new BlockUnknown(id, data);
 									}
-									fullList[fullId] = b;
+								} catch (Exception e) {
+									Server.getInstance().getLogger().error("Error while registering " + c.getName(), e);
+									b = new BlockUnknown(id, data);
 								}
-								hasMeta[id] = true;
-							} catch (NoSuchMethodException ignore) {
-								for (int data = 0; data < DATA_SIZE; ++data) {
-									int fullId = (id << DATA_BITS) | data;
-									fullList[fullId] = block;
-								}
+								fullList[fullId] = b;
+							}
+							hasMeta[id] = true;
+						} catch (NoSuchMethodException ignore) {
+							for (int data = 0; data < DATA_SIZE; ++data) {
+								int fullId = (id << DATA_BITS) | data;
+								fullList[fullId] = block;
 							}
 						}
                     } catch (Exception e) {

@@ -644,7 +644,7 @@ public class Server {
             }
         }
 
-        log.info("\u00A7b-- \u00A7bNukkit \u00A7dLittlepick \u00A7b--");
+        log.info("\u00A7b-- \u00A7bNukkit \u00A7dDreamCloud \u00A7b--");
 
         this.consoleSender = new ConsoleCommandSender();
         this.commandMap = new SimpleCommandMap(this);
@@ -820,11 +820,11 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
 
                boolean isMaster = Nukkit.getBranch().equals("master");
                if (!this.getNukkitVersion().equals(latest) && !this.getNukkitVersion().equals("git-null") && isMaster) {
-                   this.getLogger().info("§c[Nukkit-Littlepick][Update] §eThere is a new build of §cNukkit§3-§dLittlepick §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
-                   this.getLogger().info("§c[Nukkit-Littlepick][Update] §eYou can download the latest build from https://github.com/Littlepick/Nukkit-Littlepick/");
-               } else if (!isMaster) {
-                   this.getLogger().warning("§c[Nukkit-Littlepick] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
-               }
+                   this.getLogger().info("§c[Nukkit-DreamCloud][Update] §eThere is a new build of §cNukkit§3-§dDreamCloud §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
+                   this.getLogger().info("§c[Nukkit-DreamCloud][Update] §eYou can download the latest build from https://github.com/DreamCloudServer/Nukkit-DreamCloud/");
+               } /*else if (!isMaster) {
+                   this.getLogger().warning("§c[Nukkit-DreamCloud] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
+               }*/
            } catch (Exception ignore) {
            }
         });
@@ -3133,7 +3133,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     private static class ServerProperties extends ConfigSection {
         {
             put("motd", "Minecraft Server");
-            put("sub-motd", "Powered by Nukkit-Littlepick");
+            put("sub-motd", "Powered by Nukkit-DreamCloud");
             put("server-port", 19132);
             put("server-ip", "0.0.0.0");
             put("view-distance", 8);
