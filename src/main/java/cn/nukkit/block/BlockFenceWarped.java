@@ -28,13 +28,9 @@ public class BlockFenceWarped extends BlockFence {
 
     @Override
     public Item[] getDrops(Item item) {
-        if (item.isPickaxe()) {
-            return new Item[]{
-                    toItem()
-            };
-        } else {
-            return Item.EMPTY_ARRAY;
-        }
+		return new Item[]{
+				toItem()
+		};
     }
 
     @Override

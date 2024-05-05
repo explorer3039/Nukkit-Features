@@ -24,16 +24,16 @@ public class BlockWoodBark extends BlockWood {
     public BlockWoodBark() {
         this(0);
     }
-
+    
     public BlockWoodBark(int meta) {
         super(meta);
     }
-
+    
     @Override
     public void setDamage(int meta) {
         super.setDamage(meta);
     }
-
+    
     @Override
     public int getId() {
         return WOOD_BARK;
@@ -43,17 +43,17 @@ public class BlockWoodBark extends BlockWood {
     public String getName() {
         return names[getDamage() & 0x7];
     }
-
+    
     @Override
     protected int getStrippedId() {
-        return this.getId();
+        return getId();
     }
-
+    
     @Override
     protected int getStrippedDamage() {
         return getDamage() | STRIPPED_BIT;
     }
-
+    
     @Override
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
         if (face.getAxis().isHorizontal()) {
@@ -67,7 +67,7 @@ public class BlockWoodBark extends BlockWood {
         
         return true;
     }
-
+    
     @Override
     public Item toItem() {
         int meta = getDamage() & 0xF;

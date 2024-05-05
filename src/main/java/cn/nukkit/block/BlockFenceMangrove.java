@@ -6,24 +6,24 @@ import cn.nukkit.item.ItemTool;
 /**
  * @author explorer_3039
  */
-public class BlockFenceCrimson extends BlockFence {
+public class BlockFenceMangrove extends BlockFence {
 
-    public BlockFenceCrimson() {
+    public BlockFenceMangrove() {
         this(0);
     }
 
-    public BlockFenceCrimson(int meta) {
+    public BlockFenceMangrove(int meta) {
         super(meta);
     }
 
     @Override
     public String getName() {
-        return "Crimson Fence";
+        return "Mangrove Fence";
     }
 
     @Override
     public int getId() {
-        return CRIMSON_FENCE;
+        return MANGROVE_FENCE;
     }
 
     @Override

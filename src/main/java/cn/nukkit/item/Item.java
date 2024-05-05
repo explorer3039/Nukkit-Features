@@ -439,6 +439,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             registerNamespacedIdItem(ItemSnortPotterySherd.class);
             registerNamespacedIdItem(ItemBrush.class);
             registerNamespacedIdItem(ItemGoatHorn.class);
+            registerNamespacedIdItem(ItemDoorMangrove.class);
 
             // 添加原版物品到NAMESPACED_ID_ITEM
             // Add vanilla items to NAMESPACED_ID_ITEM
