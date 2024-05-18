@@ -1,10 +1,9 @@
 package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemBlock;
+import cn.nukkit.utils.BlockColor;
 
-/**
- * @author explorer_3039
- */
 public class BlockFenceGateWarped extends BlockFenceGate {
 
     public BlockFenceGateWarped() {
@@ -24,14 +23,14 @@ public class BlockFenceGateWarped extends BlockFenceGate {
     public String getName() {
         return "Warped Fence Gate";
     }
-    
+
     @Override
-    public int getBurnChance() {
-        return 0;
+    public BlockColor getColor() {
+        return BlockColor.CYAN_BLOCK_COLOR;
     }
 
     @Override
-    public int getBurnAbility() {
-        return 0;
+    public Item toItem() {
+        return new ItemBlock(Block.get(this.getId(), 0), 0);
     }
 }

@@ -438,7 +438,8 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[PISTON_HEAD_STICKY] = BlockPistonHeadSticky.class; //472
             list[BEE_NEST] = BlockBeeNest.class; //473
             list[BEEHIVE] = BlockBeehive.class; //474
-            
+            list[HONEY_BLOCK] = BlockHoneyBlock.class; //475
+            list[HONEYCOMB_BLOCK] = BlockHoneycombBlock.class; //476
             list[LODESTONE] = BlockLodestone.class; //477
             list[CRIMSON_ROOTS] = BlockRootsCrimson.class; //478
             list[WARPED_ROOTS] = BlockRootsWarped.class; //479
@@ -648,6 +649,8 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[WAXED_OXIDIZED_CUT_COPPER_STAIRS] = BlockStairsCopperCutOxidizedWaxed.class; //703
             list[WAXED_OXIDIZED_CUT_COPPER_SLAB] = BlockSlabCopperCutOxidizedWaxed.class; //704
             list[WAXED_OXIDIZED_DOUBLE_CUT_COPPER_SLAB] = BlockDoubleSlabCopperCutOxidizedWaxed.class; //705
+
+            list[DEEPSLATE] = BlockDeepslate.class; // 633
 
             list[CANDLE] = BlockCandle.class; //667
             list[WHITE_CANDLE] = BlockCandleWhite.class; //668

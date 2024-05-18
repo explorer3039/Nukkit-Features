@@ -1,11 +1,9 @@
 package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemTool;
+import cn.nukkit.item.ItemBlock;
+import cn.nukkit.utils.BlockColor;
 
-/**
- * @author explorer_3039
- */
 public class BlockFenceCrimson extends BlockFence {
 
     public BlockFenceCrimson() {
@@ -17,20 +15,8 @@ public class BlockFenceCrimson extends BlockFence {
     }
 
     @Override
-    public String getName() {
-        return "Crimson Fence";
-    }
-
-    @Override
     public int getId() {
         return CRIMSON_FENCE;
-    }
-
-    @Override
-    public Item[] getDrops(Item item) {
-		return new Item[]{
-				toItem()
-		};
     }
 
     @Override
@@ -41,5 +27,20 @@ public class BlockFenceCrimson extends BlockFence {
     @Override
     public int getBurnAbility() {
         return 0;
+    }
+
+    @Override
+    public String getName() {
+        return "Crimson Fence";
+    }
+
+    @Override
+    public BlockColor getColor() {
+        return BlockColor.NETHERRACK_BLOCK_COLOR;
+    }
+
+    @Override
+    public Item toItem() {
+        return new ItemBlock(Block.get(this.getId(), 0), 0);
     }
 }

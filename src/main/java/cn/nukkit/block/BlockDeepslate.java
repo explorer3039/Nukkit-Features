@@ -2,16 +2,9 @@ package cn.nukkit.block;
 
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemBlock;
 import cn.nukkit.item.ItemTool;
 import cn.nukkit.math.BlockFace;
-import org.jetbrains.annotations.NotNull;
-
-
-/**
- * @author LoboMetalurgico
- * @since 08/06/2021
- */
+import cn.nukkit.utils.BlockColor;
 
 public class BlockDeepslate extends BlockSolidMeta {
 
@@ -69,11 +62,11 @@ public class BlockDeepslate extends BlockSolidMeta {
 
     @Override
     public Item[] getDrops(Item item) {
-        if (item.isPickaxe()) {
-            return new Item[]{new ItemBlock(Block.get(BlockID.COBBLED_DEEPSLATE))};
-        } else {
+        if (!canHarvest(item)) {
             return Item.EMPTY_ARRAY;
         }
+
+        return new Item[]{this.toItem()};
     }
 
     @Override
@@ -86,5 +79,10 @@ public class BlockDeepslate extends BlockSolidMeta {
         this.setDamage(faces[face.getIndex()]);
         this.getLevel().setBlock(block, this, true, true);
         return true;
+    }
+
+    @Override
+    public BlockColor getColor() {
+        return BlockColor.DEEPSLATE_BLOCK_COLOR;
     }
 }
