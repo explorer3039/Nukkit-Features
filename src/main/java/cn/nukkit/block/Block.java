@@ -39,7 +39,7 @@ import static cn.nukkit.utils.Utils.dynamic;
  */
 @Log4j2
 public abstract class Block extends Position implements Metadatable, Cloneable, AxisAlignedBB, BlockID {
-    public static final int MAX_BLOCK_ID = dynamic(829);
+    public static final int MAX_BLOCK_ID = dynamic(1039);
     public static final int DATA_BITS = dynamic(6);
     public static final int ID_MASK = 0xfff; //max 4095
     public static final int DATA_SIZE = dynamic(1 << DATA_BITS);
@@ -497,6 +497,8 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[POLISHED_BLACKSTONE_BRICKS] = BlockBricksBlackstonePolished.class; //529
             list[POLISHED_BLACKSTONE_BRICK_STAIRS] = BlockStairsBrickBlackstonePolished.class; //530
             list[BLACKSTONE_STAIRS] = BlockStairsBlackstone.class; //531
+            list[BLACKSTONE_WALL] = BlockWallBlackstone.class; //532
+            list[POLISHED_BLACKSTONE_BRICK_WALL] = BlockWallBrickBlackstonePolished.class; //533
             list[CHISELED_POLISHED_BLACKSTONE] = BlockBlackstonePolishedChiseled.class; //534
             list[CRACKED_POLISHED_BLACKSTONE_BRICKS] = BlockBricksBlackstonePolishedCracked.class; //535
             list[GILDED_BLACKSTONE] = BlockBlackstoneGilded.class; //536
@@ -525,7 +527,6 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[NETHER_GOLD_ORE] = BlockOreGoldNether.class; //543
             list[CRYING_OBSIDIAN] = BlockCryingObsidian.class; //544
             list[SOUL_CAMPFIRE_BLOCK] = BlockCampfireSoul.class; //545
-            
             list[POLISHED_BLACKSTONE] = BlockBlackstonePolished.class; //546
             list[POLISHED_BLACKSTONE_STAIRS] = BlockStairsBlackstonePolished.class; //547
             list[POLISHED_BLACKSTONE_SLAB] = BlockSlabBlackstonePolished.class; //548
@@ -544,7 +545,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[POWDER_SNOW] = BlockPowderSnow.class; //561
             //list[SCULK_SENSOR] = BlockSculkSensor.class; //562
             //list[POINTED_DRIPSTONE] = BlockPointedDripstone.class; //563
-            
+
             list[COPPER_ORE] = BlockOreCopper.class; // 566
             list[LIGHTNING_ROD] = BlockLightningRod.class; //567
             
@@ -738,7 +739,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[CHERRY_LOG] = BlockCherryLog.class; //791
             list[CHERRY_PLANKS] = BlockPlanksCherry.class; //792
 
-            list[STRIPPED_CHERRY_WOOD] = BlockWoodStrippedCherry.class;//800
+            list[STRIPPED_CHERRY_WOOD] = BlockWoodStrippedCherry.class; //800
             list[CHERRY_WOOD] = BlockWoodCherry.class; //801
             list[CHERRY_SAPLING] = BlockCherrySapling.class; //802
             list[CHERRY_LEAVES] = BlockCherryLeaves.class; //803
@@ -865,7 +866,16 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
             list[ELEMENT_117] = BlockElement117.class;
             list[ELEMENT_118] = BlockElement118.class;
 
-            list[SUSPICIOUS_GRAVEL] = BlockSuspiciousGravel.class; // 828
+            list[SUSPICIOUS_GRAVEL] = BlockSuspiciousGravel.class; //828
+
+            list[COPPER_BULB] = BlockCopperBulb.class; //1031
+            list[EXPOSED_COPPER_BULB] = BlockExposedCopperBulb.class; //1032
+            list[WEATHERED_COPPER_BULB] = BlockWeatheredCopperBulb.class; //1033
+            list[OXIDIZED_COPPER_BULB] = BlockOxidizedCopperBulb.class; //1034
+            list[WAXED_COPPER_BULB] = BlockWaxedCopperBulb.class; //1035
+            list[WAXED_EXPOSED_COPPER_BULB] = BlockWaxedExposedCopperBulb.class; //1036
+            list[WAXED_WEATHERED_COPPER_BULB] = BlockWaxedWeatheredCopperBulb.class; //1037
+            list[WAXED_OXIDIZED_COPPER_BULB] = BlockWaxedOxidizedCopperBulb.class; //1038
 
             for (int id = 0; id < MAX_BLOCK_ID; id++) {
                 Class<?> c = list[id];
@@ -1268,7 +1278,7 @@ public abstract class Block extends Position implements Metadatable, Cloneable, 
         }
 
         return id;
-	}
+    }
 
     /**
      * The full id is a combination of the id and data.

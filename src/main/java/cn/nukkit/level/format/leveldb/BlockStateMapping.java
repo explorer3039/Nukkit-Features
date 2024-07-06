@@ -55,6 +55,17 @@ public class BlockStateMapping {
             return Objects.equals(nbtMap, nbtMap2);
         }
     });
+    private final Object2ObjectMap<NbtMap, BlockStateSnapshot> customCacheMap = new Object2ObjectOpenCustomHashMap<>(new Hash.Strategy<>() {
+        @Override
+        public int hashCode(NbtMap nbtMap) {
+            return nbtMap.hashCode();
+        }
+
+        @Override
+        public boolean equals(NbtMap nbtMap, NbtMap nbtMap2) {
+            return Objects.equals(nbtMap, nbtMap2);
+        }
+    });
 
     static {
         INSTANCE.setLegacyMapper(new NukkitLegacyMapper());
@@ -79,6 +90,13 @@ public class BlockStateMapping {
         blockStateUpdaters.add(BlockStateUpdater_1_19_80.INSTANCE);
         blockStateUpdaters.add(BlockStateUpdater_1_20_0.INSTANCE);
         blockStateUpdaters.add(BlockStateUpdater_1_20_10.INSTANCE);
+        blockStateUpdaters.add(BlockStateUpdater_1_20_30.INSTANCE);
+        blockStateUpdaters.add(BlockStateUpdater_1_20_40.INSTANCE);
+        blockStateUpdaters.add(BlockStateUpdater_1_20_50.INSTANCE);
+        blockStateUpdaters.add(BlockStateUpdater_1_20_60.INSTANCE);
+        blockStateUpdaters.add(BlockStateUpdater_1_20_70.INSTANCE);
+        blockStateUpdaters.add(BlockStateUpdater_1_20_80.INSTANCE);
+        blockStateUpdaters.add(BlockStateUpdater_1_21_0.INSTANCE);
 
         blockStateUpdaters.add(BlockStateUpdaterVanilla.INSTANCE);
 
@@ -283,11 +301,18 @@ public class BlockStateMapping {
             return blockState;
         }
 
-        return BlockStateSnapshot.builder()
+        blockState = this.customCacheMap.get(state);
+        if (blockState != null) {
+            return blockState;
+        }
+
+        blockState = BlockStateSnapshot.builder()
                 .vanillaState(state)
                 .runtimeId(this.getDefaultState().getRuntimeId())
                 .version(this.version)
                 .custom(true)
                 .build();
+        this.customCacheMap.put(state, blockState);
+        return blockState;
     }
 }

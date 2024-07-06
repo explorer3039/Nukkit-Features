@@ -1,8 +1,10 @@
 package cn.nukkit.block;
 
+import cn.nukkit.utils.BlockColor;
+
 public class BlockPressurePlateCrimson extends BlockPressurePlateWood {
     public BlockPressurePlateCrimson() {
-        // Does nothing
+        this(0);
     }
 
     public BlockPressurePlateCrimson(int meta) {
@@ -18,14 +20,9 @@ public class BlockPressurePlateCrimson extends BlockPressurePlateWood {
     public String getName() {
         return "Crimson Pressure Plate";
     }
-    
-    @Override
-    public int getBurnChance() {
-        return 0;
-    }
 
     @Override
-    public int getBurnAbility() {
-        return 0;
+    public BlockColor getColor() {
+        return BlockColor.NETHER_BLOCK_COLOR;
     }
 }

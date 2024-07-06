@@ -1,11 +1,6 @@
 package cn.nukkit.block;
 
-import cn.nukkit.item.ItemTool;
-
-/**
- * @author explorer_3039
- */
-public class BlockButtonCrimson extends BlockButton {
+public class BlockButtonCrimson extends BlockButtonWooden {
 
     public BlockButtonCrimson() {
         this(0);
@@ -23,20 +18,5 @@ public class BlockButtonCrimson extends BlockButton {
     @Override
     public String getName() {
         return "Crimson Button";
-    }
-
-    @Override
-    public int getToolType() {
-        return ItemTool.TYPE_AXE;
-    }
-    
-    @Override
-    public int getBurnChance() {
-        return 0;
-    }
-
-    @Override
-    public int getBurnAbility() {
-        return 0;
     }
 }

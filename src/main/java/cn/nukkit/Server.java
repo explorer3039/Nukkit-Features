@@ -834,6 +834,8 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
            }
         });
 
+        Runtime.getRuntime().addShutdownHook(new Thread(this::forceShutdown));
+
         this.start();
     }
 
@@ -1164,7 +1166,10 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
                             int offset = 0;
                             for (int i = 0; i < levelArray.length; i++) {
                                 offset = (i + lastLevelGC) % levelArray.length;
-                                levelArray[offset].doGarbageCollection(allocated - 1);
+                                Level level = levelArray[offset];
+                                if (!level.isBeingConverted) {
+                                    level.doGarbageCollection(allocated - 1);
+                                }
                                 allocated = next - System.currentTimeMillis();
                                 if (allocated <= 0) break;
                             }
@@ -1283,7 +1288,9 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     }
 
     public void sendRecipeList(Player player) {
-        if (player.protocol >= ProtocolInfo.v1_20_80) {
+        if (player.protocol >= ProtocolInfo.v1_21_0) {
+            player.dataPacket(CraftingManager.packet685);
+        } else if (player.protocol >= ProtocolInfo.v1_20_80) {
             player.dataPacket(CraftingManager.packet671);
         } else if (player.protocol >= ProtocolInfo.v1_20_70) {
             player.dataPacket(CraftingManager.packet662);
@@ -1358,7 +1365,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
 
         // Do level ticks
         for (Level level : this.levelArray) {
-            if (level.getTickRate() > this.baseTickRate && --level.tickRateCounter > 0) {
+            if (level.isBeingConverted || (level.getTickRate() > this.baseTickRate && --level.tickRateCounter > 0)) {
                 continue;
             }
 
@@ -1478,7 +1485,9 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
 
         if (this.tickCounter % 100 == 0) {
             for (Level level : this.levelArray) {
-                level.doChunkGarbageCollection();
+                if (!level.isBeingConverted) {
+                    level.doChunkGarbageCollection();
+                }
             }
         }
 

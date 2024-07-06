@@ -1,5 +1,7 @@
 package cn.nukkit.block;
 
+import cn.nukkit.utils.BlockColor;
+
 public class BlockHyphaeCrimson extends BlockStem {
     
     public BlockHyphaeCrimson() {
@@ -29,5 +31,9 @@ public class BlockHyphaeCrimson extends BlockStem {
     public double getHardness() {
         return 0.3;
     }
-
+    
+    @Override
+    public BlockColor getColor() {
+        return BlockColor.CRIMSON_STEM_BLOCK_COLOR;
+    }
 }

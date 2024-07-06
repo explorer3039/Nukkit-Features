@@ -71,6 +71,7 @@ import it.unimi.dsi.fastutil.objects.ObjectList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -246,6 +247,10 @@ public class Level implements ChunkManager, Metadatable {
     private final int chunkPopulationQueueSize;
 
     private boolean autoSave;
+    @Getter
+    @Setter
+    private boolean saveOnUnloadEnabled = true;
+    public boolean isBeingConverted;
 
     private BlockMetadataStore blockMetadata;
 
@@ -1724,6 +1729,9 @@ public class Level implements ChunkManager, Metadatable {
             for (int x = minX; x <= maxX; ++x) {
                 for (int y = minY; y <= maxY; ++y) {
                     Block block = this.getBlock(x, y, z, false);
+                    if (block.getId() == BlockID.BARRIER && entity.canPassThroughBarrier()) {
+                        continue;
+                    }
                     if (!block.canPassThrough() && block.collidesWithBB(bb)) {
                         collides.add(block.getBoundingBox());
                     }
@@ -4440,6 +4448,10 @@ public class Level implements ChunkManager, Metadatable {
         this.sendWeather(players.toArray(Player.EMPTY_ARRAY));
     }
 
+    public void setDimensionData(DimensionData data) {
+        this.dimensionData = data;
+    }
+
     public DimensionData getDimensionData() {
         return this.dimensionData;
     }
@@ -4943,7 +4955,9 @@ public class Level implements ChunkManager, Metadatable {
     }
 
     private int getChunkProtocol(int protocol) {
-        if (protocol >= ProtocolInfo.v1_20_80) {
+        if (protocol >= ProtocolInfo.v1_21_0) {
+            return ProtocolInfo.v1_21_0;
+        } else if (protocol >= ProtocolInfo.v1_20_80) {
             return ProtocolInfo.v1_20_80;
         } else if (protocol >= ProtocolInfo.v1_20_70) {
             return ProtocolInfo.v1_20_70;
@@ -5049,7 +5063,8 @@ public class Level implements ChunkManager, Metadatable {
         if (chunk == ProtocolInfo.v1_20_50) if (player == ProtocolInfo.v1_20_50) return true;
         if (chunk == ProtocolInfo.v1_20_60) if (player == ProtocolInfo.v1_20_60) return true;
         if (chunk == ProtocolInfo.v1_20_70) if (player == ProtocolInfo.v1_20_70) return true;
-        if (chunk == ProtocolInfo.v1_20_80) if (player >= ProtocolInfo.v1_20_80) return true;
+        if (chunk == ProtocolInfo.v1_20_80) if (player == ProtocolInfo.v1_20_80) return true;
+        if (chunk == ProtocolInfo.v1_21_0) if (player >= ProtocolInfo.v1_21_0) return true;
         return false; //TODO Multiversion  Remember to update when block palette changes
     }
 

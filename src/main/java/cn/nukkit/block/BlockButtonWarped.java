@@ -1,11 +1,6 @@
 package cn.nukkit.block;
 
-import cn.nukkit.item.ItemTool;
-
-/**
- * @author explorer_3039
- */
-public class BlockButtonWarped extends BlockButton {
+public class BlockButtonWarped extends BlockButtonWooden {
 
     public BlockButtonWarped() {
         this(0);
@@ -23,20 +18,5 @@ public class BlockButtonWarped extends BlockButton {
     @Override
     public String getName() {
         return "Warped Button";
-    }
-
-    @Override
-    public int getToolType() {
-        return ItemTool.TYPE_AXE;
-    }
-    
-    @Override
-    public int getBurnChance() {
-        return 0;
-    }
-
-    @Override
-    public int getBurnAbility() {
-        return 0;
     }
 }

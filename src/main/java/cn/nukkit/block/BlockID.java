@@ -521,6 +521,7 @@ public interface BlockID {
     int POWDER_SNOW = 561;
     int SCULK_SENSOR = 562;
     int POINTED_DRIPSTONE = 563;
+
     int COPPER_ORE = 566;
     int LIGHTNING_ROD = 567;
     int DRIPSTONE_BLOCK = 572;
@@ -835,4 +836,12 @@ public interface BlockID {
     int ELEMENT_116 = 382;
     int ELEMENT_117 = 383;
     int ELEMENT_118 = 384;
+    int COPPER_BULB = 1031;
+    int EXPOSED_COPPER_BULB = 1032;
+    int WEATHERED_COPPER_BULB = 1033;
+    int OXIDIZED_COPPER_BULB = 1034;
+    int WAXED_COPPER_BULB = 1035;
+    int WAXED_EXPOSED_COPPER_BULB = 1036;
+    int WAXED_WEATHERED_COPPER_BULB = 1037;
+    int WAXED_OXIDIZED_COPPER_BULB = 1038;
 }
