@@ -167,7 +167,6 @@ public class BlockCauldron extends BlockSolidMeta implements BlockEntityHolder<B
                                 cauldron.clearCustomColor();
                                 this.getLevel().addSoundToViewers(this, Sound.BUCKET_EMPTY_LAVA);
                                 break;
->>>>>>> upstream/master
                             }
                             clearWithFizz(cauldron);
                         }
