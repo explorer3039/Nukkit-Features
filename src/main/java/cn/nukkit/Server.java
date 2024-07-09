@@ -650,6 +650,10 @@ public class Server {
         }
 
         log.info("\u00A7b-- \u00A7bNukkit \u00A7dDreamCloud \u00A7b--");
+        
+        log.info("\u00A7aauthor: explorer_3039");
+        
+        log.info("\u00A7eCan only be used by TD server!");
 
         this.consoleSender = new ConsoleCommandSender();
         this.commandMap = new SimpleCommandMap(this);
@@ -2357,7 +2361,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
         }
 
         if (provider == null) {
-            provider = LevelProviderManager.getProviderByName("anvil");
+            provider = LevelProviderManager.getProviderByName("leveldb");
         }
 
         String path;
@@ -2922,6 +2926,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
         //Others
         Entity.registerEntity("Human", EntityHuman.class, true);
         Entity.registerEntity("Lightning", EntityLightning.class);
+        Entity.registerEntity("AreaEffectCloud", EntityAreaEffectCloud.class);
     }
 
     /**

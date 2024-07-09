@@ -5,6 +5,7 @@ import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.EntitySmite;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
+import cn.nukkit.event.entity.EntityPotionEffectEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemSwordStone;
 import cn.nukkit.level.format.FullChunk;
@@ -65,7 +66,7 @@ public class EntityWitherSkeleton extends EntityWalkingMob implements EntitySmit
             }
             if (player.attack(new EntityDamageByEntityEvent(this, player, EntityDamageEvent.DamageCause.ENTITY_ATTACK, damage))) {
                 this.playAttack();
-                player.addEffect(Effect.getEffect(Effect.WITHER).setDuration(200));
+                player.addEffect(Effect.getEffect(Effect.WITHER).setDuration(200), EntityPotionEffectEvent.Cause.ATTACK);
             }
         }
     }
@@ -110,5 +111,13 @@ public class EntityWitherSkeleton extends EntityWalkingMob implements EntitySmit
     @Override
     public String getName() {
         return this.hasCustomName() ? this.getNameTag() : "Wither Skeleton";
+    }
+
+    @Override
+    public boolean canBeAffected(int effectId) {
+        if (effectId == Effect.WITHER) {
+            return false;
+        }
+        return super.canBeAffected(effectId);
     }
 }

@@ -158,13 +158,16 @@ public class BlockCauldron extends BlockSolidMeta implements BlockEntityHolder<B
                             this.level.setBlock(this, this, true);
                             this.getLevel().addSoundToViewers(this, Sound.CAULDRON_FILLWATER);
                         } else { // lava bucket
-                            if (isEmpty()) {
+                            if (!isEmpty()) {
+                                clearWithFizz(cauldron);
+                            } else {
                                 BlockCauldronLava blockCauldronLava = new BlockCauldronLava(14);
-								blockCauldronLava.setFillLevel(3);
-								this.level.setBlock(this, blockCauldronLava, true, true);
-								cauldron.clearCustomColor();
-								this.getLevel().addSoundToViewers(this, Sound.BUCKET_EMPTY_LAVA);
-								break;
+                                blockCauldronLava.setFillLevel(3);
+                                this.level.setBlock(this, blockCauldronLava, true, true);
+                                cauldron.clearCustomColor();
+                                this.getLevel().addSoundToViewers(this, Sound.BUCKET_EMPTY_LAVA);
+                                break;
+>>>>>>> upstream/master
                             }
                             clearWithFizz(cauldron);
                         }

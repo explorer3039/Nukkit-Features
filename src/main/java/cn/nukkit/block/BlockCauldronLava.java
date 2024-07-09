@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package cn.nukkit.block;
 
 import cn.nukkit.Player;
@@ -36,7 +33,7 @@ public class BlockCauldronLava extends BlockCauldron {
 
     @Override
     public int getId() {
-        return 465;
+        return LAVA_CAULDRON;
     }
 
     @Override
@@ -69,18 +66,18 @@ public class BlockCauldronLava extends BlockCauldron {
 
     @Override
     public boolean onActivate(Item item, Player player) {
-        if (item.getId() == 325 && item.getDamage() == 0) {
+        if (item.getId() == Item.BUCKET && item.getDamage() == 0) {
             if (!this.isFull()) {
                 return false;
             }
-            PlayerBucketFillEvent playerBucketFillEvent = new PlayerBucketFillEvent(player, this, null, item, Item.get(325, 10, 1));
+            PlayerBucketFillEvent playerBucketFillEvent = new PlayerBucketFillEvent(player, this, null, item, Item.get(Item.BUCKET, 10, 1));
             this.level.getServer().getPluginManager().callEvent(playerBucketFillEvent);
             if (!playerBucketFillEvent.isCancelled()) {
                 this.replaceBucket(item, player, playerBucketFillEvent.getItem());
                 if (!(this.level.getBlockEntity(this) instanceof BlockEntityCauldron)) {
                     BlockEntity.createBlockEntity("Cauldron", this.getChunk(), new CompoundTag("").putString("id", "Cauldron").putInt("x", (int)this.x).putInt("y", (int)this.y).putInt("z", (int)this.z).putShort("PotionId", 65535).putByte("SplashPotion", 0), new Object[0]);
                 }
-                this.level.setBlock(this, Block.get(118), true);
+                this.level.setBlock(this, Block.get(Block.CAULDRON_BLOCK), true);
                 this.getLevel().addSound((Vector3)this.add(0.5, 1.0, 0.5), Sound.BUCKET_FILL_LAVA);
             }
         }
