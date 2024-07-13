@@ -7,7 +7,7 @@ It is developed based on [Nukkit-MOT](https://github.com/MemoriesOfTime/Nukkit-M
 note: if you need higher version features, please use [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX) (Currently unstable).
 
 ### What's new in Nukkit-DreamCloud?
-1. Support for 1.2 – 1.21.0 version (you can set the minimum protocol in the config, 1.1 protocol support currently unstable.)
+1. Support for 1.2 – 1.21.2 version (you can set the minimum protocol in the config, 1.1 protocol support currently unstable.)
 2. Supports most entities with AI
 3. Support for the 1.16 nether world and The Еnd
 4. Support for higher version features
