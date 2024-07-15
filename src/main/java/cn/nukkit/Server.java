@@ -653,7 +653,9 @@ public class Server {
         
         log.info("\u00A7aauthor: explorer_3039");
         
-        log.info("\u00A7eCan only be used by TD server!");
+        //log.info("\u00A7eCan only be used by TD server!"); 2D2CBedrock:?
+        
+        log.info("\u00A7eCan only be used by 2D2CBedrock and TD server!");
 
         this.consoleSender = new ConsoleCommandSender();
         this.commandMap = new SimpleCommandMap(this);
