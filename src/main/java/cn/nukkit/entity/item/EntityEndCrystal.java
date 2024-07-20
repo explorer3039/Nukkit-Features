@@ -104,7 +104,7 @@ public class EntityEndCrystal extends Entity implements EntityExplosive {
             if (ev.isBlockBreaking()) {
                 explode.explodeA();
             }
-            explode.explodeB();
+            explode.explodeC();
         }
     }
 
