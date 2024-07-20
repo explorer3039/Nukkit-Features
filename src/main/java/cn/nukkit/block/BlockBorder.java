@@ -1,8 +1,10 @@
 package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
+import cn.nukkit.math.AxisAlignedBB;
+import cn.nukkit.math.SimpleAxisAlignedBB;
 
-public class BlockBorder extends BlockTransparent {
+public class BlockBorder extends BlockWall {
 
     @Override
     public int getId() {
@@ -37,5 +39,17 @@ public class BlockBorder extends BlockTransparent {
     @Override
     public boolean canHarvestWithHand() {
         return false;
+    }
+    
+    @Override
+    protected AxisAlignedBB recalculateBoundingBox() {
+        return new SimpleAxisAlignedBB(
+                this.x,
+                this.y,
+                this.z,
+                this.x,
+                this.y + 255,
+                this.z
+        );
     }
 }
