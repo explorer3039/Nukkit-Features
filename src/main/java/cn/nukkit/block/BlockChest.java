@@ -130,6 +130,7 @@ public class BlockChest extends BlockTransparentMeta implements Faceable, BlockE
                 nbt.putList(t.getList("Items"));
             }
         }
+        
 
         if (item.hasCustomBlockData()) {
             Map<String, Tag> customData = item.getCustomBlockData().getTags();
