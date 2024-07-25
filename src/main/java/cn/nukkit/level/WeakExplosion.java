@@ -80,7 +80,7 @@ public class WeakExplosion extends Explosion {
                             }
                             Block block = this.level.getBlock(vBlock);
                             if (block.getId() != 0 && block.getResistance() < 20) {
-                                blastForce -= (block.getResistance() / 5 + 0.3d) * 0.3d;
+                                blastForce -= (block.getResistance() / 10 / 5 + 0.3d) * 0.3d;
                                 if (blastForce > 0) {
                                     if (!this.affectedBlocks.contains(block)) {
                                         this.affectedBlocks.add(block);
