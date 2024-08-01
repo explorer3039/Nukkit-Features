@@ -2395,7 +2395,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
         }
 
         if (provider == null) {
-            provider = LevelProviderManager.getProviderByName("leveldb");
+            provider = LevelProviderManager.getProviderByName("anvil");
         }
 
         String path;
