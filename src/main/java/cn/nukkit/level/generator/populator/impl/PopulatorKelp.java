@@ -2,7 +2,6 @@ package cn.nukkit.level.generator.populator.impl;
 
 import cn.nukkit.block.Block;
 import cn.nukkit.level.format.FullChunk;
-import cn.nukkit.level.format.leveldb.structure.LevelDBChunk;
 import cn.nukkit.level.generator.populator.helper.EnsureBelow;
 import cn.nukkit.level.generator.populator.helper.EnsureCover;
 import cn.nukkit.level.generator.populator.type.PopulatorOceanFloorSurfaceBlock;
@@ -13,7 +12,6 @@ public class PopulatorKelp extends PopulatorOceanFloorSurfaceBlock {
 
     @Override
     protected boolean canStay(int x, int y, int z, FullChunk chunk) {
-        if (chunk instanceof cn.nukkit.level.format.anvil.Chunk) return false;
         return EnsureCover.ensureWaterCover(x, y, z, chunk) && EnsureBelow.ensureBelow(x, y, z, GRAVEL, chunk);
     }
 
@@ -27,12 +25,10 @@ public class PopulatorKelp extends PopulatorOceanFloorSurfaceBlock {
         int height = Utils.rand(1, 25);
         int lastTop = y;
 
-        boolean leveldb = chunk instanceof LevelDBChunk;
-
         for (int part = 0; part < height; part++) {
             int yy = y + part;
             if (yy < 256 && chunk.getBlockId(x, yy, z) == STILL_WATER && chunk.getBlockId(x, yy + 1, z) == STILL_WATER) {
-                chunk.setBlock(x, yy, z, Block.BLOCK_KELP, leveldb ? part : (int) (part / 1.6));
+                chunk.setBlock(x, yy, z, Block.BLOCK_KELP, part);
                 chunk.setFullBlockId(x, yy, z, 1, Block.STILL_WATER << Block.DATA_BITS);
                 lastTop = yy;
             } else {
