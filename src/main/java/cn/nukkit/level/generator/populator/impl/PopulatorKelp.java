@@ -38,6 +38,6 @@ public class PopulatorKelp extends PopulatorOceanFloorSurfaceBlock {
         }
 
         // Stop top part growing
-        chunk.setBlockData(x, lastTop, z, leveldb ? 24 : 15);
+        chunk.setBlockData(x, lastTop, z, 24);
     }
 }
