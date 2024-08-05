@@ -347,4 +347,6 @@ public interface ItemID {
     int ECHO_SHARD = 779;
 
     int SOUL_CAMPFIRE = 801;
+
+    int GLOW_ITEM_FRAME = 850;
 }

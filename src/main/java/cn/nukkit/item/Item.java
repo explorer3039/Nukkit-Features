@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
+import cn.nukkit.block.customblock.CustomBlockManager;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.inventory.Fuel;
 import cn.nukkit.inventory.ItemTag;
@@ -389,6 +390,8 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             list[RECOVERY_COMPASS] = ItemRecoveryCompass.class; //778
             
 
+            list[GLOW_ITEM_FRAME] = ItemItemFrameGlow.class; //850
+
             for (int i = 0; i < 256; ++i) {
                 if (Block.list[i] != null) {
                     list[i] = Block.list[i];
@@ -467,7 +470,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             }
         }
 
-        initCreativeItems();
+        clearCreativeItems();
     }
 
     private static final List<Item> creative137 = new ObjectArrayList<>();
@@ -503,7 +506,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
     private static final List<Item> creative671 = new ObjectArrayList<>();
     private static final List<Item> creative685 = new ObjectArrayList<>();
 
-    private static void initCreativeItems() {
+    public static void initCreativeItems() {
         Server.getInstance().getLogger().debug("Loading creative items...");
         clearCreativeItems();
 
@@ -1021,7 +1024,11 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             Class<?> c = null;
             if (id < 0) {
                 int blockId = 255 - id;
-                c = Block.list[blockId];
+                if (blockId >= CustomBlockManager.LOWEST_CUSTOM_BLOCK_ID) {
+                    c = CustomBlockManager.get().getClassType(blockId);
+                } else {
+                    c = Block.list[blockId];
+                }
             } else {
                 c = list[id];
             }

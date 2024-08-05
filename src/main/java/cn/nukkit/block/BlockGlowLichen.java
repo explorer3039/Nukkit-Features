@@ -1,35 +1,37 @@
 package cn.nukkit.block;
 
 import cn.nukkit.Player;
-import cn.nukkit.entity.Entity;
+import cn.nukkit.block.properties.BlockProperties;
+import cn.nukkit.block.properties.BlockPropertiesHelper;
+import cn.nukkit.block.properties.BooleanBlockProperty;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemBlock;
-import cn.nukkit.item.ItemTool;
 import cn.nukkit.level.Level;
 import cn.nukkit.math.AxisAlignedBB;
 import cn.nukkit.math.BlockFace;
-import cn.nukkit.math.SimpleAxisAlignedBB;
 import cn.nukkit.utils.BlockColor;
 
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.EnumSet;
+import java.util.Set;
 
-/**
- * Created by explorer_3039 on 2024.02.15.
- */
-public class BlockGlowLichen extends BlockTransparentMeta {
+public class BlockGlowLichen extends BlockTransparentMeta implements BlockPropertiesHelper {
 
-    public BlockGlowLichen(int meta) {
-        super(meta);
-    }
+    // Currently multi_face_direction_bits: 0x01 - down, 0x02 - up, 0x04 - north, 0x08 - south, 0x10 - west, 0x20 - east
+    private static final BooleanBlockProperty CONNECTION_DOWN = new BooleanBlockProperty("connection_down", false);
+    private static final BooleanBlockProperty CONNECTION_UP = new BooleanBlockProperty("connection_up", false);
+    private static final BooleanBlockProperty CONNECTION_NORTH = new BooleanBlockProperty("connection_north", false);
+    private static final BooleanBlockProperty CONNECTION_SOUTH = new BooleanBlockProperty("connection_south", false);
+    private static final BooleanBlockProperty CONNECTION_WEST = new BooleanBlockProperty("connection_west", false);
+    private static final BooleanBlockProperty CONNECTION_EAST = new BooleanBlockProperty("connection_east", false);
+
+    private static final BlockProperties PROPERTIES = new BlockProperties(CONNECTION_DOWN, CONNECTION_UP, CONNECTION_NORTH, CONNECTION_SOUTH, CONNECTION_WEST, CONNECTION_EAST);
 
     public BlockGlowLichen() {
         this(0);
     }
 
-    @Override
-    public String getName() {
-        return "Glow Lichen";
+    public BlockGlowLichen(int meta) {
+        super(meta);
     }
 
     @Override
@@ -38,22 +40,87 @@ public class BlockGlowLichen extends BlockTransparentMeta {
     }
 
     @Override
+    public String getName() {
+        return "Glow Lichen";
+    }
+
+    @Override
+    public BlockProperties getBlockProperties() {
+        return PROPERTIES;
+    }
+
+    @Override
+    public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
+        if (!this.canPlaceOn(block.down(), target) || !target.isSolid()) {
+            return false;
+        }
+
+        if (block.getId() == GLOW_LICHEN) {
+            this.setDamage(block.getDamage());
+        } else {
+            this.setDamage(0);
+        }
+
+        this.setBlockFace(face.getOpposite(), true);
+        this.getLevel().setBlock(this, this, false, true);
+        return true;
+    }
+
+    @Override
+    public Item[] getDrops(Item item) {
+        if (item.isShears()) {
+            return new Item[] { this.toItem() };
+        }
+        return Item.EMPTY_ARRAY;
+    }
+
+    @Override
+    public int onUpdate(int type) {
+        if (type == Level.BLOCK_UPDATE_SCHEDULED) {
+            this.getLevel().useBreakOn(this, null, null, true);
+        } else if (type != Level.BLOCK_UPDATE_NORMAL) {
+            return type;
+        }
+
+        boolean update = false;
+        boolean support = false;
+
+        Set<BlockFace> faces = this.getSupportedFaces();
+        for (BlockFace face : faces) {
+            Block block = this.getLevel().getBlock(this.getSide(face));
+            if (block.isSolid()) {
+                support = true;
+            } else {
+                update = true;
+                this.setBlockFace(face, false);
+            }
+        }
+
+        if (!support) {
+            this.getLevel().scheduleUpdate(this, 1);
+        } else if (update) {
+            this.getLevel().setBlock(this, this, false, true);
+        }
+        return type;
+    }
+
+    @Override
+    public Item toItem() {
+        return new ItemBlock(Block.get(this.getId()), 0, 1);
+    }
+
+    @Override
     public double getHardness() {
         return 0.2;
     }
 
     @Override
-    public double getResistance() {
-        return 1;
+    public int getLightLevel() {
+        return 7;
     }
 
     @Override
     public boolean canPassThrough() {
-        return true;
-    }
-
-    @Override
-    public boolean hasEntityCollision() {
         return true;
     }
 
@@ -63,93 +130,75 @@ public class BlockGlowLichen extends BlockTransparentMeta {
     }
 
     @Override
-    public boolean breaksWhenMoved() {
-        return true;
-    }
-
-    @Override
-    public boolean sticksToPiston() {
-        return false;
-    }
-
-    @Override
-    public void onEntityCollide(Entity entity) {
-        entity.resetFallDistance();
-        entity.onGround = true;
-    }
-
-    @Override
     public boolean isSolid() {
         return false;
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
-    }
-
-    @Override
-    public boolean canBeFlowedInto() {
-        return true;
-    }
-
-    @Override
-    public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        if (block.getId() != GLOW_LICHEN && target.isSolid()) {
-            this.setDamage(getMetaFromFace(face.getOpposite()));
-            this.getLevel().setBlock(block, this, true, true);
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public Item[] getDrops(Item item) {
-        if (item.isShears()) {
-            return new Item[]{
-                    toItem()
-            };
-        } else {
-            return Item.EMPTY_ARRAY;
-        }
-    }
-
-    @Override
-    public Item toItem() {
-        return new ItemBlock(this, 0);
-    }
-
-    private static int getMetaFromFace(BlockFace face) {
-        switch (face) {
-            case SOUTH:
-                return 0x08;
-            case WEST:
-                return 0x10;
-            case NORTH:
-                return 0x04;
-            case EAST:
-                return 0x20;
-            case UP:
-                return 0x02;
-            default:
-            case DOWN:
-                return 0x01;
-        }
-    }
-
-    @Override
-    public int getToolType() {
-        return ItemTool.TYPE_AXE;
+    protected AxisAlignedBB recalculateBoundingBox() {
+        return null;
     }
 
     @Override
     public BlockColor getColor() {
-        return BlockColor.FOLIAGE_BLOCK_COLOR;
+        return BlockColor.GRAY_BLOCK_COLOR;
+    }
+
+    public void setBlockFace(BlockFace face, boolean value) {
+        switch (face) {
+            case UP:
+                this.setBooleanValue(CONNECTION_UP, value);
+                break;
+            case DOWN:
+                this.setBooleanValue(CONNECTION_DOWN, value);
+                break;
+            case NORTH:
+                this.setBooleanValue(CONNECTION_NORTH, value);
+                break;
+            case SOUTH:
+                this.setBooleanValue(CONNECTION_SOUTH, value);
+                break;
+            case WEST:
+                this.setBooleanValue(CONNECTION_WEST, value);
+                break;
+            case EAST:
+                this.setBooleanValue(CONNECTION_EAST, value);
+                break;
+
+        }
+    }
+
+    public boolean hasBlockFace(BlockFace face) {
+        switch (face) {
+            case UP:
+                return this.getBooleanValue(CONNECTION_UP);
+            case DOWN:
+                return this.getBooleanValue(CONNECTION_DOWN);
+            case NORTH:
+                return this.getBooleanValue(CONNECTION_NORTH);
+            case SOUTH:
+                return this.getBooleanValue(CONNECTION_SOUTH);
+            case WEST:
+                return this.getBooleanValue(CONNECTION_WEST);
+            case EAST:
+                return this.getBooleanValue(CONNECTION_EAST);
+
+        }
+        return false;
+    }
+
+    public Set<BlockFace> getSupportedFaces() {
+        EnumSet<BlockFace> faces = EnumSet.noneOf(BlockFace.class);
+        for (BlockFace face : BlockFace.values()) {
+            if (this.hasBlockFace(face)) {
+                faces.add(face);
+            }
+        }
+        return faces;
     }
 
     @Override
-    public boolean canSilkTouch() {
-        return true;
+    public int getWaterloggingLevel() {
+        return 1;
     }
 }
