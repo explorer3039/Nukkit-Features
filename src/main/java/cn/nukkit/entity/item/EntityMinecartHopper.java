@@ -165,10 +165,10 @@ public class EntityMinecartHopper extends EntityMinecartAbstract implements Inve
         Block bottomBlock = this.getPosition().floor().subtract(0, 1, 0).getLevelBlock();
         BlockEntity be = this.level.getBlockEntity(bottomBlock);
 
-        if (be instanceof BlockEntityHopper // 漏斗会主动从漏斗矿车中拉取
-                || !(be instanceof InventoryHolder)) {
-            return false;
-        }
+        //if (be instanceof BlockEntityHopper // 漏斗会主动从漏斗矿车中拉取
+        //        || !(be instanceof InventoryHolder)) {
+        //    return false;
+        //}
 
         InventoryMoveItemEvent event;
 
