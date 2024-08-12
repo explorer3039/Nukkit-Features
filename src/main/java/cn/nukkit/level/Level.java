@@ -290,7 +290,7 @@ public class Level implements ChunkManager, Metadatable {
                 if (Server.getInstance().isPrimaryThread()) {
                     generator.init(Level.this, rand);
                 }
-                generator.init(new PopChunkManager(getSeed()), rand);
+                generator.init(new PopChunkManager(getSeed(), Level.this::getDimensionData), rand);
                 return generator;
             } catch (Throwable e) {
                 Server.getInstance().getLogger().logException(e);
@@ -4466,10 +4466,12 @@ public class Level implements ChunkManager, Metadatable {
         return y >= getMinBlockY() && y <= getMaxBlockY();
     }
 
+    @Override
     public int getMinBlockY() {
         return this.requireProvider().getMinBlockY();
     }
 
+    @Override
     public int getMaxBlockY() {
         return this.requireProvider().getMaxBlockY();
     }
