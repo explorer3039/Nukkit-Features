@@ -37,12 +37,12 @@ import static cn.nukkit.utils.Utils.dynamic;
 @Log4j2
 public class Nukkit {
 
-    public static final String NUKKIT = "Nukkit DreamCloud";
-    public static final String BRANCH = "https://api.github.com/repos/DreamCloudServer/Nukkit-DreamCloud/commits/master";
+    public static final String NUKKIT = "Nukkit Features";
+    public static final String BRANCH = "https://api.github.com/repos/explorer3039/Nukkit-Features/commits/master";
     public final static Properties GIT_INFO = getGitInfo();
     public final static String VERSION = getVersion();
     public final static String API_VERSION = dynamic("CUSTOM");
-    public final static String CODENAME = Utils.dynamic("DreamCloud");
+    public final static String CODENAME = Utils.dynamic("MOT");
     public final static String PATH = System.getProperty("user.dir") + '/';
     public final static String DATA_PATH = System.getProperty("user.dir") + '/';
     public final static String PLUGIN_PATH = DATA_PATH + "plugins";
@@ -82,7 +82,7 @@ public class Nukkit {
 
         try {
             if (TITLE) {
-                System.out.print("\u001B]0;Nukkit DreamCloud\u0007");
+                System.out.print("\u001B]0;Nukkit Features\u0007");
             }
             new Server(PATH, DATA_PATH, PLUGIN_PATH, loadPlugins, debug);
         } catch (Throwable t) {

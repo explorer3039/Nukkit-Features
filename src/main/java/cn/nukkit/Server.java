@@ -690,13 +690,9 @@ public class Server {
             }
         }
 
-        log.info("\u00A7b-- \u00A7bNukkit \u00A7dDreamCloud \u00A7b--");
+        log.info("\u00A7b-- \u00A7bNukkit \u00A7dFeatures \u00A7b--");
         
         log.info("\u00A7aauthor: explorer_3039");
-        
-        //log.info("\u00A7eCan only be used by TD server!"); 2D2CBedrock:?
-        
-        log.info("\u00A7eCan only be used by 2D2CBedrock and TD server!");
 
         this.consoleSender = new ConsoleCommandSender();
         this.commandMap = new SimpleCommandMap(this);
@@ -885,10 +881,10 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
 
                boolean isMaster = Nukkit.getBranch().equals("master");
                if (!this.getNukkitVersion().equals(latest) && !this.getNukkitVersion().equals("git-null") && isMaster) {
-                   this.getLogger().info("§c[Nukkit-DreamCloud][Update] §eThere is a new build of §cNukkit§3-§dDreamCloud §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
-                   this.getLogger().info("§c[Nukkit-DreamCloud][Update] §eYou can download the latest build from https://github.com/DreamCloudServer/Nukkit-DreamCloud/");
+                   this.getLogger().info("§c[Nukkit-Features][Update] §eThere is a new build of §cNukkit§3-§dFeatures §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
+                   this.getLogger().info("§c[Nukkit-Features][Update] §eYou can download the latest build from https://github.com/FeaturesServer/Nukkit-Features/");
                } /*else if (!isMaster) {
-                   this.getLogger().warning("§c[Nukkit-DreamCloud] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
+                   this.getLogger().warning("§c[Nukkit-Features] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
                }*/
            } catch (Exception ignore) {
            }
@@ -3209,7 +3205,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     private static class ServerProperties extends ConfigSection {
         {
             put("motd", "Minecraft Server");
-            put("sub-motd", "Powered by Nukkit-DreamCloud");
+            put("sub-motd", "Powered by Nukkit-Features");
             put("server-port", 19132);
             put("server-ip", "0.0.0.0");
             put("view-distance", 8);

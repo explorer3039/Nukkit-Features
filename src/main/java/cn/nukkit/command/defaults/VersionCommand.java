@@ -41,7 +41,7 @@ public class VersionCommand extends VanillaCommand {
         if (args.length == 0 || !sender.hasPermission("nukkit.command.version.plugins")) {
             final String branch = Nukkit.getBranch();
 
-            sender.sendMessage("§e#########################################\n§cNukkit§3-§dDreamCloud\n§6Build: §b" + branch + '/' + Nukkit.VERSION.substring(4) + "\n§6Multiversion: §bUp to version " + ProtocolInfo.MINECRAFT_VERSION_NETWORK + "\n§e#########################################");
+            sender.sendMessage("§e#########################################\n§cNukkit§3-§dFeatures\n§6Build: §b" + branch + '/' + Nukkit.VERSION.substring(4) + "\n§6Multiversion: §bUp to version " + ProtocolInfo.MINECRAFT_VERSION_NETWORK + "\n§e#########################################");
 
             if (sender.isOp()) {
                 CompletableFuture.runAsync(() -> {
@@ -53,9 +53,9 @@ public class VersionCommand extends VanillaCommand {
                         content.close();
 
                         if (Nukkit.VERSION.equals(latest)) {
-                            sender.sendMessage("§c[Nukkit-DreamCloud] §aYou are running the latest version.");
+                            sender.sendMessage("§c[Nukkit-Features] §aYou are running the latest version.");
                         } else {
-                            sender.sendMessage("§c[Nukkit-DreamCloud][Update] §eThere is a new build of §cNukkit§3-§dDreamCloud §eavailable! Current: " + Nukkit.VERSION + ", latest: " + latest);
+                            sender.sendMessage("§c[Nukkit-Features][Update] §eThere is a new build of §cNukkit§3-§dFeatures §eavailable! Current: " + Nukkit.VERSION + ", latest: " + latest);
                         }
                     } catch (Exception ignore) {
                     }
