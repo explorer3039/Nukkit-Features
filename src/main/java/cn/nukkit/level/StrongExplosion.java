@@ -87,7 +87,7 @@ public class StrongExplosion extends Explosion {
 
                             if (block.getId() != Block.AIR && block.getId() != Block.BEDROCK) {
                                 if (block.getId() != Block.OBSIDIAN) {
-                                    blastForce -= (block.getResistance() / 10 / 5 + 0.3d) * 0.3d;
+                                    blastForce -= (block.getResistance() / 5 + 0.3d) * 0.3d;
                                 }
                                 if (blastForce > 0) {
                                     if (!this.affectedBlocks.contains(block)) {
