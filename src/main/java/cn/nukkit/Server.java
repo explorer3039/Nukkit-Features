@@ -32,7 +32,6 @@ import cn.nukkit.item.RuntimeItems;
 import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.lang.BaseLang;
 import cn.nukkit.lang.TextContainer;
-import cn.nukkit.lang.TranslationContainer;
 import cn.nukkit.level.EnumLevel;
 import cn.nukkit.level.GlobalBlockPalette;
 import cn.nukkit.level.Level;
@@ -1259,6 +1258,9 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     }
 
     public void removeOnlinePlayer(Player player) {
+        if (player.getUniqueId() == null) {
+            return;
+        }
         if (this.playerList.containsKey(player.getUniqueId())) {
             this.playerList.remove(player.getUniqueId());
 
@@ -1338,7 +1340,9 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     }
 
     public void sendRecipeList(Player player) {
-        if (player.protocol >= ProtocolInfo.v1_21_0) {
+        if (player.protocol >= ProtocolInfo.v1_21_20) {
+            player.dataPacket(CraftingManager.packet712);
+        } else if (player.protocol >= ProtocolInfo.v1_21_0) {
             player.dataPacket(CraftingManager.packet685);
         } else if (player.protocol >= ProtocolInfo.v1_20_80) {
             player.dataPacket(CraftingManager.packet671);
