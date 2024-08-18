@@ -1,6 +1,5 @@
 package cn.nukkit.network.protocol;
 
-import cn.nukkit.utils.BinaryStream;
 import lombok.ToString;
 
 /**
@@ -20,12 +19,6 @@ public class ChangeDimensionPacket extends DataPacket {
 
     public boolean respawn;
 
-    /**
-     * Will be serialized as optional not present if null
-     * @since v712
-     */
-    public Integer loadingScreenId = null;
-
     @Override
     public void decode() {
         this.dimension = this.getVarInt();
@@ -33,9 +26,6 @@ public class ChangeDimensionPacket extends DataPacket {
         this.y = this.getVector3f().y;
         this.z = this.getVector3f().z;
         this.respawn = this.getBoolean();
-        if (protocol >= ProtocolInfo.v1_21_20) {
-            this.loadingScreenId = this.getOptional(null, BinaryStream::getLInt);
-        }
     }
 
     @Override
@@ -44,9 +34,6 @@ public class ChangeDimensionPacket extends DataPacket {
         this.putVarInt(this.dimension);
         this.putVector3f(this.x, this.y, this.z);
         this.putBoolean(this.respawn);
-        if (protocol >= ProtocolInfo.v1_21_20) {
-            this.putOptionalNull(this.loadingScreenId, this::putLInt);
-        }
     }
 
     @Override

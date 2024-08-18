@@ -132,10 +132,6 @@ public class CraftingTransaction extends InventoryTransaction {
     protected void sendInventories() {
         super.sendInventories();
 
-        if (source.craftingType == Player.CRAFTING_SMALL) {
-            return; // Already closed
-        }
-
         /*
          * TODO: HACK!
          * we can't resend the contents of the crafting window, so we force the client to close it instead.
@@ -146,7 +142,7 @@ public class CraftingTransaction extends InventoryTransaction {
         pk.windowId = ContainerIds.NONE;
         pk.wasServerInitiated = true;
         pk.type = ContainerType.NONE;
-        source.getServer().getScheduler().scheduleDelayedTask(InternalPlugin.INSTANCE, () -> source.dataPacket(pk), 20);
+        source.getServer().getScheduler().scheduleDelayedTask(InternalPlugin.INSTANCE, () -> source.dataPacket(pk), 10);
 
         this.source.resetCraftingGridType();
     }

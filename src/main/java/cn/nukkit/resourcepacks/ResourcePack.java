@@ -21,8 +21,4 @@ public interface ResourcePack {
     default String getEncryptionKey() {
         return "";
     }
-
-    default boolean isAddonPack() {
-        return false;
-    }
 }

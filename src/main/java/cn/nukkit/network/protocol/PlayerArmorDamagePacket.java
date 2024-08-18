@@ -47,7 +47,6 @@ public class PlayerArmorDamagePacket extends DataPacket {
         HELMET,
         CHESTPLATE,
         LEGGINGS,
-        BOOTS,
-        BODY
+        BOOTS
     }
 }

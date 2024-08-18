@@ -217,10 +217,10 @@ public final class ClientChainData implements LoginChainData {
 
     private void decodeSkinData() {
         int size = bs.getLInt();
-        if (size > 52428800) {
+        if (size > 3000000) {
             throw new IllegalArgumentException("The skin data is too big: " + size);
         }
-        JsonObject skinToken = decodeToken(new String(bs.get(size), StandardCharsets.UTF_8));
+        JsonObject skinToken = decodeToken(new String(bs.get(size)));
         if (skinToken == null) return;
         if (skinToken.has("ClientRandomId")) this.clientId = skinToken.get("ClientRandomId").getAsLong();
         if (skinToken.has("ServerAddress")) this.serverAddress = skinToken.get("ServerAddress").getAsString();
@@ -243,15 +243,15 @@ public final class ClientChainData implements LoginChainData {
         this.rawData = skinToken;
     }
 
-    public static JsonObject decodeToken(String token) {
-        String[] base = token.split("\\.", 100);
+    private static JsonObject decodeToken(String token) {
+        String[] base = token.split("\\.");
         if (base.length < 2) return null;
         return GSON.fromJson(new String(Base64.getDecoder().decode(base[1]), StandardCharsets.UTF_8), JsonObject.class);
     }
 
     private void decodeChainData() {
         int size = bs.getLInt();
-        if (size > 52428800) {
+        if (size > 3000000) {
             throw new IllegalArgumentException("The chain data is too big: " + size);
         }
         Map<String, List<String>> map = GSON.fromJson(new String(bs.get(size), StandardCharsets.UTF_8), new MapTypeToken().getType());

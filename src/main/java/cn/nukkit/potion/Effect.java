@@ -13,6 +13,7 @@ import cn.nukkit.event.entity.EntityEffectUpdateEvent;
 import cn.nukkit.event.entity.EntityRegainHealthEvent;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.network.protocol.MobEffectPacket;
+import cn.nukkit.utils.ServerException;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -114,7 +115,7 @@ public class Effect implements Cloneable {
         if (id >= 0 && id < effects.length && effects[id] != null) {
             return effects[id].clone();
         } else {
-            return null;
+            throw new ServerException("Effect id: " + id + " not found");
         }
     }
 
@@ -124,7 +125,7 @@ public class Effect implements Cloneable {
             int id = Effect.class.getField(name.toUpperCase()).getInt(null);
             return getEffect(id);
         } catch (Exception e) {
-            return null;
+            throw new RuntimeException(e);
         }
     }
 

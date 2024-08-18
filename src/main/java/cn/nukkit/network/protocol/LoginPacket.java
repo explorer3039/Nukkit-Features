@@ -14,8 +14,6 @@ import lombok.ToString;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-import static cn.nukkit.utils.ClientChainData.decodeToken;
-
 @ToString
 public class LoginPacket extends DataPacket {
 
@@ -71,7 +69,7 @@ public class LoginPacket extends DataPacket {
 
     private void decodeChainData() {
         int size = this.getLInt();
-        if (size > 52428800) {
+        if (size > 3000000) {
             throw new IllegalArgumentException("The chain data is too big: " + size);
         }
 
@@ -92,11 +90,11 @@ public class LoginPacket extends DataPacket {
 
     private void decodeSkinData() {
         int size = this.getLInt();
-        if (size > 52428800) {
+        if (size > 3000000) {
             throw new IllegalArgumentException("The skin data is too big: " + size);
         }
 
-        String data = new String(this.get(size), StandardCharsets.UTF_8);
+        String data = new String(this.get(size));
         JsonObject skinToken = decodeToken(data);
 
         if (skinToken == null) return;
@@ -212,6 +210,12 @@ public class LoginPacket extends DataPacket {
                 }
             }
         }
+    }
+
+    private static JsonObject decodeToken(String token) {
+        String[] base = token.split("\\.");
+        if (base.length < 2) return null;
+        return GSON.fromJson(new String(Base64.getDecoder().decode(base[1]), StandardCharsets.UTF_8), JsonObject.class);
     }
 
     private static SkinAnimation getAnimation(int protocol, JsonObject element) {

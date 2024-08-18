@@ -166,7 +166,7 @@ public class ListTag<T extends Tag> extends Tag {
     }
 
     public void removeAll(Collection<T> tags) {
-        list.removeAll(tags);
+        list.remove(tags);
     }
 
     public int size() {
