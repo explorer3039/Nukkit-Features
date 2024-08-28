@@ -249,6 +249,7 @@ public class Level implements ChunkManager, Metadatable {
     private final int chunkPopulationQueueSize;
 
     private boolean autoSave;
+    private boolean autoCompaction;
     @Getter
     @Setter
     private boolean saveOnUnloadEnabled = true;
@@ -277,7 +278,9 @@ public class Level implements ChunkManager, Metadatable {
 
     // Notice: These shouldn't be used in the internal methods
     // Check the dimension id instead
+    @Deprecated
     public final boolean isNether;
+    @Deprecated
     public final boolean isEnd;
 
     private final Class<? extends Generator> generatorClass;
@@ -331,6 +334,7 @@ public class Level implements ChunkManager, Metadatable {
         this.blockMetadata = new BlockMetadataStore(this);
         this.server = server;
         this.autoSave = server.getAutoSave();
+        this.autoCompaction = server.isAutoCompactionEnabled();
 
         try {
             this.provider = provider.getConstructor(Level.class, String.class).newInstance(this, path);
@@ -785,6 +789,14 @@ public class Level implements ChunkManager, Metadatable {
 
     public void setAutoSave(boolean autoSave) {
         this.autoSave = autoSave;
+    }
+
+    public boolean isAutoCompaction() {
+        return this.autoCompaction && this.autoSave;
+    }
+
+    public void setAutoCompaction(boolean autoCompaction) {
+        this.autoCompaction = autoCompaction;
     }
 
     public boolean unload() {
@@ -4456,6 +4468,18 @@ public class Level implements ChunkManager, Metadatable {
 
     public int getDimension() {
         return this.dimensionData.getDimensionId();
+    }
+
+    public final boolean isOverWorld() {
+        return this.getDimension() == DIMENSION_OVERWORLD;
+    }
+
+    public final boolean isNether() {
+        return this.getDimension() == DIMENSION_NETHER;
+    }
+
+    public final boolean isTheEnd() {
+        return this.getDimension() == DIMENSION_THE_END;
     }
 
     public final boolean isYInRange(int y) {
