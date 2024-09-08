@@ -72,7 +72,7 @@ public class BlockSapling extends BlockFlowable {
     protected boolean isSupportInvalid() {
         Block down = this.down();
         int id = down.getId();
-        return !(id == Block.GRASS || id == Block.DIRT || id == Block.FARMLAND || id == Block.PODZOL || id == MYCELIUM);
+        return !(id == Block.GRASS || id == Block.DIRT || id == Block.FARMLAND || id == Block.PODZOL || id == MYCELIUM || id == MOSS_BLOCK);
     }
 
     @Override

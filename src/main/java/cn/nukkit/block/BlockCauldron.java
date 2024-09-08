@@ -180,8 +180,7 @@ public class BlockCauldron extends BlockSolidMeta implements BlockEntityHolder<B
                 }
 
                 if (player.isSurvival() || player.isAdventure()) {
-                    item.setCount(item.getCount() - 1);
-                    player.getInventory().setItemInHand(item);
+                    item.count--;
                 }
 
                 BlockColor color = new ItemDye(item.getDamage()).getDyeColor().getColor();
@@ -278,8 +277,7 @@ public class BlockCauldron extends BlockSolidMeta implements BlockEntityHolder<B
                     player.getInventory().setItemInHand(potion);
                 } else if (item.getCount() > 1) {
                     if (consumeBottle) {
-                        item.setCount(item.getCount() - 1);
-                        player.getInventory().setItemInHand(item);
+                        item.count--;
                     }
 
                     if (player.getInventory().canAddItem(potion)) {

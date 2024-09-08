@@ -19,8 +19,6 @@ import cn.nukkit.utils.Faceable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 /**
  * Created by Pub4Game on 03.07.2016.
  */
@@ -119,8 +117,7 @@ public class BlockItemFrame extends BlockTransparentMeta implements Faceable, Bl
                 return false;
             }
             if (player != null && player.isSurvival()) {
-                item.setCount(item.getCount() - 1);
-                player.getInventory().setItemInHand(item);
+                item.count--;
             }
             itemToFrame.setCount(1);
             itemFrame.setItem(itemToFrame);
@@ -174,21 +171,6 @@ public class BlockItemFrame extends BlockTransparentMeta implements Faceable, Bl
         this.getLevel().setBlock(this, Block.get(BlockID.AIR), true, true);
         this.getLevel().addLevelEvent(this, LevelEventPacket.EVENT_SOUND_ITEM_FRAME_REMOVED);
         return true;
-    }
-
-    @Override
-    public Item[] getDrops(Item item) {
-        BlockEntity blockEntity = this.getLevel().getBlockEntity(this);
-        BlockEntityItemFrame itemFrame = (BlockEntityItemFrame) blockEntity;
-        if (itemFrame != null && ThreadLocalRandom.current().nextFloat() <= itemFrame.getItemDropChance()) {
-            return new Item[]{
-                    toItem(), itemFrame.getItem().clone()
-            };
-        } else {
-            return new Item[]{
-                    toItem()
-            };
-        }
     }
 
     @Override
