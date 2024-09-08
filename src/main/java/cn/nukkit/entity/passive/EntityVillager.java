@@ -16,6 +16,8 @@ import cn.nukkit.nbt.tag.ListTag;
 import cn.nukkit.nbt.tag.Tag;
 import lombok.Getter;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class EntityVillager extends EntityWalkingAnimal implements InventoryHolder {
 
     public static final int PROFESSION_FARMER = 0;
@@ -122,7 +124,7 @@ public class EntityVillager extends EntityWalkingAnimal implements InventoryHold
         super.initEntity();
         setTradingPlayer(0L);
         if (!this.namedTag.contains("profession")) {
-            this.setProfession(10);
+            this.setProfession(0);
         } else {
             var profession = this.namedTag.getInt("profession");
             this.profession = profession;

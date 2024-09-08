@@ -91,4 +91,15 @@ public class BlockDaylightDetector extends BlockTransparent {
                 this.z + 1
         );
     }
+    
+    @Override
+    public int onUpdate(int type) {
+        if (type == Level.BLOCK_UPDATE_NORMAL || type == Level.BLOCK_UPDATE_SCHEDULED) {
+            if (type == Level.BLOCK_UPDATE_SCHEDULED) {
+                this.level.updateAroundRedstone(this, null);
+            }
+            this.level.scheduleUpdate(this, 40);
+        }
+        return 0;
+    }
 }
