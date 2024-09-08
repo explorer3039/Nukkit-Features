@@ -122,7 +122,7 @@ public class EntityVillager extends EntityWalkingAnimal implements InventoryHold
         super.initEntity();
         setTradingPlayer(0L);
         if (!this.namedTag.contains("profession")) {
-            this.setProfession(0);
+            this.setProfession(10);
         } else {
             var profession = this.namedTag.getInt("profession");
             this.profession = profession;
