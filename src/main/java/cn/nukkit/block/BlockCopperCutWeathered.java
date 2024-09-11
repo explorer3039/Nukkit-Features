@@ -10,7 +10,7 @@ import cn.nukkit.level.Level;
  * @since 11/06/2021
  */
 
-public class BlockCopperCutWeathered extends BlockCopperCut {
+public class BlockCopperCutWeathered extends BlockCopperBase {
     public BlockCopperCutWeathered() {
         // Does nothing
     }
@@ -23,23 +23,5 @@ public class BlockCopperCutWeathered extends BlockCopperCut {
     @Override
     public int getId() {
         return WEATHERED_CUT_COPPER;
-    }
-    
-    @Override
-    public int onUpdate(int type) {
-        if (type == Level.BLOCK_UPDATE_RANDOM) {
-			this.getLevel().setBlock(this, Block.get(BlockID.OXIDIZED_CUT_COPPER));
-			return 0;
-        }
-        return 0;
-    }
-    
-    @Override
-    public boolean onActivate(Item item, Player player) {
-        if (item.getId() == Item.HONEYCOMB) {
-            this.getLevel().setBlock(this, Block.get(BlockID.WAXED_WEATHERED_CUT_COPPER), true, true);
-            return true;
-        }
-        return false;
     }
 }

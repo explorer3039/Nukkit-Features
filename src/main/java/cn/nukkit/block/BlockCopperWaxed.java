@@ -10,7 +10,7 @@ import cn.nukkit.level.Level;
  * @since 11/06/2021
  */
 
-public class BlockCopperWaxed extends BlockCopper {
+public class BlockCopperWaxed extends BlockCopperBase {
     public BlockCopperWaxed() {
         // Does nothing
     }
@@ -26,11 +26,7 @@ public class BlockCopperWaxed extends BlockCopper {
     }
     
     @Override
-    public boolean onActivate(Item item, Player player) {
-        if (item.isAxe()) {
-            this.getLevel().setBlock(this, Block.get(BlockID.COPPER_BLOCK), true, true);
-            return true;
-        }
-        return false;
+    public boolean isWaxed() {
+        return true;
     }
 }

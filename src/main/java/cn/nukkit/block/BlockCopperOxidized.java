@@ -9,7 +9,7 @@ import cn.nukkit.item.ItemID;
  * @since 11/06/2021
  */
 
-public class BlockCopperOxidized extends BlockCopper {
+public class BlockCopperOxidized extends BlockCopperBase {
     public BlockCopperOxidized() {
         // Does nothing
     }
@@ -25,11 +25,7 @@ public class BlockCopperOxidized extends BlockCopper {
     }
     
     @Override
-    public boolean onActivate(Item item, Player player) {
-        if (item.getId() == Item.HONEYCOMB) {
-            this.getLevel().setBlock(this, Block.get(BlockID.WAXED_OXIDIZED_COPPER), true, true);
-            return true;
-        }
-        return false;
+    public boolean isFullyOxidized() {
+        return true;
     }
 }

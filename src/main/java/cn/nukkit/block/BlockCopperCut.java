@@ -10,7 +10,7 @@ import cn.nukkit.level.Level;
  * @since 11/06/2021
  */
 
-public class BlockCopperCut extends BlockSolid {
+public class BlockCopperCut extends BlockCopperBase {
     public BlockCopperCut() {
         // Does nothing
     }
@@ -25,22 +25,4 @@ public class BlockCopperCut extends BlockSolid {
         return CUT_COPPER;
     }
     
-    @Override
-    public int onUpdate(int type) {
-        if (type == Level.BLOCK_UPDATE_RANDOM) {
-			this.getLevel().setBlock(this, Block.get(BlockID.EXPOSED_CUT_COPPER));
-			return 0;
-        }
-        return 0;
-    }
-    
-    @Override
-    public boolean onActivate(Item item, Player player) {
-        if (item.getId() == Item.HONEYCOMB) {
-            this.getLevel().setBlock(this, Block.get(BlockID.WAXED_CUT_COPPER), true, true);
-            return true;
-        }
-        return false;
-    }
-
 }

@@ -10,7 +10,7 @@ import cn.nukkit.level.Level;
  * @since 11/06/2021
  */
 
-public class BlockCopperOxidizedWaxed extends BlockCopperOxidized {
+public class BlockCopperOxidizedWaxed extends BlockCopperBase {
     public BlockCopperOxidizedWaxed() {
         // Does nothing
     }
@@ -32,5 +32,10 @@ public class BlockCopperOxidizedWaxed extends BlockCopperOxidized {
             return true;
         }
         return false;
+    }
+    
+    @Override
+    public boolean isFullyOxidized() {
+        return true;
     }
 }
