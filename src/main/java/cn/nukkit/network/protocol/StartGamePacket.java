@@ -200,7 +200,7 @@ public class StartGamePacket extends DataPacket {
         if (protocol > 224) {
             this.putBoolean(this.hasEduFeaturesEnabled);
             if (protocol >= 407) {
-                this.putString(""); // Education Edition Product ID
+                this.putString("0"); // Education Edition Product ID
             }
         }
         this.putLFloat(this.rainLevel);

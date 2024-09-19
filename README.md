@@ -1,7 +1,7 @@
 ![Nukkit-Features](.github/images/banner.png)  
 
 ## Introduction
-Nukkit-Features is a special version of [Nukkit](https://github.com/CloudburstMC/Nukkit) Minecraft Bedrock Edition server software made for Features server.  
+Nukkit-Features is a special version of [Nukkit](https://github.com/CloudburstMC/Nukkit) Minecraft Bedrock Edition server software.  
 It is developed based on [Nukkit-MOT](https://github.com/MemoriesOfTime/Nukkit-MOT)
 
 note: if you need higher version features, please use [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
