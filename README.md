@@ -4,7 +4,7 @@
 Nukkit-Features is a special version of [Nukkit](https://github.com/CloudburstMC/Nukkit) Minecraft Bedrock Edition server software made for Features server.  
 It is developed based on [Nukkit-MOT](https://github.com/MemoriesOfTime/Nukkit-MOT)
 
-note: if you need higher version features, please use [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX) (Currently unstable).
+note: if you need higher version features, please use [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
 
 ### What's new in Nukkit-Features?
 1. Support for 1.2 – 1.21.2 version (you can set the minimum protocol in the config, 1.1 protocol support currently unstable.)
