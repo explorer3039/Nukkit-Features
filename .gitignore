@@ -39,3 +39,5 @@ resource_packs/*
 dependency-reduced-pom.xml
 *.log
 /logs
+src1
+src1/*

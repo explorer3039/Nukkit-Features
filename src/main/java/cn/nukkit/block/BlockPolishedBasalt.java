@@ -17,6 +17,6 @@ public class BlockPolishedBasalt extends BlockBasalt {
 
     @Override
     public int getId() {
-        return POLISHED_BASALT;
+        return BlockID.POLISHED_BASALT;
     }
 }

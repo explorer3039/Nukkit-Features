@@ -5,7 +5,6 @@ import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.EntityLiving;
 import cn.nukkit.event.entity.EntityPotionEffectEvent;
 import cn.nukkit.math.AxisAlignedBB;
-import cn.nukkit.math.BlockFace;
 import cn.nukkit.potion.Effect;
 
 public class BlockWitherRose extends BlockFlower {
@@ -29,8 +28,7 @@ public class BlockWitherRose extends BlockFlower {
 
     @Override
     public void onEntityCollide(Entity entity) {
-        if (level.getServer().getDifficulty() != 0 && entity instanceof EntityLiving) {
-            EntityLiving living = (EntityLiving) entity;
+        if (level.getServer().getDifficulty() != 0 && entity instanceof EntityLiving living) {
             if (!living.invulnerable && !living.hasEffect(Effect.WITHER)
                     && (!(living instanceof Player) || !((Player) living).isCreative() && !((Player) living).isSpectator())) {
                 Effect effect = Effect.getEffect(Effect.WITHER);
@@ -50,6 +48,7 @@ public class BlockWitherRose extends BlockFlower {
         return this;
     }
 
+    @Override
     public double getMinX() {
         return this.x + 0.2;
     }

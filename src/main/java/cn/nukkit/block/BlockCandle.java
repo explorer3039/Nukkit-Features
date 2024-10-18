@@ -77,7 +77,6 @@ public class BlockCandle extends BlockFlowable {
             return true;
         }
 
-
         return false;
     }
 

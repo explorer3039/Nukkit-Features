@@ -1,12 +1,19 @@
 package cn.nukkit.block;
 
-/**
- * @author LoboMetalurgico
- * @since 13/06/2021
- */
-
 public class BlockRootsHanging extends BlockRoots {
+
     public BlockRootsHanging() {
+        this(0);
+    }
+
+    public BlockRootsHanging(int meta) {
+        super(0); // hanging roots have no variants
+    }
+
+    @Override
+    protected boolean isSupportValid() {
+        Block up = this.up();
+        return up.isSolid() && !up.isTransparent();
     }
 
     @Override

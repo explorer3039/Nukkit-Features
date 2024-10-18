@@ -22,6 +22,7 @@ public class BlockPressurePlateBirch extends BlockPressurePlateWood {
         return BIRCH_PRESSURE_PLATE;
     }
 
+    @Override
     public BlockColor getColor() {
         return BlockColor.SAND_BLOCK_COLOR;
     }

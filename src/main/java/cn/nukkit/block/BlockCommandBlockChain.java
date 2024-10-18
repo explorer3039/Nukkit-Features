@@ -2,16 +2,8 @@ package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
 
-public class BlockCommandBlockChain extends BlockCommandBlock {
+public class BlockCommandBlockChain extends BlockSolid {
 
-    public BlockCommandBlockChain() {
-        this(0);
-    }
-
-    public BlockCommandBlockChain(int meta) {
-        super(meta);
-    }
-    
     @Override
     public int getId() {
         return CHAIN_COMMAND_BLOCK;

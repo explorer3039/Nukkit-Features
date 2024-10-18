@@ -33,6 +33,7 @@ public class BlockAmethyst extends BlockSolid {
         return ItemTool.TYPE_PICKAXE;
     }
 
+    @Override
     public int getToolTier() {
         return ItemTool.TIER_IRON;
     }

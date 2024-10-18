@@ -36,4 +36,5 @@ public class BlockHyphaeCrimson extends BlockStem {
     public BlockColor getColor() {
         return BlockColor.CRIMSON_STEM_BLOCK_COLOR;
     }
+
 }

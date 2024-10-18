@@ -32,8 +32,8 @@ public class BlockDeadBush extends BlockFlowable {
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
+    public WaterloggingType getWaterloggingType() {
+        return WaterloggingType.WHEN_PLACED_IN_WATER;
     }
     
     @Override
@@ -45,7 +45,7 @@ public class BlockDeadBush extends BlockFlowable {
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
         Block down = this.down();
         int id = down.getId();
-        if (id == SAND || id == TERRACOTTA || id == STAINED_TERRACOTTA || id == DIRT || id == PODZOL || id == MYCELIUM || id == GRASS || id == MOSS_BLOCK) {
+        if (id == SAND || id == TERRACOTTA || id == STAINED_TERRACOTTA || id == DIRT || id == PODZOL || id == MYCELIUM || id == GRASS) {
             this.getLevel().setBlock(block, this, true, true);
             return true;
         }

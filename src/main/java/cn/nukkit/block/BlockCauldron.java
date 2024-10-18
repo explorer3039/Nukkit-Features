@@ -101,8 +101,8 @@ public class BlockCauldron extends BlockSolidMeta implements BlockEntityHolder<B
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
+    public WaterloggingType getWaterloggingType() {
+        return WaterloggingType.WHEN_PLACED_IN_WATER;
     }
 
     @Override
@@ -168,7 +168,6 @@ public class BlockCauldron extends BlockSolidMeta implements BlockEntityHolder<B
                                 this.getLevel().addSoundToViewers(this, Sound.BUCKET_EMPTY_LAVA);
                                 break;
                             }
-                            clearWithFizz(cauldron);
                         }
                         //this.update();
                     }
@@ -180,7 +179,8 @@ public class BlockCauldron extends BlockSolidMeta implements BlockEntityHolder<B
                 }
 
                 if (player.isSurvival() || player.isAdventure()) {
-                    item.count--;
+                    item.setCount(item.getCount() - 1);
+                    player.getInventory().setItemInHand(item);
                 }
 
                 BlockColor color = new ItemDye(item.getDamage()).getDyeColor().getColor();
@@ -277,7 +277,8 @@ public class BlockCauldron extends BlockSolidMeta implements BlockEntityHolder<B
                     player.getInventory().setItemInHand(potion);
                 } else if (item.getCount() > 1) {
                     if (consumeBottle) {
-                        item.count--;
+                        item.setCount(item.getCount() - 1);
+                        player.getInventory().setItemInHand(item);
                     }
 
                     if (player.getInventory().canAddItem(potion)) {

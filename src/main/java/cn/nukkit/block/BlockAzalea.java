@@ -1,24 +1,14 @@
 package cn.nukkit.block;
 
-import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemTool;
-import cn.nukkit.level.particle.BoneMealParticle;
-import cn.nukkit.math.BlockFace;
+import cn.nukkit.level.Position;
+import cn.nukkit.math.AxisAlignedBB;
 
-/**
- * @author LoboMetalurgico
- * @since 13/06/2021
- */
-
-public class BlockAzalea extends BlockFlowable {
+public class BlockAzalea extends BlockTransparent {
 
     public BlockAzalea() {
-        this(0);
-    }
-
-    public BlockAzalea(int meta) {
-        super(meta);
+        // Does nothing
     }
 
     @Override
@@ -32,8 +22,50 @@ public class BlockAzalea extends BlockFlowable {
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
+    public boolean canPlaceOn(Block floor, Position pos) {
+        // Azaleas can be placed on grass blocks, dirt, coarse dirt, rooted dirt, podzol, moss blocks, farmland, mud, muddy mangrove roots and clay.
+        switch (floor.getId()) {
+            case GRASS:
+            case DIRT:
+            case ROOTED_DIRT:
+            case PODZOL:
+            case MOSS_BLOCK:
+            case FARMLAND:
+            case MUD:
+            case CLAY_BLOCK:
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int getToolType() {
+        return ItemTool.TYPE_NONE;
+    }
+
+    @Override
+    public boolean canHarvestWithHand() {
+        return true;
+    }
+
+    @Override
+    public boolean canBeClimbed() {
+        return true;
+    }
+
+    @Override
+    public boolean canBePushed() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeFlowedInto() {
+        return true;
+    }
+
+    @Override
+    public boolean canPassThrough() {
+        return true;
     }
 
     @Override
@@ -47,58 +79,17 @@ public class BlockAzalea extends BlockFlowable {
     }
 
     @Override
-    public int getToolType() {
-        return ItemTool.TYPE_NONE;
-    }
-
-    @Override
-    public boolean canHarvestWithHand() {
-        return true;
-    }
-
-
-    @Override
-    public boolean onActivate(Item item, Player player) {
-        if (item.getId() == Item.DYE && item.getDamage() == 0x0F) { // BoneMeal
-            if (player != null && !player.isCreative()) {
-                item.count--;
-            }
-
-            this.level.addParticle(new BoneMealParticle(this));
-            //TODO
-        }
+    public boolean isSolid() {
         return false;
     }
 
     @Override
-    public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        Block down = this.down();
-        int id = down.getId();
-        if (id == Block.GRASS || id == Block.DIRT || id == Block.FARMLAND || id == Block.PODZOL || id == MYCELIUM) {
-            this.getLevel().setBlock(block, this, true, true);
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean breaksWhenMoved() {
-        return true;
-    }
-
-    @Override
-    public boolean sticksToPiston() {
-        return false;
+    protected AxisAlignedBB recalculateBoundingBox() {
+        return null;
     }
 
     @Override
     public Item[] getDrops(Item item) {
-        return new Item[]{toItem()};
-    }
-
-    @Override
-    public boolean canBeActivated() {
-        return true;
+        return Item.EMPTY_ARRAY;
     }
 }

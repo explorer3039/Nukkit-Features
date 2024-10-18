@@ -2,16 +2,8 @@ package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
 
-public class BlockCommandBlockRepeating extends BlockCommandBlock {
+public class BlockCommandBlockRepeating extends BlockSolid {
 
-    public BlockCommandBlockRepeating() {
-        this(0);
-    }
-
-    public BlockCommandBlockRepeating(int meta) {
-        super(meta);
-    }
-    
     @Override
     public int getId() {
         return REPEATING_COMMAND_BLOCK;

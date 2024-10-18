@@ -52,6 +52,7 @@ import cn.nukkit.lang.TextContainer;
 import cn.nukkit.lang.TranslationContainer;
 import cn.nukkit.level.*;
 import cn.nukkit.level.format.FullChunk;
+import cn.nukkit.level.format.generic.BaseFullChunk;
 import cn.nukkit.level.particle.ItemBreakParticle;
 import cn.nukkit.level.particle.PunchBlockParticle;
 import cn.nukkit.level.sound.ExperienceOrbSound;
@@ -268,7 +269,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
 
     protected AdventureSettings adventureSettings;
 
-    protected boolean checkMovement = false;
+    protected boolean checkMovement = true;
 
     private PermissibleBase perm;
     /**
@@ -334,10 +335,13 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
     private int timeSinceRest;
     private boolean inSoulSand;
     private boolean dimensionChangeInProgress;
+    private int riptideTicks;
 
+    @Setter
     private boolean needSendData;
     private boolean needSendAdventureSettings;
     private boolean needSendFoodLevel;
+    @Setter
     private boolean needSendInventory;
     private boolean needSendHeldItem;
     private boolean dimensionFix560;
@@ -421,6 +425,13 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
 
     public void onChorusFruitTeleport() {
         this.lastChorusFruitTeleport = this.server.getTick();
+    }
+
+    /**
+     * Set last spin attack tick to current tick
+     */
+    public void onSpinAttack(int riptideLevel) {
+        this.riptideTicks = 50 + (riptideLevel << 5);
     }
 
     public BlockEnderChest getViewingEnderChest() {
@@ -1328,7 +1339,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
         if (packet instanceof BatchPacket) {
             this.networkSession.sendPacket(packet);
         } else {
-            this.server.batchPackets(new Player[]{this}, new DataPacket[]{packet}, true);
+            this.server.batchPackets(new Player[]{this}, new DataPacket[]{packet});
         }
         return true;
     }
@@ -1909,22 +1920,35 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
             return;
         }
 
-        boolean invalidMotion = false;
-        Location revertPos = this.getLocation().clone();
         double distance = clientPos.distanceSquared(this);
 
-        if (!this.level.isChunkGenerated(clientPos.getChunkX(), clientPos.getChunkZ())) {
-            invalidMotion = true;
-            this.nextChunkOrderRun = 0;
-        } else if (distance > 128) {
-            invalidMotion = true;
-            getServer().getLogger().warning(String.format("%s moved too far (%.2f)", this.getName(), distance));
+        int maxDist = 9;
+        if (this.riptideTicks > 95 || clientPos.y - this.y < 2 || this.isOnLadder()) { // TODO: Remove ladder/vines check when block collisions are fixed
+            maxDist = 49;
         }
 
-        if (invalidMotion) {
-            this.revertClientMotion(revertPos);
+        if (distance > maxDist) {
+            this.revertClientMotion(this);
+            server.getLogger().debug(username + ": distanceSquared=" + distance +  " > maxDist=" + maxDist);
             return;
         }
+
+        if (this.chunk == null || !this.chunk.isGenerated()) {
+            BaseFullChunk chunk = this.level.getChunk(clientPos.getChunkX(), clientPos.getChunkZ(), false);
+            if (chunk == null || !chunk.isGenerated()) {
+                this.nextChunkOrderRun = 0;
+                this.revertClientMotion(this);
+                return;
+            } else {
+                if (this.chunk != null) {
+                    this.chunk.removeEntity(this);
+                }
+                this.chunk = chunk;
+            }
+        }
+
+        boolean invalidMotion = false;
+        Location revertPos = this.getLocation().clone();
 
         double diffX = clientPos.getX() - this.x;
         double diffY = clientPos.getY() - this.y;
@@ -2025,13 +2049,13 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                     if (!target.equals(event.getTo())) {
                         this.teleport(event.getTo(), null);
                     } else {
-                        //1.19.0-
+                        //1.7.0-
                         this.addMovement(this.x, this.y, this.z, this.yaw, this.pitch, this.headYaw,
                                 this.getViewers().values()
                                         .stream()
-                                        .filter(p -> p.protocol < ProtocolInfo.v1_19_0)
+                                        .filter(p -> p.protocol < ProtocolInfo.v1_7_0)
                                         .collect(Collectors.toList()));
-                        //1.19.0+
+                        //1.7.0+
                         this.broadcastMovement();
                     }
                 } else {
@@ -2227,6 +2251,10 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
         this.lastUpdate = currentTick;
 
         this.failedTransactions = 0;
+
+        if (this.riptideTicks > 0) {
+            this.riptideTicks -= tickDiff;
+        }
 
         if (this.fishing != null && this.age % 20 == 0) {
             if (this.distanceSquared(fishing) > 1089) { // 33 blocks
@@ -2748,8 +2776,6 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
         startGamePacket.isMovementServerAuthoritative = this.isMovementServerAuthoritative();
         startGamePacket.isServerAuthoritativeBlockBreaking = this.isServerAuthoritativeBlockBreaking();
         startGamePacket.playerPropertyData = EntityProperty.getPlayerPropertyCache();
-        startGamePacket.eduMode = true;
-        startGamePacket.hasEduFeaturesEnabled = true;
         this.forceDataPacket(startGamePacket, null);
 
         this.loggedIn = true;
@@ -3435,7 +3461,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                 Vector3 pos = this.temporalVector.setComponents(playerActionPacket.x, playerActionPacket.y, playerActionPacket.z);
                 BlockFace face = BlockFace.fromIndex(playerActionPacket.face);
 
-                actionswitch:
+                stopItemHold:
                 switch (playerActionPacket.action) {
                     case PlayerActionPacket.ACTION_START_BREAK:
                         if (this.isServerAuthoritativeBlockBreaking()) break;
@@ -3581,6 +3607,15 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                             this.setSwimming(false);
                         }
                         break;
+                    case PlayerActionPacket.ACTION_STOP_SPIN_ATTACK:
+                        PlayerToggleSpinAttackEvent playerToggleSpinAttackEvent = new PlayerToggleSpinAttackEvent(this, false);
+                        playerToggleSpinAttackEvent.call();
+                        if (playerToggleSpinAttackEvent.isCancelled()) {
+                            this.needSendData = true;
+                        } else {
+                            this.setSpinAttack(false);
+                        }
+                        return;
                     case PlayerActionPacket.ACTION_MISSED_SWING:
                         if (this.isMovementServerAuthoritative() || this.isLockMovementInput() || this.protocol < ProtocolInfo.v1_20_10_21) break;
                         PlayerMissedSwingEvent pmse = new PlayerMissedSwingEvent(this);

@@ -1,7 +1,7 @@
 package cn.nukkit;
 
 import cn.nukkit.block.Block;
-import cn.nukkit.block.customblock.CustomBlockManager;
+import cn.nukkit.block.custom.CustomBlockManager;
 import cn.nukkit.blockentity.*;
 import cn.nukkit.command.*;
 import cn.nukkit.console.NukkitConsole;
@@ -20,7 +20,6 @@ import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.HandlerList;
 import cn.nukkit.event.level.LevelInitEvent;
 import cn.nukkit.event.level.LevelLoadEvent;
-import cn.nukkit.event.server.BatchPacketsEvent;
 import cn.nukkit.event.server.PlayerDataSerializeEvent;
 import cn.nukkit.event.server.QueryRegenerateEvent;
 import cn.nukkit.event.server.ServerStopEvent;
@@ -121,38 +120,6 @@ import java.util.regex.Pattern;
  * @author MagicDroidX
  * @author Box
  */
-/**
- *                             _ooOoo_
- *                            o8888888o
- *                            88" . "88
- *                            (| -_- |)
- *                            O\  =  /O
- *                         ____/`---'\____
- *                       .'  \\|     |//  `.
- *                      /  \\|||  :  |||//  \
- *                     /  _||||| -:- |||||-  \
- *                     |   | \\\  -  /// |   |
- *                     | \_|  ''\---/''  |   |
- *                     \  .-\__  `-`  ___/-. /
- *                   ___`. .'  /--.--\  `. . __
- *                ."" '<  `.___\_<|>_/___.'  >'"".
- *               | | :  `- \`.;`\ _ /`;.`/ - ` : | |
- *               \  \ `-.   \_ __\ /__ _/   .-` /  /
- *          ======`-.____`-.___\_____/___.-`____.-'======
- *                             `=---='
- *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *                     佛祖保佑        永无BUG
- *            佛曰:
- *                   写字楼里写字间，写字间里程序员；
- *                   程序人员写程序，又拿程序换酒钱。
- *                   酒醒只在网上坐，酒醉还来网下眠；
- *                   酒醉酒醒日复日，网上网下年复年。
- *                   但愿老死电脑间，不愿鞠躬老板前；
- *                   奔驰宝马贵者趣，公交自行程序员。
- *                   别人笑我忒疯癫，我笑自己命太贱；
- *                   不见满街漂亮妹，哪个归得程序员？
-*/
-
 @Log4j2
 public class Server {
 
@@ -698,9 +665,7 @@ public class Server {
             }
         }
 
-        log.info("\u00A7b-- \u00A7bNukkit \u00A7dFeatures \u00A7b--");
-        
-        log.info("\u00A7aauthor: explorer_3039");
+        log.info("\u00A7b-- \u00A7cNukkit \u00A7dMOT \u00A7b--");
 
         this.consoleSender = new ConsoleCommandSender();
         this.commandMap = new SimpleCommandMap(this);
@@ -783,8 +748,6 @@ public class Server {
         Generator.addGenerator(Flat.class, "flat", Generator.TYPE_FLAT);
         Generator.addGenerator(Normal.class, "normal", Generator.TYPE_INFINITE);
         Generator.addGenerator(Normal.class, "default", Generator.TYPE_INFINITE);
-
-Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINITE);
         Generator.addGenerator(Nether.class, "nether", Generator.TYPE_NETHER);
         Generator.addGenerator(End.class, "the_end", Generator.TYPE_THE_END);
         Generator.addGenerator(cn.nukkit.level.generator.Void.class, "void", Generator.TYPE_VOID);
@@ -880,22 +843,22 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
 
         // Check for updates
         CompletableFuture.runAsync(() -> {
-           try {
-               URLConnection request = new URL(Nukkit.BRANCH).openConnection();
-               request.connect();
-               InputStreamReader content = new InputStreamReader((InputStream) request.getContent());
-               String latest = "git-" + JsonParser.parseReader(content).getAsJsonObject().get("sha").getAsString().substring(0, 7);
-               content.close();
+            try {
+                URLConnection request = new URL(Nukkit.BRANCH).openConnection();
+                request.connect();
+                InputStreamReader content = new InputStreamReader((InputStream) request.getContent());
+                String latest = "git-" + JsonParser.parseReader(content).getAsJsonObject().get("sha").getAsString().substring(0, 7);
+                content.close();
 
-               boolean isMaster = Nukkit.getBranch().equals("master");
-               if (!this.getNukkitVersion().equals(latest) && !this.getNukkitVersion().equals("git-null") && isMaster) {
-                   this.getLogger().info("§c[Nukkit-Features][Update] §eThere is a new build of §cNukkit§3-§dFeatures §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
-                   this.getLogger().info("§c[Nukkit-Features][Update] §eYou can download the latest build from https://github.com/FeaturesServer/Nukkit-Features/");
-               } /*else if (!isMaster) {
-                   this.getLogger().warning("§c[Nukkit-Features] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
-               }*/
-           } catch (Exception ignore) {
-           }
+                boolean isMaster = Nukkit.getBranch().equals("master");
+                if (!this.getNukkitVersion().equals(latest) && !this.getNukkitVersion().equals("git-null") && isMaster) {
+                    this.getLogger().info("§c[Nukkit-MOT][Update] §eThere is a new build of §cNukkit§3-§dMOT §eavailable! Current: " + this.getNukkitVersion() + " Latest: " + latest);
+                    this.getLogger().info("§c[Nukkit-MOT][Update] §eYou can download the latest build from https://github.com/MemoriesOfTime/Nukkit-MOT/");
+                } else if (!isMaster) {
+                    this.getLogger().warning("§c[Nukkit-MOT] §eYou are running a dev build! Do not use in production! Branch: " + Nukkit.getBranch());
+                }
+            } catch (Exception ignore) {
+            }
         });
 
         Runtime.getRuntime().addShutdownHook(new Thread(this::forceShutdown));
@@ -993,22 +956,11 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     }
 
     public void batchPackets(Player[] players, DataPacket[] packets) {
-        this.batchPackets(players, packets, false);
+        this.batchingHelper.batchPackets(players, packets);
     }
 
+    @Deprecated
     public void batchPackets(Player[] players, DataPacket[] packets, boolean forceSync) {
-        if (players == null || packets == null || players.length == 0 || packets.length == 0) {
-            return;
-        }
-
-        if (callBatchPkEv) {
-            BatchPacketsEvent ev = new BatchPacketsEvent(players, packets, forceSync);
-            pluginManager.callEvent(ev);
-            if (ev.isCancelled()) {
-                return;
-            }
-        }
-
         this.batchingHelper.batchPackets(players, packets);
     }
 
@@ -2758,7 +2710,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
      * @return is operator
      */
     public boolean isOp(String name) {
-        return this.operators.exists(name, true);
+        return name != null && this.operators.exists(name, true);
     }
 
     /**
@@ -3103,7 +3055,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
      */
     private void loadSettings() {
         this.forceLanguage = this.getPropertyBoolean("force-language", false);
-        this.networkCompressionLevel = Math.max(Math.min(this.getPropertyInt("compression-level", 4), 9), 0);
+        this.networkCompressionLevel = Math.max(Math.min(this.getPropertyInt("compression-level", 5), 9), 0);
         this.chunkCompressionLevel = Math.max(Math.min(this.getPropertyInt("chunk-compression-level", 7), 9), 1);
         this.autoTickRate = this.getPropertyBoolean("auto-tick-rate", true);
         this.autoTickRateLimit = this.getPropertyInt("auto-tick-rate-limit", 20);
@@ -3233,7 +3185,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
     private static class ServerProperties extends ConfigSection {
         {
             put("motd", "Minecraft Server");
-            put("sub-motd", "Powered by Nukkit-Features");
+            put("sub-motd", "Powered by Nukkit-MOT");
             put("server-port", 19132);
             put("server-ip", "0.0.0.0");
             put("view-distance", 8);
@@ -3289,7 +3241,7 @@ Generator.addGenerator(OldNormal.class, "old_normal", Generator.TYPE_OLD_INFINIT
             put("async-workers", "auto");
 
             put("zlib-provider", 2);
-            put("compression-level", 4);
+            put("compression-level", 5);
             put("compression-threshold", "256");
             put("use-snappy-compression", false);
             put("rak-packet-limit", RakConstants.DEFAULT_PACKET_LIMIT);

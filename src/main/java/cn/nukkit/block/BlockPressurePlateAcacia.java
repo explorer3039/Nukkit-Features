@@ -16,12 +16,12 @@ public class BlockPressurePlateAcacia extends BlockPressurePlateWood {
     public String getName() {
         return "Acacia Pressure Plate";
     }
-    
+
     @Override
     public int getId() {
         return ACACIA_PRESSURE_PLATE;
     }
-    
+
     @Override
     public BlockColor getColor() {
         return BlockColor.ORANGE_BLOCK_COLOR;

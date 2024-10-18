@@ -1,8 +1,14 @@
 package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
+import cn.nukkit.utils.BlockColor;
 
 public class BlockPowderSnow extends BlockTransparent {
+
+    public BlockPowderSnow() {
+        super();
+    }
+
     @Override
     public String getName() {
         return "Powder Snow";
@@ -10,7 +16,7 @@ public class BlockPowderSnow extends BlockTransparent {
 
     @Override
     public int getId() {
-        return BlockID.POWDER_SNOW;
+        return POWDER_SNOW;
     }
 
     @Override
@@ -20,26 +26,21 @@ public class BlockPowderSnow extends BlockTransparent {
 
     @Override
     public double getResistance() {
-        return 0.1;
-    }
-
-    @Override
-    public boolean isSolid() {
-        return false;
-    }
-
-    @Override
-    public boolean isTransparent() {
-        return true;
-    }
-
-    @Override
-    public boolean canPassThrough() {
-        return true;
+        return 0.25;
     }
 
     @Override
     public Item[] getDrops(Item item) {
         return Item.EMPTY_ARRAY;
+    }
+
+    @Override
+    public BlockColor getColor() {
+        return BlockColor.SNOW_BLOCK_COLOR;
+    }
+
+    @Override
+    public boolean canHarvestWithHand() {
+        return false;
     }
 }

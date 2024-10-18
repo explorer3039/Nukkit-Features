@@ -4,6 +4,7 @@ import cn.nukkit.block.Block;
 import cn.nukkit.network.protocol.ProtocolInfo;
 
 public class ItemNetherSprouts extends Item {
+
     public ItemNetherSprouts() {
         this(0, 1);
     }

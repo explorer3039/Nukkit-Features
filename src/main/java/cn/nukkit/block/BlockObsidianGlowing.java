@@ -7,7 +7,7 @@ import cn.nukkit.item.ItemBlock;
  * Created on 2015/11/22 by xtypr.
  * Package cn.nukkit.block in project Nukkit .
  */
-public class BlockObsidianGlowing extends BlockSolid {
+public class BlockObsidianGlowing extends BlockObsidian {
 
     @Override
     public int getId() {
@@ -18,16 +18,6 @@ public class BlockObsidianGlowing extends BlockSolid {
     public String getName() {
         return "Glowing Obsidian";
     }
-    
-    @Override
-    public double getHardness() {
-        return 10;
-    }
-
-    @Override
-    public double getResistance() {
-        return 6000;
-    }
 
     @Override
     public int getLightLevel() {
@@ -37,6 +27,11 @@ public class BlockObsidianGlowing extends BlockSolid {
     @Override
     public Item toItem() {
         return new ItemBlock(Block.get(GLOWING_OBSIDIAN));
+    }
+
+    @Override
+    public boolean onBreak(Item item) {
+        return this.getLevel().setBlock(this, Block.get(BlockID.AIR), true, true);
     }
 
     @Override

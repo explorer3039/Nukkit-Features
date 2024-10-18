@@ -2,7 +2,6 @@ package cn.nukkit.block;
 
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemBlock;
 import cn.nukkit.math.AxisAlignedBB;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.math.SimpleAxisAlignedBB;
@@ -44,8 +43,8 @@ public abstract class BlockStairs extends BlockSolidMeta implements Faceable {
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
+    public WaterloggingType getWaterloggingType() {
+        return WaterloggingType.WHEN_PLACED_IN_WATER;
     }
 
     @Override
@@ -61,7 +60,9 @@ public abstract class BlockStairs extends BlockSolidMeta implements Faceable {
 
     @Override
     public Item toItem() {
-        return new ItemBlock(Block.get(this.getId(), 0), 0);
+        Item item = super.toItem();
+        item.setDamage(0);
+        return item;
     }
 
     @Override

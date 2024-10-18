@@ -15,6 +15,6 @@ public class ItemChain extends Item {
 
     public ItemChain(Integer meta, int count) {
         super(CHAIN, meta, count, "Chain");
-        this.block = Block.get(CHAIN_BLOCK);
+        this.block = Block.get(BlockID.CHAIN_BLOCK);
     }
 }

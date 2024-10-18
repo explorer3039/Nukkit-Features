@@ -78,14 +78,6 @@ public class BlockBarrel extends BlockSolidMeta implements Faceable, BlockEntity
         if (item.hasCustomName()) {
             nbt.putString("CustomName", item.getCustomName());
         }
-        
-        CompoundTag t = item.getNamedTag();
-
-        if (t != null) {
-            if (t.contains("Items")) {
-                nbt.putList(t.getList("Items"));
-            }
-        }
 
         if (item.hasCustomBlockData()) {
             Map<String, Tag> customData = item.getCustomBlockData().getTags();

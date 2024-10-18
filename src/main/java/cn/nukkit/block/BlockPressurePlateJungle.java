@@ -22,6 +22,7 @@ public class BlockPressurePlateJungle extends BlockPressurePlateWood {
         return JUNGLE_PRESSURE_PLATE;
     }
 
+    @Override
     public BlockColor getColor() {
         return BlockColor.DIRT_BLOCK_COLOR;
     }

@@ -14,7 +14,7 @@ public class BlockButtonAcacia extends BlockButtonWooden {
     public String getName() {
         return "Acacia Button";
     }
-    
+
     @Override
     public int getId() {
         return ACACIA_BUTTON;

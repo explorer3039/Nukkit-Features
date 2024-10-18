@@ -76,7 +76,7 @@ public class BlockLightningRod extends BlockTransparentMeta {
                     toItem()
             };
         } else {
-            return new Item[0];
+            return Item.EMPTY_ARRAY;
         }
     }
 

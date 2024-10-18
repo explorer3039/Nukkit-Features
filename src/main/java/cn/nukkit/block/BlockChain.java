@@ -2,7 +2,6 @@ package cn.nukkit.block;
 
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.ItemChain;
 import cn.nukkit.item.ItemTool;
 import cn.nukkit.math.BlockFace;
 
@@ -60,8 +59,8 @@ public class BlockChain extends BlockTransparentMeta {
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
+    public WaterloggingType getWaterloggingType() {
+        return WaterloggingType.WHEN_PLACED_IN_WATER;
     }
 
     @Override

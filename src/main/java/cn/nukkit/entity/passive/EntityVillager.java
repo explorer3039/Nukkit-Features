@@ -16,8 +16,6 @@ import cn.nukkit.nbt.tag.ListTag;
 import cn.nukkit.nbt.tag.Tag;
 import lombok.Getter;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class EntityVillager extends EntityWalkingAnimal implements InventoryHolder {
 
     public static final int PROFESSION_FARMER = 0;

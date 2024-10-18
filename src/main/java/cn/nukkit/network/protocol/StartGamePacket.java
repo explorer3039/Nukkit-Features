@@ -1,8 +1,8 @@
 package cn.nukkit.network.protocol;
 
 import cn.nukkit.Server;
-import cn.nukkit.block.customblock.CustomBlockDefinition;
-import cn.nukkit.block.customblock.CustomBlockManager;
+import cn.nukkit.block.custom.CustomBlockDefinition;
+import cn.nukkit.block.custom.CustomBlockManager;
 import cn.nukkit.item.RuntimeItems;
 import cn.nukkit.level.GameRules;
 import cn.nukkit.level.GlobalBlockPalette;
@@ -60,9 +60,9 @@ public class StartGamePacket extends DataPacket {
     public boolean hasAchievementsDisabled = true;
     public boolean worldEditor;
     public int dayCycleStopTime = -1;
-    public boolean eduMode = true;
-    public int eduEditionOffer = 1;
-    public boolean hasEduFeaturesEnabled = true;
+    public boolean eduMode = false;
+    public int eduEditionOffer = 0;
+    public boolean hasEduFeaturesEnabled = false;
     public float rainLevel;
     public float lightningLevel;
     public boolean hasConfirmedPlatformLockedContent = false;
@@ -200,7 +200,7 @@ public class StartGamePacket extends DataPacket {
         if (protocol > 224) {
             this.putBoolean(this.hasEduFeaturesEnabled);
             if (protocol >= 407) {
-                this.putString("0"); // Education Edition Product ID
+                this.putString(""); // Education Edition Product ID
             }
         }
         this.putLFloat(this.rainLevel);

@@ -4,7 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
-import cn.nukkit.block.customblock.CustomBlockManager;
+import cn.nukkit.block.custom.CustomBlockManager;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.inventory.Fuel;
 import cn.nukkit.inventory.ItemTag;
@@ -384,11 +384,6 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             list[RECORD_OTHERSIDE] = ItemRecordOtherside.class; //773
 
             list[SOUL_CAMPFIRE] = ItemCampfireSoul.class; //801
-            
-            list[ECHO_SHARD] = ItemEchoShard.class; //779
-            list[DISC_FRAGMENT_5] = ItemDiscFragment5.class; //637
-            list[RECOVERY_COMPASS] = ItemRecoveryCompass.class; //778
-            
 
             list[GLOW_ITEM_FRAME] = ItemItemFrameGlow.class; //850
 
@@ -442,7 +437,6 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             registerNamespacedIdItem(ItemSnortPotterySherd.class);
             registerNamespacedIdItem(ItemBrush.class);
             registerNamespacedIdItem(ItemGoatHorn.class);
-            registerNamespacedIdItem(ItemDoorMangrove.class);
             registerNamespacedIdItem(ItemTrialKey.class);
             registerNamespacedIdItem(ItemTrialKeyOminous.class);
             registerNamespacedIdItem(ItemBreezeRod.class);
@@ -634,7 +628,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
         switch (protocol) {
             case v1_1_0: //TODO check
             case v1_2_0:
-            case v1_2_5_12:
+            case v1_2_5_11:
             case v1_2_5:
             case v1_2_6:
             case v1_2_7:
@@ -664,7 +658,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
                 return new ArrayList<>(Item.creative389);
             case v1_16_0:
             case v1_16_20:
-            case v1_16_100_50:
+            case v1_16_100_0:
             case v1_16_100_51:
             case v1_16_100_52:
             case v1_16_100:
@@ -675,7 +669,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
             case v1_16_210:
             case v1_16_220:
             case v1_16_230_50:
-            case v1_16_230_52:
+            case v1_16_230:
             case v1_16_230_54:
                 return new ArrayList<>(Item.creative407);
             case v1_17_0:
@@ -1728,7 +1722,26 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
     }
 
     public boolean isUnbreakable() {
-        return false;
+        if (!(this instanceof ItemDurable)) {
+            return false;
+        }
+
+        Tag tag = this.getNamedTagEntry("Unbreakable");
+        return tag instanceof ByteTag byteTag && byteTag.data > 0;
+    }
+
+    public Item setUnbreakable(boolean value) {
+        if (!(this instanceof ItemDurable)) {
+            return this;
+        }
+
+        CompoundTag tag = this.getOrCreateNamedTag();
+        this.setNamedTag(tag.putByte("Unbreakable", value ? 1 : 0));
+        return this;
+    }
+
+    public Item setUnbreakable() {
+        return this.setUnbreakable(true);
     }
 
     public boolean canBreakShield() {

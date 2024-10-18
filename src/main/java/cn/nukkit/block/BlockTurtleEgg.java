@@ -100,11 +100,7 @@ public class BlockTurtleEgg extends BlockTransparentMeta {
     }
 
     @Override
-    public boolean breaksWhenMoved() {
-        return true;
-    }
-    
-    public int getWaterloggingLevel() {
-        return 1;
+    public WaterloggingType getWaterloggingType() {
+        return WaterloggingType.WHEN_PLACED_IN_WATER;
     }
 }

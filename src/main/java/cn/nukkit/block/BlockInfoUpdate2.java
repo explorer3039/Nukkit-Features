@@ -14,14 +14,4 @@ public class BlockInfoUpdate2 extends BlockSolid {
     public String getName() {
         return "Update Game Block";
     }
-    
-    @Override
-    public double getResistance() {
-        return 2.5;
-    }
-
-    @Override
-    public double getHardness() {
-        return 0.5;
-    }
 }

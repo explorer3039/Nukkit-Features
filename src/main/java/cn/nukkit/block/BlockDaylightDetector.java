@@ -3,7 +3,6 @@ package cn.nukkit.block;
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemBlock;
-import cn.nukkit.level.Level;
 import cn.nukkit.math.AxisAlignedBB;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.math.SimpleAxisAlignedBB;
@@ -31,8 +30,8 @@ public class BlockDaylightDetector extends BlockTransparent {
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
+    public WaterloggingType getWaterloggingType() {
+        return WaterloggingType.WHEN_PLACED_IN_WATER;
     }
 
     @Override
@@ -91,16 +90,5 @@ public class BlockDaylightDetector extends BlockTransparent {
                 this.y + 0.625,
                 this.z + 1
         );
-    }
-    
-    @Override
-    public int onUpdate(int type) {
-        if (type == Level.BLOCK_UPDATE_NORMAL || type == Level.BLOCK_UPDATE_SCHEDULED) {
-            if (type == Level.BLOCK_UPDATE_SCHEDULED) {
-                this.level.updateAroundRedstone(this, null);
-            }
-            this.level.scheduleUpdate(this, 40);
-        }
-        return 0;
     }
 }

@@ -34,29 +34,13 @@ public class BiomeSelector {
                 biome = EnumBiome.MUSHROOM_ISLAND_SHORE;
             } else {
                 if (rainfall < 0f) {
-                    if (temperature < -0.45f) {
-						biome = EnumBiome.FROZEN_OCEAN;
-					} else if (temperature < -0.15f) {
-						biome = EnumBiome.COLD_OCEAN;
-					} else if (temperature < 0.2f) {
-						biome = EnumBiome.OCEAN;
-					} else if (temperature < 0.55f) {
-						biome = EnumBiome.LUKEWARM_OCEAN;
-					} else {
-						biome = EnumBiome.WARM_OCEAN;
-					}
+                    if (temperature < -0.4f) {
+                        biome = EnumBiome.FROZEN_OCEAN;
+                    } else {
+                        biome = EnumBiome.OCEAN;
+                    }
                 } else {
-                    if (temperature < -0.45f) {
-						biome = EnumBiome.DEEP_FROZEN_OCEAN;
-					} else if (temperature < -0.15f) {
-						biome = EnumBiome.DEEP_COLD_OCEAN;
-					} else if (temperature < 0.2f) {
-						biome = EnumBiome.DEEP_OCEAN;
-					} else if (temperature < 0.55f) {
-						biome = EnumBiome.DEEP_LUKEWARM_OCEAN;
-					} else {
-						biome = EnumBiome.WARM_OCEAN;
-					}
+                    biome = EnumBiome.DEEP_OCEAN;
                 }
             }
         } else if (Math.abs(noiseRiver) < -0.1f) {
@@ -101,36 +85,15 @@ public class BiomeSelector {
                         biome = EnumBiome.EXTREME_HILLS_PLUS;
                     }
                 } else {
-                    //if (rainfall < -0.6)    {
-                    //    biome = EnumBiome.MEGA_TAIGA;
-                    //} else if (rainfall > 0.6)   {
-                    //    biome = EnumBiome.MEGA_SPRUCE_TAIGA;
-                    //} else if (rainfall < 0.2f)  {
-                    //    biome = EnumBiome.TAIGA;
-                    //} else {
-                    //    biome = EnumBiome.TAIGA_M;
-                    //}
-                    if (rainfall < -0.6f) {
-						if (hills < 0.6f) {
-							biome = EnumBiome.MEGA_TAIGA_HILLS;
-						} else {
-							biome = EnumBiome.MEGA_TAIGA;
-						}
-					} else if (rainfall > 0.6f) {
-						if (hills < 0.6f) {
-							biome = EnumBiome.MEGA_SPRUCE_TAIGA_HILLS;
-						} else {
-							biome = EnumBiome.MEGA_SPRUCE_TAIGA;
-						}
-					} else if (rainfall < 0.2f) {
-						if (hills < 0.6f) {
-							biome = EnumBiome.TAIGA_HILLS;
-						} else {
-							biome = EnumBiome.TAIGA;
-						}
-					} else {
-						biome = EnumBiome.TAIGA_M;
-					}
+                    if (rainfall < -0.6)    {
+                        biome = EnumBiome.MEGA_TAIGA;
+                    } else if (rainfall > 0.6)   {
+                        biome = EnumBiome.MEGA_SPRUCE_TAIGA;
+                    } else if (rainfall < 0.2f)  {
+                        biome = EnumBiome.TAIGA;
+                    } else {
+                        biome = EnumBiome.TAIGA_M;
+                    }
                 }
             } else if (temperature < 0.5f)  {
                 // normal

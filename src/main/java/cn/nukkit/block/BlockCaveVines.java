@@ -46,8 +46,14 @@ public class BlockCaveVines extends BlockTransparentMeta {
     }
 
     @Override
+    public boolean canPlaceOn(Block floor, Position pos) {
+        Block up = floor.up(2);
+        return (up.isSolid() || up instanceof BlockCaveVines) && super.canPlaceOn(floor, pos);
+    }
+
+    @Override
     public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
-        if (!(block.down().up(2).isSolid() || block.down().up(2) instanceof BlockCaveVines)) {
+        if (!this.canPlaceOn(block.down(), target)) {
             return false;
         }
 
@@ -189,7 +195,7 @@ public class BlockCaveVines extends BlockTransparentMeta {
     @Override
     public Item[] getDrops(Item item) {
         if (!this.hasBerries()) {
-            return new Item[0];
+            return Item.EMPTY_ARRAY;
         }
         return new Item[]{ Item.get(ItemID.GLOW_BERRIES, 0, 1) };
     }
@@ -228,5 +234,10 @@ public class BlockCaveVines extends BlockTransparentMeta {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean canPassThrough() {
+        return true;
     }
 }

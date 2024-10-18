@@ -1,15 +1,11 @@
 package cn.nukkit.block;
 
 import cn.nukkit.item.ItemTool;
-import org.jetbrains.annotations.NotNull;
-
-/**
- * @author LoboMetalurgico
- * @since 08/06/2021
- */
 
 public class BlockDripstone extends BlockSolid {
+
     public BlockDripstone() {
+        // Does nothing
     }
 
     @Override
@@ -28,11 +24,6 @@ public class BlockDripstone extends BlockSolid {
     }
 
     @Override
-    public double getResistance() {
-        return 1;
-    }
-
-    @Override
     public int getToolType() {
         return ItemTool.TYPE_PICKAXE;
     }
@@ -41,4 +32,10 @@ public class BlockDripstone extends BlockSolid {
     public boolean canHarvestWithHand() {
         return false;
     }
+
+    // TODO:
+    /*@Override
+    public boolean isLavaResistant() {
+        return true;
+    }*/
 }

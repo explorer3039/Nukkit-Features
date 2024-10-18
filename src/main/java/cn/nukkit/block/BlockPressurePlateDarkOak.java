@@ -22,6 +22,7 @@ public class BlockPressurePlateDarkOak extends BlockPressurePlateWood {
         return DARK_OAK_PRESSURE_PLATE;
     }
 
+    @Override
     public BlockColor getColor() {
         return BlockColor.BROWN_BLOCK_COLOR;
     }

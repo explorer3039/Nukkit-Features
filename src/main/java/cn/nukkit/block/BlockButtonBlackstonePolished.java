@@ -20,7 +20,7 @@ public class BlockButtonBlackstonePolished extends BlockButtonStone {
     public String getName() {
         return "Polished Blackstone Button";
     }
-
+    
     @Override
     public BlockColor getColor() {
         return BlockColor.BLACK_BLOCK_COLOR;

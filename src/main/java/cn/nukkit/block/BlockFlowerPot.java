@@ -35,12 +35,6 @@ public class BlockFlowerPot extends BlockFlowable implements BlockEntityHolder<B
             case RED_MUSHROOM:
             case BROWN_MUSHROOM:
             case CACTUS:
-            case BAMBOO:
-            case CRIMSON_FUNGUS:
-            case WARPED_FUNGUS:
-            case CRIMSON_ROOTS:
-            case WARPED_ROOTS:
-            case WITHER_ROSE:
                 return true;
             case TALL_GRASS:
                 if (dmg == 2 || dmg == 3) {
@@ -52,8 +46,8 @@ public class BlockFlowerPot extends BlockFlowable implements BlockEntityHolder<B
     }
 
     @Override
-    public int getWaterloggingLevel() {
-        return 1;
+    public WaterloggingType getWaterloggingType() {
+        return WaterloggingType.WHEN_PLACED_IN_WATER;
     }
 
     @Override
@@ -164,7 +158,8 @@ public class BlockFlowerPot extends BlockFlowable implements BlockEntityHolder<B
         ((BlockEntityFlowerPot) blockEntity).spawnToAll();
 
         if (!player.isCreative()) {
-            item.count--;
+            item.setCount(item.getCount() - 1);
+            player.getInventory().setItemInHand(item.getCount() > 0 ? item : Item.get(Item.AIR));
         }
         return true;
     }

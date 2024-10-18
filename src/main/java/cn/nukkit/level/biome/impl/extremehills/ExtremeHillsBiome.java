@@ -35,11 +35,6 @@ public class ExtremeHillsBiome extends GrassyBiome {
                 new OreType(Block.get(BlockID.EMERALD_ORE), 11, 1, 0, 32),
                 new OreType(Block.get(BlockID.MONSTER_EGG), 7, 9, 0, 63)
         }));
-        
-        this.addPopulator(new PopulatorOre(DEEPSLATE, new OreType[]{
-                new OreType(Block.get(BlockID.DEEPSLATE_EMERALD_ORE), 11, 1, 0, 32),
-                new OreType(Block.get(BlockID.INFESTED_DEEPSLATE), 7, 9, 0, 63)
-        }));
 
         this.setBaseHeight(1f);
         this.setHeightVariation(0.5f);

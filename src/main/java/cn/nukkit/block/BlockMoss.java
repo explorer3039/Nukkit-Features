@@ -2,15 +2,21 @@ package cn.nukkit.block;
 
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemBlock;
+import cn.nukkit.item.ItemDye;
 import cn.nukkit.item.ItemTool;
 import cn.nukkit.level.particle.BoneMealParticle;
-import cn.nukkit.level.Position;
-import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.BlockColor;
-import java.util.Random;
 
-public class BlockMoss extends BlockSolid {
+import java.util.concurrent.ThreadLocalRandom;
+
+public class BlockMoss extends BlockDirt {
+
     public BlockMoss() {
+    }
+
+    public BlockMoss(int meta) {
+        super(0);
     }
 
     @Override
@@ -30,73 +36,83 @@ public class BlockMoss extends BlockSolid {
 
     @Override
     public double getResistance() {
-        return 0.5;
-    }
-
-    @Override
-    public int getToolType() {
-        return ItemTool.TYPE_SHOVEL;
-    }
-
-    @Override
-    public boolean breaksWhenMoved() {
-        return true;
-    }
-
-    @Override
-    public boolean sticksToPiston() {
-        return false;
-    }
-
-    @Override
-    public boolean canBeActivated() {
-        return true;
+        return 2.5;
     }
 
     @Override
     public boolean onActivate(Item item, Player player) {
-        if (item.getId() == Item.DYE && item.getDamage() == 0x0f) {
-            if (player != null && !player.isCreative()) {
-                item.count--;
-            }
-
-            level.addParticle(new BoneMealParticle(this));
-
-            convertToMoss(this);
-            return true;
+        if (item.getId() != Item.DYE || item.getDamage() != ItemDye.BONE_MEAL || this.up().getId() != AIR) {
+            return false;
         }
 
-        return false;
-    }
-    
-    public boolean canConvertToMoss(Block block) {
-        int id = block.getId();
-        return id == BlockID.GRASS ||
-                id == BlockID.DIRT ||
-                id == BlockID.DIRT_WITH_ROOTS ||
-                id == BlockID.STONE ||
-                id == BlockID.MYCELIUM ||
-                id == BlockID.DEEPSLATE ||
-                id == BlockID.TUFF;
-
-    }
-    
-    public void convertToMoss(Position pos){
-        Random random = new Random();
-        for (double x = pos.x - 3; x <= pos.x + 3; x++) {
-            for (double z = pos.z - 3; z <= pos.z + 3; z++) {
-                for (double y = pos.y + 5; y >= pos.y - 5; y--) {
-                    if (canConvertToMoss(pos.level.getBlock(new Position(x, y, z, pos.level))) && (random.nextDouble() < 0.6 || Math.abs(x-pos.x) < 3 && Math.abs(z-pos.z) < 3)) {
-                        pos.level.setBlock(new Position(x, y, z, pos.level), Block.get(BlockID.MOSS_BLOCK));
-                        break;
-                    }
-                }
+        int random = ThreadLocalRandom.current().nextInt(13);
+        Block block;
+        Block block2 = null;
+        if (random < 5) {
+            block = Block.get(TALL_GRASS);
+        } else if (random < 8) {
+            block = Block.get(MOSS_CARPET);
+        } else if (random < 9) {
+            if (this.up(2).getId() != AIR) {
+                return false;
             }
+
+            block = Block.get(DOUBLE_PLANT, BlockDoublePlant.TALL_GRASS);
+            block2 = Block.get(DOUBLE_PLANT, BlockDoublePlant.TALL_GRASS ^ BlockDoublePlant.TOP_HALF_BITMASK);
+        } else if (random < 11) {
+            block = Block.get(AZALEA);
+        } else {
+            block = Block.get(FLOWERING_AZALEA);
         }
+
+        this.getLevel().setBlock(this.up(), block, false, true);
+        if (block2 != null) {
+            this.getLevel().setBlock(this.up(2), block2, false, true);
+        }
+
+        this.level.addParticle(new BoneMealParticle(this));
+
+        if (player != null && !player.isCreative()) {
+            item.count--;
+        }
+        return true;
     }
 
     @Override
     public BlockColor getColor() {
         return BlockColor.GREEN_BLOCK_COLOR;
+    }
+
+    @Override
+    public boolean canSilkTouch() {
+        return true;
+    }
+
+    @Override
+    public int getFullId() {
+        return this.getId() << Block.DATA_BITS;
+    }
+
+    @Override
+    public void setDamage(int meta) {
+        // Noop
+    }
+
+    @Override
+    public Item toItem() {
+        return new ItemBlock(Block.get(this.getId()), 0, 1);
+    }
+
+    @Override
+    public Item[] getDrops(Item item) {
+        if (this.canHarvestWithHand() || this.canHarvest(item)) {
+            return new Item[]{this.toItem()};
+        }
+        return Item.EMPTY_ARRAY;
+    }
+
+    @Override
+    public int getToolType() {
+        return ItemTool.TYPE_HOE;
     }
 }

@@ -38,6 +38,7 @@ public class BlockWeepingVines extends BlockVinesNether {
         this.setDamage(vineAge & 0x19);
     }
 
+    @Override
     public int getMaxVineAge() {
         return 25;
     }
