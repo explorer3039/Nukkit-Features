@@ -460,9 +460,17 @@ public class Blocks {
         list[SPORE_BLOSSOM] = BlockSporeBlossom.class; //576
         list[CAVE_VINES] = BlockCaveVines.class; //577
         list[BIG_DRIPLEAF] = BlockDripleafBig.class; //578
-
+        list[AZALEA_LEAVES] = BlockAzaleaLeaves.class; //579
+        list[AZALEA_LEAVES_FLOWERED] = BlockAzaleaLeavesFlowered.class; //580
+        list[CALCITE] = BlockCalcite.class; //581
         list[AMETHYST_BLOCK] = BlockAmethyst.class; //582
-
+        list[BUDDING_AMETHYST] = BlockBuddingAmethyst.class; //583
+        list[AMETHYST_CLUSTER] = BlockAmethystCluster.class; //584
+        list[LARGE_AMETHYST_BUD] = BlockAmethystBudLarge.class; //585
+        list[MEDIUM_AMETHYST_BUD] = BlockAmethystBudMedium.class; //586
+        list[SMALL_AMETHYST_BUD] = BlockAmethystBudSmall.class; //587
+        list[TUFF] = BlockTuff.class; //588
+        list[TINTED_GLASS] = BlockGlassTinted.class; //589
         list[MOSS_CARPET] = BlockMossCarpet.class; //590
         list[SMALL_DRIPLEAF] = BlockDripleafSmall.class; //591
         list[AZALEA] = BlockAzalea.class; //592
@@ -473,7 +481,19 @@ public class Blocks {
         list[CAVE_VINES_BODY_WITH_BERRIES] = BlockCaveVinesBerriesBody.class; //630
         list[CAVE_VINES_HEAD_WITH_BERRIES] = BlockCaveVinesBerriesHead.class; //631
 
+        list[SMOOTH_BASALT] = BlockBasaltSmooth.class; //632
         list[DEEPSLATE] = BlockDeepslate.class; // 633
+        list[COBBLED_DEEPSLATE] = BlockDeepslateCobbled.class; //634
+
+        list[DEEPSLATE_LAPIS_ORE] = BlockOreLapisDeepslate.class; //655
+        list[DEEPSLATE_IRON_ORE] = BlockOreIronDeepslate.class; //656
+        list[DEEPSLATE_GOLD_ORE] = BlockOreGoldDeepslate.class; //657
+        list[DEEPSLATE_REDSTONE_ORE] = BlockOreRedstoneDeepslate.class; //658
+        list[LIT_DEEPSLATE_REDSTONE_ORE] = BlockOreRedstoneDeepslateGlowing.class; //659
+        list[DEEPSLATE_DIAMOND_ORE] = BlockOreDiamondDeepslate.class; //660
+        list[DEEPSLATE_COAL_ORE] = BlockOreCoalDeepslate.class; //661
+        list[DEEPSLATE_EMERALD_ORE] = BlockOreEmeraldDeepslate.class; //662
+        list[DEEPSLATE_COPPER_ORE] = BlockOreCopperDeepslate.class; //663
 
         list[GLOW_LICHEN] = BlockGlowLichen.class; //666
         list[CANDLE] = BlockCandle.class; //667
