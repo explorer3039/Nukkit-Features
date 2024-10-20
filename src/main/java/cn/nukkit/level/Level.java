@@ -150,7 +150,7 @@ public class Level implements ChunkManager, Metadatable {
         randomTickBlocks[Block.VINE] = true;
         randomTickBlocks[Block.WATER] = true;
         randomTickBlocks[Block.CAULDRON_BLOCK] = true;
-
+        randomTickBlocks[Block.CHORUS_FLOWER] = true;
         randomTickBlocks[Block.BAMBOO] = true;
         randomTickBlocks[Block.BAMBOO_SAPLING] = true;
         randomTickBlocks[Block.CORAL_FAN] = true;
@@ -168,6 +168,7 @@ public class Level implements ChunkManager, Metadatable {
         xrayableBlocks[Block.ANCIENT_DEBRIS] = true;
         xrayableBlocks[Block.COPPER_ORE] = true;
 
+        randomTickBlocks[BlockID.BUDDING_AMETHYST] = true;
         randomTickBlocks[BlockID.CAVE_VINES] = true;
         randomTickBlocks[BlockID.CAVE_VINES_BODY_WITH_BERRIES] = true;
         randomTickBlocks[BlockID.CAVE_VINES_HEAD_WITH_BERRIES] = true;
