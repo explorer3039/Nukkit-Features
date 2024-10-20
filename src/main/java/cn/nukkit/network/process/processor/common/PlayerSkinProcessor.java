@@ -29,6 +29,7 @@ public class PlayerSkinProcessor extends DataPacketProcessor<PlayerSkinPacket> {
 
         if (!skin.isValid()) {
             player.getServer().getLogger().warning(playerHandle.getUsername() + ": PlayerSkinPacket with invalid skin");
+            player.close("", "disconnectionScreen.invalidSkin");
             return;
         }
 
@@ -47,5 +48,10 @@ public class PlayerSkinProcessor extends DataPacketProcessor<PlayerSkinPacket> {
     @Override
     public int getPacketId() {
         return ProtocolInfo.toNewProtocolID(ProtocolInfo.PLAYER_SKIN_PACKET);
+    }
+
+    @Override
+    public boolean isSupported(int protocol) {
+        return protocol >= ProtocolInfo.v1_1_0;
     }
 }

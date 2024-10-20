@@ -142,8 +142,8 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
     public static final int CRAFTING_ANVIL = 2;
     public static final int CRAFTING_ENCHANT = 3;
     public static final int CRAFTING_BEACON = 4;
-
     public static final int CRAFTING_SMITHING = 1003;
+    public static final int CRAFTING_LOOM = 1004;
 
     public static final int TRADE_WINDOW_ID = 500;
 
@@ -159,6 +159,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
     public static final int ANVIL_WINDOW_ID = 2;
     public static final int ENCHANT_WINDOW_ID = 3;
     public static final int BEACON_WINDOW_ID = 4;
+    public static final int LOOM_WINDOW_ID = 2;
     public static final int GRINDSTONE_WINDOW_ID = 5;
     public static final int SMITHING_WINDOW_ID = 6;
     /**
@@ -753,7 +754,6 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
     }
 
     public void sendCommandData() {
-        AvailableCommandsPacket pk = new AvailableCommandsPacket();
         Map<String, CommandDataVersions> data = new HashMap<>();
 
         for (Command command : this.server.getCommandMap().getCommands().values()) {
@@ -771,6 +771,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
         }
 
         if (!data.isEmpty()) {
+            AvailableCommandsPacket pk = new AvailableCommandsPacket();
             pk.commands = data;
             this.dataPacket(pk);
         }
@@ -2976,7 +2977,13 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                     return;
                 }
 
-                this.loginChainData = ClientChainData.read(loginPacket);
+                try {
+                    // TODO: Why do we read this separately?
+                    this.loginChainData = ClientChainData.read(loginPacket);
+                } catch (ClientChainData.TooBigSkinException ex) {
+                    this.close("", "disconnectionScreen.invalidSkin");
+                    return;
+                }
 
                 if (!loginChainData.isXboxAuthed() && server.xboxAuth) {
                     this.close("", "disconnectionScreen.notAuthenticated");

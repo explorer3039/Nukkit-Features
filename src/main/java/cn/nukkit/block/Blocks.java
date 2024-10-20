@@ -346,6 +346,10 @@ public class Blocks {
         list[FLETCHING_TABLE] = BlockFletchingTable.class; //456
         list[SMITHING_TABLE] = BlockSmithingTable.class; //457
         list[BARREL] = BlockBarrel.class; //458
+<<<<<<< HEAD
+=======
+        list[LOOM] = BlockLoom.class; //459
+>>>>>>> upstream/master
 
         list[BELL] = BlockBell.class; //461
         list[SWEET_BERRY_BUSH] = BlockSweetBerryBush.class; //462
@@ -480,7 +484,6 @@ public class Blocks {
 
         list[CAVE_VINES_BODY_WITH_BERRIES] = BlockCaveVinesBerriesBody.class; //630
         list[CAVE_VINES_HEAD_WITH_BERRIES] = BlockCaveVinesBerriesHead.class; //631
-
         list[SMOOTH_BASALT] = BlockBasaltSmooth.class; //632
         list[DEEPSLATE] = BlockDeepslate.class; // 633
         list[COBBLED_DEEPSLATE] = BlockDeepslateCobbled.class; //634

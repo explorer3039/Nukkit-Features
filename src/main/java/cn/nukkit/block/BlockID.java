@@ -551,6 +551,7 @@ public interface BlockID {
 
     int CAVE_VINES_BODY_WITH_BERRIES = 630;
     int CAVE_VINES_HEAD_WITH_BERRIES = 631;
+
     int SMOOTH_BASALT = 632;
     int DEEPSLATE = 633;
     int COBBLED_DEEPSLATE = 634;
