@@ -485,25 +485,12 @@ public class Blocks {
         list[SMOOTH_BASALT] = BlockBasaltSmooth.class; //632
         list[DEEPSLATE] = BlockDeepslate.class; // 633
         list[COBBLED_DEEPSLATE] = BlockDeepslateCobbled.class; //634
-
-        list[DEEPSLATE_LAPIS_ORE] = BlockOreLapisDeepslate.class; //655
-        list[DEEPSLATE_IRON_ORE] = BlockOreIronDeepslate.class; //656
-        list[DEEPSLATE_GOLD_ORE] = BlockOreGoldDeepslate.class; //657
-        list[DEEPSLATE_REDSTONE_ORE] = BlockOreRedstoneDeepslate.class; //658
-        list[LIT_DEEPSLATE_REDSTONE_ORE] = BlockOreRedstoneDeepslateGlowing.class; //659
-        list[DEEPSLATE_DIAMOND_ORE] = BlockOreDiamondDeepslate.class; //660
-        list[DEEPSLATE_COAL_ORE] = BlockOreCoalDeepslate.class; //661
-        list[DEEPSLATE_EMERALD_ORE] = BlockOreEmeraldDeepslate.class; //662
-        list[DEEPSLATE_COPPER_ORE] = BlockOreCopperDeepslate.class; //663
-
+        list[DEEPSLATE_IRON_ORE] = BlockDeepslateIronOre.class; // 656
         list[DEEPSLATE_LAPIS_ORE] = BlockDeepslateLapisOre.class; // 655
 
         list[DEEPSLATE_GOLD_ORE] = BlockDeepslateGoldOre.class; // 657
         list[DEEPSLATE_REDSTONE_ORE] = BlockDeepslateRedstoneOre.class; // 658
         list[LIT_DEEPSLATE_REDSTONE_ORE] = BlockLitDeepslateRedstoneOre.class; // 659
-
-        list[DEEPSLATE_IRON_ORE] = BlockDeepslateIronOre.class; // 656
-
         list[DEEPSLATE_DIAMOND_ORE] = BlockDeepslateDiamondOre.class; // 660
         list[DEEPSLATE_COAL_ORE] = BlockDeepslateCoalOre.class; // 661
         list[DEEPSLATE_EMERALD_ORE] = BlockDeepslateEmeraldOre.class; // 662
